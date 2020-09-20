@@ -1,0 +1,61 @@
+.alien__head{
+  position: relative;
+  width: 150px;
+  height: 150px;
+  -webkit-border-radius: 100% 100% 100% 20%;
+  border-radius: 100% 100% 100% 20%;
+  transform: rotate(-45deg);
+  background: grey;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+  z-index: 20;
+}
+.alien__eye{
+  position: absolute;
+  top: 51px;
+  left: -14.5px;
+  display: flex;
+  transform:rotate(45deg);
+}
+.alien__eye span{
+  position: absolute;
+  width: 5px;
+  height: 20px;
+  border-radius: 100% 100%;
+}
+.alien__pupil--left{
+  top: 14px;
+  left: 33px;
+  transform: rotate(90deg);
+}
+.alien__pupil--right{
+  top: 25px;
+  left: 20px;
+  transform: rotate(0deg);
+}
+.alien__eye--left{
+  transform: rotate(90deg);
+}
+.alien__eye--right{
+  transform: rotate(0deg);
+}
+.alien__eye--left, .alien__eye--right{
+  width: 65px;
+  height: 65px;
+  background: black;
+  border-radius: 90% 0 90% 0;
+  margin: 5px;
+  z-index: 100;
+}
+.eyeShape{
+  animation: eyeShapes 10s infinite;
+}
+.alien__mouth{
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0px 2px 0px -1px;
+  width: 28px;
+  height: 15px;
+  top: 128px;
+  transform: rotate(225deg);
+}
