@@ -29,18 +29,7 @@
         <div class="col-lg-4 alienBox m-2 light-b-shadow">
         <!-- Alien -->
         <div class="alien">
-          <!-- Alien head-->
-        <div id="head" class="alien__head ">
-          <div class="alien__eye">
-            <div class="alien__eye--left">
-                <span class="alien__pupil--left "></span>
-            </div>
-            <div class="alien__eye--right">
-                <span class="alien__pupil--right "></span>
-            </div>
-          </div>
-          <div class="alien__mouth"></div>
-        </div><!-- End Alien head-->
+
         <!-- Alien body-->
         <div id="body" class="alien__body">
           <div class="alien__chest">
@@ -57,7 +46,7 @@
               <div class="alien__leg--left"></div>
               <div class="alien__leg--right"></div>
             </div>
-        </div>
+        </div><!-- End Alien chest-->
 
       <!-- animation test -->
       <div class="magnet_field">
@@ -68,22 +57,34 @@
       </div>
 
         </div><!-- End Alien body-->
-          </div><!-- End Alien -->
+
+      <!-- Alien head-->
+      <div id="head" class="alien__head ">
+        <div class="alien__eye">
+          <div class="alien__eye--left">
+              <span class="alien__pupil--left "></span>
+          </div>
+          <div class="alien__eye--right">
+              <span class="alien__pupil--right "></span>
+          </div>
+        </div>
+        <div class="alien__mouth"></div>
+      </div><!-- End Alien head-->
+
+    </div><!-- End Alien -->
 
     <!-- DNA -->
     <br>
+
     <div class="dnaDiv" id="alienDNA">
         <b>
             DNA:
             <!-- Colors -->
              <span id="dnabody"></span>
-             <span id="dnamouth"></span>
              <span id="dnaeyes"></span>
-             <span id="dnaears"></span>
-
+             <span id="dnaArmleg"></span>
              <!-- Attributes -->
              <span id="dnashape"></span>
-             <span id="dnadecoration"></span>
              <span id="dnadecorationMid"></span>
              <span id="dnadecorationSides"></span>
              <span id="dnadanimation"></span>
@@ -105,28 +106,28 @@
               <input type="range" min="10" max="98" class="form-control-range" id="eyescolor">
           </div>
     </div>
-    <div id="alienTatoos">
+    <div id="alienArmLegs">
           <div class="form-group">
               <label for="formControlRange"><b>Arm & Legs</b><span class="badge badge-dark ml-2" id="armLegcode"></span></label>
               <input type="range" min="10" max="98" class="form-control-range" id="armLegColor">
           </div>
     </div>
-    <div id="alienAnim1">
+    <div id="alienEyeShape">
           <div class="form-group">
-              <label for="formControlRange"><b>1st Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
-              <input type="range" min="10" max="20" class="form-control-range" id="1anim">
+              <label for="formControlRange"><b>Eyes Shape</b><span class="badge badge-dark ml-2" id="shapecode"></span></label>
+              <input type="range" min="1" max="5" class="form-control-range" id="eyeShape">
           </div>
     </div>
     <div id="alienAnim2">
           <div class="form-group">
               <label for="formControlRange"><b>2nd Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
-              <input type="range" min="10" max="20" class="form-control-range" id="2anim">
+              <input type="range" min="1" max="10" class="form-control-range" id="2anim">
           </div>
     </div>
     <div id="alienAnim3">
           <div class="form-group">
-              <label for="formControlRange"><b>2nd Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
-              <input type="range" min="10" max="20" class="form-control-range" id="3anim">
+              <label for="formControlRange"><b>3rd Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
+              <input type="range" min="1" max="10" class="form-control-range" id="3anim">
           </div>
     </div>
   </div><!-- End alienAtributes -->

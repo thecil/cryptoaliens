@@ -3,9 +3,8 @@ var colors = Object.values(allColors())
 
 var defaultDNA = {
     "headcolor" : 10,
-    "armLegColors" : 10,
-    "eyesColor" : 10,
-    "earsColor" : 10,
+    "eyesColor" : 15,
+    "armLegColors" : 20,
     //attributes
     "eyesShape" : 1,
     "decorationPattern" : 1,
@@ -17,16 +16,16 @@ var defaultDNA = {
 
 // when page load
 $( document ).ready(function() {
-  $('#dnabody').html(defaultDNA.headColor);
-  $('#dnaArmleg').html(defaultDNA.armLegColors);
-  $('#dnaeyes').html(defaultDNA.eyesColor);
+  $('#dnabody').html(defaultDNA.headcolor)
+  $('#dnaeyes').html(defaultDNA.eyesColor)
+  $('#dnaArmleg').html(defaultDNA.armLegColors)
+  $('#dnashape').html(defaultDNA.eyesShape)
 
-//   $('#dnashape').html(defaultDNA.eyesShape)
-//   $('#dnadecoration').html(defaultDNA.decorationPattern)
-//   $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
-//   $('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
-//   $('#dnaanimation').html(defaultDNA.animation)
-//   $('#dnaspecial').html(defaultDNA.lastNum)
+//$('#dnadecoration').html(defaultDNA.decorationPattern)
+//$('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
+//$('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
+//$('#dnaanimation').html(defaultDNA.animation)
+//$('#dnaspecial').html(defaultDNA.lastNum)
 
   renderAlien(defaultDNA)
 });
@@ -34,10 +33,10 @@ $( document ).ready(function() {
 function getDna(){
     var dna = ''
     dna += $('#dnabody').html()
-    dna += $('#dnaArmleg').html()
     dna += $('#dnaeyes').html()
-    dna += $('#dnaears').html()
+    dna += $('#dnaArmleg').html()
     dna += $('#dnashape').html()
+
     dna += $('#dnadecoration').html()
     dna += $('#dnadecorationMid').html()
     dna += $('#dnadecorationSides').html()
@@ -51,9 +50,11 @@ function renderAlien(dna){
     headColor(colors[dna.headcolor],dna.headcolor)
     eyeColor(colors[dna.eyesColor],dna.eyesColor)
     armLegColor(colors[dna.armLegColors],dna.armLegColors)
+    eyeVariation(defaultDNA.eyesShape)
     $('#bodycolor').val(dna.headcolor)
     $('#eyescolor').val(dna.eyesColor)
     $('#armLegColor').val(dna.armLegColors)
+    $('#eyeShape').val(dna.eyesShape)
 }
 
 // Changing Alien colors
@@ -68,4 +69,8 @@ $('#eyescolor').change(()=>{
 $('#armLegColor').change(()=>{
     let colorVal = $('#armLegColor').val()
     armLegColor(colors[colorVal],colorVal)
+})
+$('#eyeShape').change(()=>{
+    let shape = parseInt($('#eyeShape').val())
+    eyeVariation(shape)
 })
