@@ -1,0 +1,16 @@
+.shadowAnim{
+  animation: moveShadow 2s infinite ;
+}
+/* Moving head with eyes together */
+.movingHead{
+  animation: moveHead 2s infinite;
+}
+
+@keyframes moveShadow{
+  50% {box-shadow:0px 0px 30px 5px #0ff;}
+}
+
+@keyframes moveHead{
+  from{transform: rotate(30deg)}
+  to{transform: rotate(95deg)}
+}

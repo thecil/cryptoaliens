@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="assets/css/alien/body.css">
     <link rel="stylesheet" href="assets/css/alien/head.css">
-    <link rel="stylesheet" href="assets/css/alien/effects.css">
+    <link rel="stylesheet" href="assets/css/alien/animations.css">
 
-    <link rel="stylesheet" href="assets/anim/aura.css">
+    <!-- <link rel="stylesheet" href="assets/anim/aura.css"> -->
   </head>
   <body>
     <div class="container p-5" style="margin-top: 12vh;margin-bottom: 10vh;">
@@ -30,7 +30,7 @@
         <!-- Alien -->
         <div class="alien">
           <!-- Alien head-->
-        <div id="head" class="alien__head colorShadow">
+        <div id="head" class="alien__head ">
           <div class="alien__eye">
             <div class="alien__eye--left">
                 <span class="alien__pupil--left "></span>
@@ -44,7 +44,7 @@
         <!-- Alien body-->
         <div id="body" class="alien__body">
           <div class="alien__chest">
-            <div class="alien__arm--left">
+            <div class="alien__arm--left movingHead">
               <span class="alien__finger1--left"></span>
               <span class="alien__finger2--left"></span>
             </div>
@@ -58,13 +58,15 @@
               <div class="alien__leg--right"></div>
             </div>
         </div>
+
       <!-- animation test -->
       <div class="magnet_field">
         <div class="magnet_field--l1 flame"></div>
         <div class="magnet_field--l2 flame"></div>
         <div class="magnet_field--l3 flame"></div>
         <div class="magnet_field--l4 flame"></div>
-      </div>-->
+      </div>
+
         </div><!-- End Alien body-->
           </div><!-- End Alien -->
 
@@ -105,20 +107,26 @@
     </div>
     <div id="alienTatoos">
           <div class="form-group">
-              <label for="formControlRange"><b>Tatoos</b><span class="badge badge-dark ml-2" id="tatooscode"></span></label>
-              <input type="range" min="10" max="98" class="form-control-range" id="tatoocolor">
+              <label for="formControlRange"><b>Arm & Legs</b><span class="badge badge-dark ml-2" id="armLegcode"></span></label>
+              <input type="range" min="10" max="98" class="form-control-range" id="armLegColor">
           </div>
     </div>
-    <div id="alienPower1">
+    <div id="alienAnim1">
           <div class="form-group">
-              <label for="formControlRange"><b>1st Skill</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
-              <input type="range" min="10" max="20" class="form-control-range" id="1skill">
+              <label for="formControlRange"><b>1st Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
+              <input type="range" min="10" max="20" class="form-control-range" id="1anim">
           </div>
     </div>
-    <div id="alienPower2">
+    <div id="alienAnim2">
           <div class="form-group">
-              <label for="formControlRange"><b>2nd Skill</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
-              <input type="range" min="10" max="20" class="form-control-range" id="2skill">
+              <label for="formControlRange"><b>2nd Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
+              <input type="range" min="10" max="20" class="form-control-range" id="2anim">
+          </div>
+    </div>
+    <div id="alienAnim3">
+          <div class="form-group">
+              <label for="formControlRange"><b>2nd Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
+              <input type="range" min="10" max="20" class="form-control-range" id="3anim">
           </div>
     </div>
   </div><!-- End alienAtributes -->

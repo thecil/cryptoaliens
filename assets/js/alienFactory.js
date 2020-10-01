@@ -16,7 +16,7 @@ function genColors(){
 
 //This function code needs to modified so that it works with Your cat code.
 function headColor(color,code) {
-    $('.alien__head, .alien__chest, .alien__leg--left, .alien__leg--right, .alien__arm--left, .alien__arm--right').css('background', '#' + color)  //This changes the color of the cat
+    $('.alien__head, .alien__chest').css('background', '#' + color)  //This changes the color of the cat
     $('#headcode').html('code: '+code) //This updates text of the badge next to the slider
     $('#dnabody').html(code) //This updates the body color part of the DNA that is displayed below the cat
 }
@@ -25,9 +25,9 @@ function eyeColor(color,code) {
     $('#eyescode').html('code: '+code) //This updates text of the badge next to the slider
     $('#dnaeyes').html(code) //This updates the body color part of the DNA that is displayed below the cat
 }
-function tatoosColor(color,code) {
-    $('.alien__').css('background', '#' + color)  //This changes the color of the cat
-    $('#tatooscode').html('code: '+code) //This updates text of the badge next to the slider
+function armLegColor(color,code) {
+    $('.alien__leg--left, .alien__leg--right, .alien__arm--left, .alien__arm--right').css('background', '#' + color)  //This changes the color of the cat
+    $('#armLegcode').html('code: '+code) //This updates text of the badge next to the slider
     $('#dnadecoration').html(code) //This updates the body color part of the DNA that is displayed below the cat
 }
 function powersColor(color,code) {
