@@ -16,9 +16,9 @@
 
     <link rel="stylesheet" href="assets/css/alien/body.css">
     <link rel="stylesheet" href="assets/css/alien/head.css">
-    <link rel="stylesheet" href="assets/css/alien/animations.css">
+    <link rel="stylesheet" href="assets/anim/animations.css">
 
-    <!-- <link rel="stylesheet" href="assets/anim/aura.css"> -->
+    <!--<link rel="stylesheet" href="assets/anim/aura.css"> -->
   </head>
   <body class="bg-img">
     <div class="container p-5" style="margin-top: 12vh;margin-bottom: 10vh;">
@@ -28,12 +28,18 @@
       <div class="row">
         <div class="col-lg-4 alienBox m-2 light-b-shadow">
         <!-- Alien -->
-        <div class="alien">
 
+          <!-- animation test -->
+          <div class="magnet_field">
+            <div class="magnet_field--l1 flame"></div>
+            <div class="magnet_field--l2 flame"></div>
+            <div class="magnet_field--l3 flame"></div>
+            <div class="magnet_field--l4 flame"></div>
+          </div>
         <!-- Alien body-->
         <div id="body" class="alien__body">
           <div class="alien__chest">
-            <div class="alien__arm--left movingHead">
+            <div class="alien__arm--left ">
               <span class="alien__finger1--left"></span>
               <span class="alien__finger2--left"></span>
             </div>
@@ -48,18 +54,12 @@
             </div>
         </div><!-- End Alien chest-->
 
-      <!-- animation test -->
-      <div class="magnet_field">
-        <div class="magnet_field--l1 flame"></div>
-        <div class="magnet_field--l2 flame"></div>
-        <div class="magnet_field--l3 flame"></div>
-        <div class="magnet_field--l4 flame"></div>
-      </div>
+
 
         </div><!-- End Alien body-->
 
       <!-- Alien head-->
-      <div id="head" class="alien__head ">
+      <div id="head" class="alien__head movingHead moveShadow">
         <div class="alien__eye">
           <div class="alien__eye--left">
               <span class="alien__pupil--left "></span>
@@ -71,7 +71,7 @@
         <div class="alien__mouth"></div>
       </div><!-- End Alien head-->
 
-    </div><!-- End Alien -->
+
 
     <!-- DNA -->
     <br>
@@ -136,7 +136,7 @@
   <br>
   </div><!-- End Container -->
     <!-- Footer -->
-    <footer class="footer_bg"align="left">
+    <footer style="opacity: 0.5" align="left">
         <p>Ivan on Tech Academy Bootcamp July 2020 - TheCil & Ivo</p>
     </footer>
   </body>

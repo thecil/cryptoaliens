@@ -3,7 +3,7 @@
 }
 /* Moving head with eyes together */
 .movingHead{
-  animation: moveHead 2s infinite;
+  animation: moveHead 15s infinite;
 }
 
 @keyframes moveShadow{
@@ -11,6 +11,7 @@
 }
 
 @keyframes moveHead{
-  from{transform: rotate(30deg)}
-  to{transform: rotate(95deg)}
+  0%{transform: rotate(-45deg)}
+  50%{transform: rotate(-41deg)}
+  100%{transform: rotate(-45deg)}
 }
