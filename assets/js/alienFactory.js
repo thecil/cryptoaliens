@@ -71,7 +71,7 @@ function eyeVariation(num) {
 }
 
 function decorationVariation(num) {
-    $('#dnadecoration').html(num)
+    $('#dnadanimation1').html(num)
     switch (num) {
         case 1:
             $('#decorationName').html('Basic')
@@ -79,6 +79,59 @@ function decorationVariation(num) {
             break
     }
 }
+
+function anim1Variation(num) {
+    $('#dnadanimation1').html(num)
+    switch (num) {
+        case 1:
+            $('#1animcode').html('Basic')
+            resetAnim()
+            break
+        case 2:
+            $('#1animcode').html('Move Head')
+            animType1()
+            break
+        case 3:
+            $('#1animcode').html('Pulse Head')
+            animType2()
+            break
+        case 4:
+            $('#1animcode').html('Body Aura')
+            animType3()
+            break
+        case 5:
+            $('#1animcode').html('Invisible')
+            animType4()
+            break
+    }
+}
+
+//Animations Type
+function resetAnim(){
+  $("#head").removeClass("movingHead")
+  $("#head").removeClass("pulseAnim")
+  $("#alien_chest").removeClass("shadowAnim")
+  $("#head").removeClass("inviAnim")
+  $("#body").removeClass("inviAnim")
+}
+function animType1(){
+  resetAnim()
+  $("#head").addClass("movingHead")
+}
+function animType2(){
+  resetAnim()
+  $("#head").addClass("pulseAnim")
+}
+function animType3(){
+  resetAnim()
+  $("#alien_chest").addClass("shadowAnim")
+}
+function animType4(){
+  resetAnim()
+  $("#head").addClass("inviAnim")
+  $("#body").addClass("inviAnim")
+}
+
 //Eyes Type
 async function normalEyes() {
     await $('.alien__eye').find('.alien__pupil--left').css('top', '14px')

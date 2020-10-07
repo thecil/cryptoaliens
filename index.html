@@ -38,8 +38,8 @@
           </div>
         <!-- Alien body-->
         <div id="body" class="alien__body">
-          <div class="alien__chest">
-            <div class="alien__arm--left ">
+          <div id="alien_chest" class="alien__chest ">
+            <div class="alien__arm--left">
               <span class="alien__finger1--left"></span>
               <span class="alien__finger2--left"></span>
             </div>
@@ -59,7 +59,7 @@
         </div><!-- End Alien body-->
 
       <!-- Alien head-->
-      <div id="head" class="alien__head movingHead moveShadow">
+      <div id="head" class="alien__head">
         <div class="alien__eye">
           <div class="alien__eye--left">
               <span class="alien__pupil--left "></span>
@@ -87,7 +87,8 @@
              <span id="dnashape"></span>
              <span id="dnadecorationMid"></span>
              <span id="dnadecorationSides"></span>
-             <span id="dnadanimation"></span>
+             <span id="dnadanimation1"></span>
+             <span id="dnadanimation2"></span>
              <span id="dnaspecial"></span>
         </b>
     </div><!-- End DNA -->
@@ -118,18 +119,18 @@
               <input type="range" min="1" max="5" class="form-control-range" id="eyeShape">
           </div>
     </div>
-    <div id="alienAnim2">
-          <div class="form-group">
-              <label for="formControlRange"><b>2nd Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
-              <input type="range" min="1" max="10" class="form-control-range" id="2anim">
+    <hr>
+    <div id="alienAnim">
+      <p><b>Animations:</b></p>
+          <div class="form-group d-flex">
+
+              <label for="formControlRange"><b>1st Animation</b><span class="badge badge-dark ml-2" id="1animcode"></span></label>
+              <input type="range" min="1" max="5" class="form-control-range" id="1anim">
+              <label for="formControlRange"><b>2nd Animation</b><span class="badge badge-dark ml-2" id="2animcode"></span></label>
+              <input type="range" min="1" max="5" class="form-control-range" id="2anim">
           </div>
     </div>
-    <div id="alienAnim3">
-          <div class="form-group">
-              <label for="formControlRange"><b>3rd Animation</b><span class="badge badge-dark ml-2" id="powerscode"></span></label>
-              <input type="range" min="1" max="10" class="form-control-range" id="3anim">
-          </div>
-    </div>
+
   </div><!-- End alienAtributes -->
   </div><!-- End Row -->
   </div>
