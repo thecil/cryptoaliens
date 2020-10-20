@@ -35,7 +35,12 @@ function eyeShapes(type,code) {
     $('#shapecode').html('code: '+code) //This updates text of the badge next to the slider
     $('#dnashape').html(code) //This updates the body color part of the DNA that is displayed below the alien
 }
-
+async function logoCrypto() {
+  let _coins = await getGeckoData()
+    $('#imgLogo').attr("src", `${_coins._logoUrl}`)  //This changes the color of the alien
+    $('#cryptoLogocode').html(_coins._name) //This updates text of the badge next to the slider
+    $('#dnaanimation2').html(_coins.indexOf(_coins._name)) //This updates the body color part of the DNA that is displayed below the alien
+}
 //###################################################
 //Functions below will be used later on in the project
 //###################################################
@@ -70,15 +75,7 @@ function eyeVariation(num) {
     }
 }
 
-function decorationVariation(num) {
-    $('#dnadanimation1').html(num)
-    switch (num) {
-        case 1:
-            $('#decorationName').html('Basic')
-            normaldecoration()
-            break
-    }
-}
+
 
 function anim1Variation(num) {
     $('#dnadanimation1').html(num)

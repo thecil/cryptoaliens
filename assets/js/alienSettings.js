@@ -8,7 +8,7 @@ var defaultDNA = {
     //attributes
     "eyesShape" : 1,
     "animation1" :  1,
-    "animation2" :  1,
+    "animation2" :  0,
     "lastNum" :  1
     }
 
@@ -19,6 +19,7 @@ $( document ).ready(function() {
   $('#dnaArmleg').html(defaultDNA.armLegColors)
   $('#dnashape').html(defaultDNA.eyesShape)
   $('#dnadanimation1').html(defaultDNA.animation1)
+  $('#dnadanimation2').html(defaultDNA.animation2)
 
 //$('#dnadecoration').html(defaultDNA.decorationPattern)
 //$('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
@@ -35,10 +36,6 @@ function getDna(){
     dna += $('#dnaeyes').html()
     dna += $('#dnaArmleg').html()
     dna += $('#dnashape').html()
-
-    dna += $('#dnadecoration').html()
-    dna += $('#dnadecorationMid').html()
-    dna += $('#dnadecorationSides').html()
 
     dna += $('#dnaanimation1').html()
     dna += $('#dnaanimation2').html()
@@ -58,6 +55,8 @@ function renderAlien(dna){
     $('#eyeShape').val(dna.eyesShape)
     anim1Variation(dna.animation1)
     $('#1anim').val(dna.animation1)
+    logoCrypto(dna.animation2)
+    $('#cryptoLogo').val(dna.animation2)
 }
 
 // Changing Alien colors
@@ -81,6 +80,10 @@ $('#1anim').change(()=>{
     let anim1 = parseInt($('#1anim').val())
     anim1Variation(anim1)
 })
+$('#cryptoLogo').change(()=>{
+    let logo = parseInt($('#cryptoLogo').val())
+    logoCrypto(logo)
+})
 
 $('#resetAlien').click(function(){
   renderAlien(defaultDNA)
@@ -94,7 +97,7 @@ $('#randomAlien').click(function(){
     //attributes
     "eyesShape": Math.floor(Math.random() * 5) + 1 ,
     "animation1" :  Math.floor(Math.random() * 5) + 1,
-    "animation2" :  Math.floor(Math.random() * 5) + 1,
+    "animation2" :  Math.floor(Math.random() * 89) + 10,
     "lastNum" : Math.floor(Math.random() * 5) + 1
   }
   renderAlien(randomDNA)
