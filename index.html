@@ -93,7 +93,19 @@
         </b>
     </div><!-- End DNA -->
   </div><!-- End alienBox -->
+
   <div class="col-lg-7 alienAtributes m-2 light-b-shadow">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="alien-tab" data-toggle="tab" href="#alien" role="tab" aria-controls="alien" aria-selected="true">Alien Body</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="alienAttr-tab" data-toggle="tab" href="#alienAttr" role="tab" aria-controls="alienAttr" aria-selected="false">Attributes</a>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active pt-2" id="alien" role="tabpanel" aria-labelledby="alien-tab">
     <!-- Alien colors -->
     <div id="alienColors">
           <div class="form-group">
@@ -119,10 +131,11 @@
               <input type="range" min="1" max="5" class="form-control-range" id="eyeShape">
           </div>
     </div>
-    <hr>
-    <div id="alienAnim">
+  </div>
+  <div class="tab-pane fade" id="alienAttr" role="tabpanel" aria-labelledby="alienAttr-tab">
+    <div class="mt-2" id="alienAnim">
       <p><b>Animations:</b></p>
-          <div class="form-group d-flex">
+          <div class="form-group">
 
               <label for="formControlRange"><b>1st Animation</b><span class="badge badge-dark ml-2" id="1animcode"></span></label>
               <input type="range" min="1" max="5" class="form-control-range" id="1anim">
@@ -130,6 +143,14 @@
               <input type="range" min="1" max="5" class="form-control-range" id="2anim">
           </div>
     </div>
+  </div>
+
+</div>
+
+    <hr>
+    <button id="randomAlien" type="button" class="btn btn-primary float-left mr-2">Random Alien</button>
+    <button id="resetAlien" type="button" class="btn btn-secondary float-left ml-2">Reset</button>
+    <button id="createAlien" type="button" class="btn btn-success float-right">Create Alien</button
 
   </div><!-- End alienAtributes -->
   </div><!-- End Row -->
