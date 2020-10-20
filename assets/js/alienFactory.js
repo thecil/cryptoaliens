@@ -194,10 +194,3 @@ async function normaldecoration() {
     $('.alien__head-dots_first').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
     $('.alien__head-dots_second').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
 }
-
-$('#resetAlien').click(function(){
-  renderAlien(defaultDNA)
-  resetAnim()
-  normalEyes()
-  normaldecoration()
-})

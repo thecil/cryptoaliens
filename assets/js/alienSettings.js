@@ -7,9 +7,6 @@ var defaultDNA = {
     "armLegColors" : 20,
     //attributes
     "eyesShape" : 1,
-    "decorationPattern" : 1,
-    "decorationMidcolor" : 13,
-    "decorationSidescolor" : 13,
     "animation1" :  1,
     "animation2" :  1,
     "lastNum" :  1
@@ -52,14 +49,14 @@ function getDna(){
 
 function renderAlien(dna){
     headColor(colors[dna.headcolor],dna.headcolor)
-    eyeColor(colors[dna.eyesColor],dna.eyesColor)
-    armLegColor(colors[dna.armLegColors],dna.armLegColors)
-    eyeVariation(defaultDNA.eyesShape)
-    anim1Variation(defaultDNA.animation1)
     $('#bodycolor').val(dna.headcolor)
+    eyeColor(colors[dna.eyesColor],dna.eyesColor)
     $('#eyescolor').val(dna.eyesColor)
+    armLegColor(colors[dna.armLegColors],dna.armLegColors)
     $('#armLegColor').val(dna.armLegColors)
+    eyeVariation(dna.eyesShape)
     $('#eyeShape').val(dna.eyesShape)
+    anim1Variation(dna.animation1)
     $('#1anim').val(dna.animation1)
 }
 
@@ -83,4 +80,22 @@ $('#eyeShape').change(()=>{
 $('#1anim').change(()=>{
     let anim1 = parseInt($('#1anim').val())
     anim1Variation(anim1)
+})
+
+$('#resetAlien').click(function(){
+  renderAlien(defaultDNA)
+})
+
+$('#randomAlien').click(function(){
+  var randomDNA = {
+    "headcolor": Math.floor(Math.random() * 88) + 10 ,
+    "eyesColor": Math.floor(Math.random() * 88) + 10 ,
+    "armLegColors": Math.floor(Math.random() * 88) + 10 ,
+    //attributes
+    "eyesShape": Math.floor(Math.random() * 5) + 1 ,
+    "animation1" :  Math.floor(Math.random() * 5) + 1,
+    "animation2" :  Math.floor(Math.random() * 5) + 1,
+    "lastNum" : Math.floor(Math.random() * 5) + 1
+  }
+  renderAlien(randomDNA)
 })
