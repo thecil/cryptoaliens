@@ -1,0 +1,3476 @@
+{
+  "contractName": "ProxyAdmin",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract TransparentUpgradeableProxy",
+          "name": "proxy",
+          "type": "address"
+        }
+      ],
+      "name": "getProxyImplementation",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract TransparentUpgradeableProxy",
+          "name": "proxy",
+          "type": "address"
+        }
+      ],
+      "name": "getProxyAdmin",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract TransparentUpgradeableProxy",
+          "name": "proxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "newAdmin",
+          "type": "address"
+        }
+      ],
+      "name": "changeProxyAdmin",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract TransparentUpgradeableProxy",
+          "name": "proxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "upgrade",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract TransparentUpgradeableProxy",
+          "name": "proxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "upgradeAndCall",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"contract TransparentUpgradeableProxy\",\"name\":\"proxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeProxyAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract TransparentUpgradeableProxy\",\"name\":\"proxy\",\"type\":\"address\"}],\"name\":\"getProxyAdmin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract TransparentUpgradeableProxy\",\"name\":\"proxy\",\"type\":\"address\"}],\"name\":\"getProxyImplementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract TransparentUpgradeableProxy\",\"name\":\"proxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"upgrade\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract TransparentUpgradeableProxy\",\"name\":\"proxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This is an auxiliary contract meant to be assigned as the admin of a {TransparentUpgradeableProxy}. For an explanation of why you would want to use this see the documentation for {TransparentUpgradeableProxy}.\",\"methods\":{\"changeProxyAdmin(address,address)\":{\"details\":\"Changes the admin of `proxy` to `newAdmin`.      * Requirements:      * - This contract must be the current admin of `proxy`.\"},\"getProxyAdmin(address)\":{\"details\":\"Returns the current admin of `proxy`.      * Requirements:      * - This contract must be the admin of `proxy`.\"},\"getProxyImplementation(address)\":{\"details\":\"Returns the current implementation of `proxy`.      * Requirements:      * - This contract must be the admin of `proxy`.\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"upgrade(address,address)\":{\"details\":\"Upgrades `proxy` to `implementation`. See {TransparentUpgradeableProxy-upgradeTo}.      * Requirements:      * - This contract must be the admin of `proxy`.\"},\"upgradeAndCall(address,address,bytes)\":{\"details\":\"Upgrades `proxy` to `implementation` and calls a function on the new implementation. See {TransparentUpgradeableProxy-upgradeToAndCall}.      * Requirements:      * - This contract must be the admin of `proxy`.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/ProxyAdmin.sol\":\"ProxyAdmin\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0xdb26cbf4d028490f49831a7865c2fe1b28db44b535ca8d343785a3b768aae183\",\"urls\":[\"bzz-raw://840b14ce0315c47d49ba328f1f9fa7654ded1c9e1559e6c5e777a7b2dc28bf0a\",\"dweb:/ipfs/QmTLLabn4wcfGro9LEmUXUN2nwKqZSotXMvjDCLXEnLtZP\"]},\"/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0x4bd6402ca6b3419008c2b482aff54e66836e8cb4eba2680e42ac5884ae6424fc\",\"urls\":[\"bzz-raw://8f9f711fb8d0d92aeea1c327e3845d13ca1fa8f142e47f8723cd5b3106fb29a3\",\"dweb:/ipfs/QmVQUReDW9f4zGqhizwHnyU8EntMs95tbASdqkGncnikba\"]},\"/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/Proxy.sol\":{\"keccak256\":\"0x302c3404769f7a5a3d68a7035b9ed71a4b1f8a1669afa7895558a11b6accebfa\",\"urls\":[\"bzz-raw://c413ff3bdda059e93afc96fbcc44c700e5578b7752eb1a3f166dd52d80e27a31\",\"dweb:/ipfs/QmY9xsG9pPtCdwVDWZ58Gmah6dgFBMWTZYQvqLxikKTYdU\"]},\"/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/ProxyAdmin.sol\":{\"keccak256\":\"0x0e874bc63360ccff0d3ea6326d389577f0a05636f09882030fcef71d182e49dc\",\"urls\":[\"bzz-raw://036d4395d5a48bb26ad882c111d856ba4b81ca7ea43b92c9ee52c35a8ea6a58b\",\"dweb:/ipfs/QmPMmdtHoBZj8nCxWZmBzWE6TuXWzwwLFFXqxdCuFQVzCA\"]},\"/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/TransparentUpgradeableProxy.sol\":{\"keccak256\":\"0xca5ae7ca3cf7170f67ddd4610eea87a4a6523b51f35d992e6f79096cf5ea5789\",\"urls\":[\"bzz-raw://6e36660936ef123c985166091a8f5aa55f111cb9bb29f49cb22709a7b3306d86\",\"dweb:/ipfs/QmdXRvsNgnuagv4c5BGjMhSwp4ptwBiJ27ioU67wWTKoMz\"]},\"/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/UpgradeableProxy.sol\":{\"keccak256\":\"0xba553079916cc29b5a5b49d99d9ed316d795d0146bc429ea3ca43c9f38579481\",\"urls\":[\"bzz-raw://b30fc2346c7c7d1584465c95e45ca7f5ddc1e40967796347562b591ddc5a45d5\",\"dweb:/ipfs/QmTPRwoVMUsdY5t1Bk4qQfvYaxmjyoDE8BoHtAsqHNRrtb\"]},\"/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0xf5fa8cbdffa5ef8be49b246b5628facc30b71707e78a45d80d93b64eff3fe390\",\"urls\":[\"bzz-raw://774e78a9ff32792cc95db4d2ceaf3a7965bb7f0bea5e6cb7cff182b450d44b37\",\"dweb:/ipfs/QmRRMC4uj7eAcLW7chynA3sNEYULMFazdLwQHKHQPyzAbA\"]}},\"version\":1}",
+  "bytecode": "0x608060405260006100146100b760201b60201c565b9050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508073ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3506100bf565b600033905090565b610e8b806100ce6000396000f3fe60806040526004361061007b5760003560e01c80639623609d1161004e5780639623609d146101f057806399a88ec4146102eb578063f2fde38b1461035c578063f3b7dead146103ad5761007b565b8063204e1c7a14610080578063715018a6146101115780637eff275e146101285780638da5cb5b14610199575b600080fd5b34801561008c57600080fd5b506100cf600480360360208110156100a357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061043e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011d57600080fd5b50610126610506565b005b34801561013457600080fd5b506101976004803603604081101561014b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061068e565b005b3480156101a557600080fd5b506101ae6107f2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6102e96004803603606081101561020657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019064010000000081111561026357600080fd5b82018360208201111561027557600080fd5b8035906020019184600183028401116401000000008311171561029757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929050505061081b565b005b3480156102f757600080fd5b5061035a6004803603604081101561030e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506109ee565b005b34801561036857600080fd5b506103ab6004803603602081101561037f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610b52565b005b3480156103b957600080fd5b506103fc600480360360208110156103d057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610d5f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060608373ffffffffffffffffffffffffffffffffffffffff1660405180807f5c60da1b000000000000000000000000000000000000000000000000000000008152506004019050600060405180830381855afa9150503d80600081146104c3576040519150601f19603f3d011682016040523d82523d6000602084013e6104c8565b606091505b5091509150816104d757600080fd5b8080602001905160208110156104ec57600080fd5b810190808051906020019092919050505092505050919050565b61050e610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16146105cf576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b610696610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614610757576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff16638f283970826040518263ffffffff1660e01b8152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050600060405180830381600087803b1580156107d657600080fd5b505af11580156107ea573d6000803e3d6000fd5b505050505050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b610823610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16146108e4576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b8273ffffffffffffffffffffffffffffffffffffffff16634f1ef2863484846040518463ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610984578082015181840152602081019050610969565b50505050905090810190601f1680156109b15780820380516001836020036101000a031916815260200191505b5093505050506000604051808303818588803b1580156109d057600080fd5b505af11580156109e4573d6000803e3d6000fd5b5050505050505050565b6109f6610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614610ab7576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff16633659cfe6826040518263ffffffff1660e01b8152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050600060405180830381600087803b158015610b3657600080fd5b505af1158015610b4a573d6000803e3d6000fd5b505050505050565b610b5a610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614610c1b576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415610ca1576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526026815260200180610e306026913960400191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b60008060608373ffffffffffffffffffffffffffffffffffffffff1660405180807ff851a440000000000000000000000000000000000000000000000000000000008152506004019050600060405180830381855afa9150503d8060008114610de4576040519150601f19603f3d011682016040523d82523d6000602084013e610de9565b606091505b509150915081610df857600080fd5b808060200190516020811015610e0d57600080fd5b810190808051906020019092919050505092505050919050565b60003390509056fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061646472657373a2646970667358221220b7b4123dce6bc65d8d371506889bfd722668b05cf4df5cb7f533e68055b332aa64736f6c63430006020033",
+  "deployedBytecode": "0x60806040526004361061007b5760003560e01c80639623609d1161004e5780639623609d146101f057806399a88ec4146102eb578063f2fde38b1461035c578063f3b7dead146103ad5761007b565b8063204e1c7a14610080578063715018a6146101115780637eff275e146101285780638da5cb5b14610199575b600080fd5b34801561008c57600080fd5b506100cf600480360360208110156100a357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061043e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011d57600080fd5b50610126610506565b005b34801561013457600080fd5b506101976004803603604081101561014b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061068e565b005b3480156101a557600080fd5b506101ae6107f2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6102e96004803603606081101561020657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019064010000000081111561026357600080fd5b82018360208201111561027557600080fd5b8035906020019184600183028401116401000000008311171561029757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929050505061081b565b005b3480156102f757600080fd5b5061035a6004803603604081101561030e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506109ee565b005b34801561036857600080fd5b506103ab6004803603602081101561037f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610b52565b005b3480156103b957600080fd5b506103fc600480360360208110156103d057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610d5f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060608373ffffffffffffffffffffffffffffffffffffffff1660405180807f5c60da1b000000000000000000000000000000000000000000000000000000008152506004019050600060405180830381855afa9150503d80600081146104c3576040519150601f19603f3d011682016040523d82523d6000602084013e6104c8565b606091505b5091509150816104d757600080fd5b8080602001905160208110156104ec57600080fd5b810190808051906020019092919050505092505050919050565b61050e610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16146105cf576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b610696610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614610757576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff16638f283970826040518263ffffffff1660e01b8152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050600060405180830381600087803b1580156107d657600080fd5b505af11580156107ea573d6000803e3d6000fd5b505050505050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b610823610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16146108e4576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b8273ffffffffffffffffffffffffffffffffffffffff16634f1ef2863484846040518463ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200180602001828103825283818151815260200191508051906020019080838360005b83811015610984578082015181840152602081019050610969565b50505050905090810190601f1680156109b15780820380516001836020036101000a031916815260200191505b5093505050506000604051808303818588803b1580156109d057600080fd5b505af11580156109e4573d6000803e3d6000fd5b5050505050505050565b6109f6610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614610ab7576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff16633659cfe6826040518263ffffffff1660e01b8152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050600060405180830381600087803b158015610b3657600080fd5b505af1158015610b4a573d6000803e3d6000fd5b505050505050565b610b5a610e27565b73ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614610c1b576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e657281525060200191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415610ca1576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526026815260200180610e306026913960400191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b60008060608373ffffffffffffffffffffffffffffffffffffffff1660405180807ff851a440000000000000000000000000000000000000000000000000000000008152506004019050600060405180830381855afa9150503d8060008114610de4576040519150601f19603f3d011682016040523d82523d6000602084013e610de9565b606091505b509150915081610df857600080fd5b808060200190516020811015610e0d57600080fd5b810190808051906020019092919050505092505050919050565b60003390509056fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061646472657373a2646970667358221220b7b4123dce6bc65d8d371506889bfd722668b05cf4df5cb7f533e68055b332aa64736f6c63430006020033",
+  "sourceMap": "364:2345:29:-:0;;;865:17:7;885:12;:10;;;:12;;:::i;:::-;865:32;;916:9;907:6;;:18;;;;;;;;;;;;;;;;;;973:9;940:43;;969:1;940:43;;;;;;;;;;;;831:159;364:2345:29;;590:104:0;643:15;677:10;670:17;;590:104;:::o;364:2345:29:-;;;;;;;",
+  "deployedSourceMap": "364:2345:29:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;567:429;;8:9:-1;5:2;;;30:1;27;20:12;5:2;567:429:29;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;567:429:29;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1689:145:7;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1689:145:7;;;:::i;:::-;;1745:140:29;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1745:140:29;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1745:140:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1066:77:7;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1066:77:7;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;2501:206:29;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2501:206:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;2501:206:29;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;2501:206:29;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;2501:206:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;2501:206:29;;;;;;;;;;;;;;;:::i;:::-;;2092:141;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2092:141:29;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2092:141:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1983:240:7;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1983:240:7;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1983:240:7;;;;;;;;;;;;;;;;;;;:::i;:::-;;1158:411:29;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1158:411:29;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1158:411:29;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;567:429;655:7;832:12;846:23;881:5;873:25;;:40;;;;;;;;;;;;;;;;;;;;;;;;;;12:1:-1;19;14:27;;;;67:4;61:11;56:16;;134:4;130:9;123:4;105:16;101:27;97:43;94:1;90:51;84:4;77:65;157:16;154:1;147:27;211:16;208:1;201:4;198:1;194:12;179:49;5:228;;14:27;32:4;27:9;;5:228;;831:82:29;;;;931:7;923:16;;;;;;967:10;956:33;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;956:33:29;;;;;;;;;;;;;;;;949:40;;;;567:429;;;:::o;1689:145:7:-;1280:12;:10;:12::i;:::-;1270:22;;:6;;;;;;;;;;;:22;;;1262:67;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1795:1:::1;1758:40;;1779:6;::::0;::::1;;;;;;;;;1758:40;;;;;;;;;;;;1825:1;1808:6:::0;::::1;:19;;;;;;;;;;;;;;;;;;1689:145::o:0;1745:140:29:-;1280:12:7;:10;:12::i;:::-;1270:22;;:6;;;;;;;;;;;:22;;;1262:67;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1851:5:29::1;:17;;;1869:8;1851:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27::::0;20:12:::1;5:2;1851:27:29;;;;8:9:-1;5:2;;;45:16;42:1;39::::0;24:38:::1;77:16;74:1;67:27;5:2;1851:27:29;;;;1745:140:::0;;:::o;1066:77:7:-;1104:7;1130:6;;;;;;;;;;;1123:13;;1066:77;:::o;2501:206:29:-;1280:12:7;:10;:12::i;:::-;1270:22;;:6;;;;;;;;;;;:22;;;1262:67;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2638:5:29::1;:22;;;2668:9;2679:14;2695:4;2638:62;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;2638:62:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27::::0;20:12:::1;5:2;2638:62:29;;;;8:9:-1;5:2;;;45:16;42:1;39::::0;24:38:::1;77:16;74:1;67:27;5:2;2638:62:29;;;;;2501:206:::0;;;:::o;2092:141::-;1280:12:7;:10;:12::i;:::-;1270:22;;:6;;;;;;;;;;;:22;;;1262:67;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2195:5:29::1;:15;;;2211:14;2195:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27::::0;20:12:::1;5:2;2195:31:29;;;;8:9:-1;5:2;;;45:16;42:1;39::::0;24:38:::1;77:16;74:1;67:27;5:2;2195:31:29;;;;2092:141:::0;;:::o;1983:240:7:-;1280:12;:10;:12::i;:::-;1270:22;;:6;;;;;;;;;;;:22;;;1262:67;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2091:1:::1;2071:22;;:8;:22;;;;2063:73;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2180:8;2151:38;;2172:6;::::0;::::1;;;;;;;;;2151:38;;;;;;;;;;;;2208:8;2199:6;::::0;:17:::1;;;;;;;;;;;;;;;;;;1983:240:::0;:::o;1158:411:29:-;1237:7;1405:12;1419:23;1454:5;1446:25;;:40;;;;;;;;;;;;;;;;;;;;;;;;;;12:1:-1;19;14:27;;;;67:4;61:11;56:16;;134:4;130:9;123:4;105:16;101:27;97:43;94:1;90:51;84:4;77:65;157:16;154:1;147:27;211:16;208:1;201:4;198:1;194:12;179:49;5:228;;14:27;32:4;27:9;;5:228;;1404:82:29;;;;1504:7;1496:16;;;;;;1540:10;1529:33;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1529:33:29;;;;;;;;;;;;;;;;1522:40;;;;1158:411;;;:::o;590:104:0:-;643:15;677:10;670:17;;590:104;:::o",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.6.0;\n\nimport \"../access/Ownable.sol\";\nimport \"./TransparentUpgradeableProxy.sol\";\n\n/**\n * @dev This is an auxiliary contract meant to be assigned as the admin of a {TransparentUpgradeableProxy}. For an\n * explanation of why you would want to use this see the documentation for {TransparentUpgradeableProxy}.\n */\ncontract ProxyAdmin is Ownable {\n\n    /**\n     * @dev Returns the current implementation of `proxy`.\n     * \n     * Requirements:\n     * \n     * - This contract must be the admin of `proxy`.\n     */\n    function getProxyImplementation(TransparentUpgradeableProxy proxy) public view returns (address) {\n        // We need to manually run the static call since the getter cannot be flagged as view\n        // bytes4(keccak256(\"implementation()\")) == 0x5c60da1b\n        (bool success, bytes memory returndata) = address(proxy).staticcall(hex\"5c60da1b\");\n        require(success);\n        return abi.decode(returndata, (address));\n    }\n\n    /**\n     * @dev Returns the current admin of `proxy`.\n     * \n     * Requirements:\n     * \n     * - This contract must be the admin of `proxy`.\n     */\n    function getProxyAdmin(TransparentUpgradeableProxy proxy) public view returns (address) {\n        // We need to manually run the static call since the getter cannot be flagged as view\n        // bytes4(keccak256(\"admin()\")) == 0xf851a440\n        (bool success, bytes memory returndata) = address(proxy).staticcall(hex\"f851a440\");\n        require(success);\n        return abi.decode(returndata, (address));\n    }\n\n    /**\n     * @dev Changes the admin of `proxy` to `newAdmin`.\n     * \n     * Requirements:\n     * \n     * - This contract must be the current admin of `proxy`.\n     */\n    function changeProxyAdmin(TransparentUpgradeableProxy proxy, address newAdmin) public onlyOwner {\n        proxy.changeAdmin(newAdmin);\n    }\n\n    /**\n     * @dev Upgrades `proxy` to `implementation`. See {TransparentUpgradeableProxy-upgradeTo}.\n     * \n     * Requirements:\n     * \n     * - This contract must be the admin of `proxy`.\n     */\n    function upgrade(TransparentUpgradeableProxy proxy, address implementation) public onlyOwner {\n        proxy.upgradeTo(implementation);\n    }\n\n    /**\n     * @dev Upgrades `proxy` to `implementation` and calls a function on the new implementation. See\n     * {TransparentUpgradeableProxy-upgradeToAndCall}.\n     * \n     * Requirements:\n     * \n     * - This contract must be the admin of `proxy`.\n     */\n    function upgradeAndCall(TransparentUpgradeableProxy proxy, address implementation, bytes memory data) public payable onlyOwner {\n        proxy.upgradeToAndCall{value: msg.value}(implementation, data);\n    }\n}\n",
+  "sourcePath": "C:/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/ProxyAdmin.sol",
+  "ast": {
+    "absolutePath": "/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/ProxyAdmin.sol",
+    "exportedSymbols": {
+      "ProxyAdmin": [
+        3810
+      ]
+    },
+    "id": 3811,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3687,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:29"
+      },
+      {
+        "absolutePath": "/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/access/Ownable.sol",
+        "file": "../access/Ownable.sol",
+        "id": 3688,
+        "nodeType": "ImportDirective",
+        "scope": 3811,
+        "sourceUnit": 1502,
+        "src": "58:31:29",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/TransparentUpgradeableProxy.sol",
+        "file": "./TransparentUpgradeableProxy.sol",
+        "id": 3689,
+        "nodeType": "ImportDirective",
+        "scope": 3811,
+        "sourceUnit": 4003,
+        "src": "90:43:29",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 3690,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1501,
+              "src": "387:7:29",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$1501",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 3691,
+            "nodeType": "InheritanceSpecifier",
+            "src": "387:7:29"
+          }
+        ],
+        "contractDependencies": [
+          22,
+          1501
+        ],
+        "contractKind": "contract",
+        "documentation": "@dev This is an auxiliary contract meant to be assigned as the admin of a {TransparentUpgradeableProxy}. For an\nexplanation of why you would want to use this see the documentation for {TransparentUpgradeableProxy}.",
+        "fullyImplemented": true,
+        "id": 3810,
+        "linearizedBaseContracts": [
+          3810,
+          1501,
+          22
+        ],
+        "name": "ProxyAdmin",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 3722,
+              "nodeType": "Block",
+              "src": "664:332:29",
+              "statements": [
+                {
+                  "assignments": [
+                    3699,
+                    3701
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 3699,
+                      "name": "success",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 3722,
+                      "src": "832:12:29",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 3698,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "832:4:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    {
+                      "constant": false,
+                      "id": 3701,
+                      "name": "returndata",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 3722,
+                      "src": "846:23:29",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 3700,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "846:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 3709,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "5c60da1b",
+                        "id": 3707,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "899:13:29",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_96a4c6be7716f5be15d118c16bd1d464cb27f01187d0b9218993a5d488a47c29",
+                          "typeString": "literal_string (contains invalid UTF-8 sequence at position 4)"
+                        },
+                        "value": null
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_96a4c6be7716f5be15d118c16bd1d464cb27f01187d0b9218993a5d488a47c29",
+                          "typeString": "literal_string (contains invalid UTF-8 sequence at position 4)"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 3704,
+                            "name": "proxy",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3693,
+                            "src": "881:5:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                              "typeString": "contract TransparentUpgradeableProxy"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                              "typeString": "contract TransparentUpgradeableProxy"
+                            }
+                          ],
+                          "id": 3703,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "873:7:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 3702,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "873:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": null,
+                              "typeString": null
+                            }
+                          }
+                        },
+                        "id": 3705,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "873:14:29",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 3706,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "staticcall",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "873:25:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_barestaticcall_view$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
+                        "typeString": "function (bytes memory) view returns (bool,bytes memory)"
+                      }
+                    },
+                    "id": 3708,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "873:40:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                      "typeString": "tuple(bool,bytes memory)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "831:82:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3711,
+                        "name": "success",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3699,
+                        "src": "931:7:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 3710,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "923:7:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 3712,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "923:16:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3713,
+                  "nodeType": "ExpressionStatement",
+                  "src": "923:16:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3716,
+                        "name": "returndata",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3701,
+                        "src": "967:10:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "components": [
+                          {
+                            "argumentTypes": null,
+                            "id": 3718,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "980:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 3717,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "980:7:29",
+                              "typeDescriptions": {
+                                "typeIdentifier": null,
+                                "typeString": null
+                              }
+                            }
+                          }
+                        ],
+                        "id": 3719,
+                        "isConstant": false,
+                        "isInlineArray": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "979:9:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        },
+                        {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3714,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -1,
+                        "src": "956:3:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 3715,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "decode",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "956:10:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abidecode_pure$__$returns$__$",
+                        "typeString": "function () pure"
+                      }
+                    },
+                    "id": 3720,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "956:33:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "functionReturnParameters": 3697,
+                  "id": 3721,
+                  "nodeType": "Return",
+                  "src": "949:40:29"
+                }
+              ]
+            },
+            "documentation": "@dev Returns the current implementation of `proxy`.\n\n     * Requirements:\n\n     * - This contract must be the admin of `proxy`.",
+            "functionSelector": "204e1c7a",
+            "id": 3723,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getProxyImplementation",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3694,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3693,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3723,
+                  "src": "599:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3692,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "599:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "598:35:29"
+            },
+            "returnParameters": {
+              "id": 3697,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3696,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3723,
+                  "src": "655:7:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3695,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "655:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "654:9:29"
+            },
+            "scope": 3810,
+            "src": "567:429:29",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3754,
+              "nodeType": "Block",
+              "src": "1246:323:29",
+              "statements": [
+                {
+                  "assignments": [
+                    3731,
+                    3733
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 3731,
+                      "name": "success",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 3754,
+                      "src": "1405:12:29",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 3730,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1405:4:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    {
+                      "constant": false,
+                      "id": 3733,
+                      "name": "returndata",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 3754,
+                      "src": "1419:23:29",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 3732,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1419:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 3741,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "f851a440",
+                        "id": 3739,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1472:13:29",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_cb23cf6c353ccb16f0d92c8e6b5c5b425654e65dd07e2d295b394de4cf15afb7",
+                          "typeString": "literal_string (contains invalid UTF-8 sequence at position 0)"
+                        },
+                        "value": null
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_cb23cf6c353ccb16f0d92c8e6b5c5b425654e65dd07e2d295b394de4cf15afb7",
+                          "typeString": "literal_string (contains invalid UTF-8 sequence at position 0)"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 3736,
+                            "name": "proxy",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3725,
+                            "src": "1454:5:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                              "typeString": "contract TransparentUpgradeableProxy"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                              "typeString": "contract TransparentUpgradeableProxy"
+                            }
+                          ],
+                          "id": 3735,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1446:7:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 3734,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1446:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": null,
+                              "typeString": null
+                            }
+                          }
+                        },
+                        "id": 3737,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1446:14:29",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 3738,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "staticcall",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1446:25:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_barestaticcall_view$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
+                        "typeString": "function (bytes memory) view returns (bool,bytes memory)"
+                      }
+                    },
+                    "id": 3740,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1446:40:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                      "typeString": "tuple(bool,bytes memory)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1404:82:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3743,
+                        "name": "success",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3731,
+                        "src": "1504:7:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 3742,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "1496:7:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 3744,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1496:16:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3745,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1496:16:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3748,
+                        "name": "returndata",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3733,
+                        "src": "1540:10:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "components": [
+                          {
+                            "argumentTypes": null,
+                            "id": 3750,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "1553:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 3749,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "1553:7:29",
+                              "typeDescriptions": {
+                                "typeIdentifier": null,
+                                "typeString": null
+                              }
+                            }
+                          }
+                        ],
+                        "id": 3751,
+                        "isConstant": false,
+                        "isInlineArray": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "1552:9:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        },
+                        {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3746,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -1,
+                        "src": "1529:3:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 3747,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "decode",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1529:10:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abidecode_pure$__$returns$__$",
+                        "typeString": "function () pure"
+                      }
+                    },
+                    "id": 3752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1529:33:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "functionReturnParameters": 3729,
+                  "id": 3753,
+                  "nodeType": "Return",
+                  "src": "1522:40:29"
+                }
+              ]
+            },
+            "documentation": "@dev Returns the current admin of `proxy`.\n\n     * Requirements:\n\n     * - This contract must be the admin of `proxy`.",
+            "functionSelector": "f3b7dead",
+            "id": 3755,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getProxyAdmin",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3726,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3725,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3755,
+                  "src": "1181:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3724,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "1181:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1180:35:29"
+            },
+            "returnParameters": {
+              "id": 3729,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3728,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3755,
+                  "src": "1237:7:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3727,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1237:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1236:9:29"
+            },
+            "scope": 3810,
+            "src": "1158:411:29",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3770,
+              "nodeType": "Block",
+              "src": "1841:44:29",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3767,
+                        "name": "newAdmin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3759,
+                        "src": "1869:8:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3764,
+                        "name": "proxy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3757,
+                        "src": "1851:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                          "typeString": "contract TransparentUpgradeableProxy"
+                        }
+                      },
+                      "id": 3766,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "changeAdmin",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3923,
+                      "src": "1851:17:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address) external"
+                      }
+                    },
+                    "id": 3768,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1851:27:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3769,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1851:27:29"
+                }
+              ]
+            },
+            "documentation": "@dev Changes the admin of `proxy` to `newAdmin`.\n\n     * Requirements:\n\n     * - This contract must be the current admin of `proxy`.",
+            "functionSelector": "7eff275e",
+            "id": 3771,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 3762,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 3761,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1452,
+                  "src": "1831:9:29",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1831:9:29"
+              }
+            ],
+            "name": "changeProxyAdmin",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3760,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3757,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3771,
+                  "src": "1771:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3756,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "1771:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3759,
+                  "name": "newAdmin",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3771,
+                  "src": "1806:16:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3758,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1806:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1770:53:29"
+            },
+            "returnParameters": {
+              "id": 3763,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1841:0:29"
+            },
+            "scope": 3810,
+            "src": "1745:140:29",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3786,
+              "nodeType": "Block",
+              "src": "2185:48:29",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3783,
+                        "name": "implementation",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3775,
+                        "src": "2211:14:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3780,
+                        "name": "proxy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3773,
+                        "src": "2195:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                          "typeString": "contract TransparentUpgradeableProxy"
+                        }
+                      },
+                      "id": 3782,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "upgradeTo",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3935,
+                      "src": "2195:15:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address) external"
+                      }
+                    },
+                    "id": 3784,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2195:31:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3785,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2195:31:29"
+                }
+              ]
+            },
+            "documentation": "@dev Upgrades `proxy` to `implementation`. See {TransparentUpgradeableProxy-upgradeTo}.\n\n     * Requirements:\n\n     * - This contract must be the admin of `proxy`.",
+            "functionSelector": "99a88ec4",
+            "id": 3787,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 3778,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 3777,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1452,
+                  "src": "2175:9:29",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2175:9:29"
+              }
+            ],
+            "name": "upgrade",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3776,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3773,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3787,
+                  "src": "2109:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3772,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "2109:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3775,
+                  "name": "implementation",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3787,
+                  "src": "2144:22:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3774,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2144:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2108:59:29"
+            },
+            "returnParameters": {
+              "id": 3779,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2185:0:29"
+            },
+            "scope": 3810,
+            "src": "2092:141:29",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3808,
+              "nodeType": "Block",
+              "src": "2628:79:29",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3804,
+                        "name": "implementation",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3791,
+                        "src": "2679:14:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 3805,
+                        "name": "data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3793,
+                        "src": "2695:4:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 3798,
+                          "name": "proxy",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3789,
+                          "src": "2638:5:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                            "typeString": "contract TransparentUpgradeableProxy"
+                          }
+                        },
+                        "id": 3800,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "upgradeToAndCall",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3960,
+                        "src": "2638:22:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_payable$_t_address_$_t_bytes_memory_ptr_$returns$__$",
+                          "typeString": "function (address,bytes memory) payable external"
+                        }
+                      },
+                      "id": 3803,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "names": [
+                        "value"
+                      ],
+                      "nodeType": "FunctionCallOptions",
+                      "options": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 3801,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -15,
+                            "src": "2668:3:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 3802,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2668:9:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "src": "2638:40:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_payable$_t_address_$_t_bytes_memory_ptr_$returns$__$value",
+                        "typeString": "function (address,bytes memory) payable external"
+                      }
+                    },
+                    "id": 3806,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2638:62:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3807,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2638:62:29"
+                }
+              ]
+            },
+            "documentation": "@dev Upgrades `proxy` to `implementation` and calls a function on the new implementation. See\n{TransparentUpgradeableProxy-upgradeToAndCall}.\n\n     * Requirements:\n\n     * - This contract must be the admin of `proxy`.",
+            "functionSelector": "9623609d",
+            "id": 3809,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 3796,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 3795,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1452,
+                  "src": "2618:9:29",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2618:9:29"
+              }
+            ],
+            "name": "upgradeAndCall",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3794,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3789,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3809,
+                  "src": "2525:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3788,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "2525:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3791,
+                  "name": "implementation",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3809,
+                  "src": "2560:22:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3790,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2560:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3793,
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3809,
+                  "src": "2584:17:29",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 3792,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2584:5:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2524:78:29"
+            },
+            "returnParameters": {
+              "id": 3797,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2628:0:29"
+            },
+            "scope": 3810,
+            "src": "2501:206:29",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3811,
+        "src": "364:2345:29"
+      }
+    ],
+    "src": "33:2677:29"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/ProxyAdmin.sol",
+    "exportedSymbols": {
+      "ProxyAdmin": [
+        3810
+      ]
+    },
+    "id": 3811,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3687,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:29"
+      },
+      {
+        "absolutePath": "/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/access/Ownable.sol",
+        "file": "../access/Ownable.sol",
+        "id": 3688,
+        "nodeType": "ImportDirective",
+        "scope": 3811,
+        "sourceUnit": 1502,
+        "src": "58:31:29",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/C/Users/thecil/Documents/GitHub/cryptoaliens/solidity/contracts/@openzeppelin/contracts/proxy/TransparentUpgradeableProxy.sol",
+        "file": "./TransparentUpgradeableProxy.sol",
+        "id": 3689,
+        "nodeType": "ImportDirective",
+        "scope": 3811,
+        "sourceUnit": 4003,
+        "src": "90:43:29",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 3690,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1501,
+              "src": "387:7:29",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$1501",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 3691,
+            "nodeType": "InheritanceSpecifier",
+            "src": "387:7:29"
+          }
+        ],
+        "contractDependencies": [
+          22,
+          1501
+        ],
+        "contractKind": "contract",
+        "documentation": "@dev This is an auxiliary contract meant to be assigned as the admin of a {TransparentUpgradeableProxy}. For an\nexplanation of why you would want to use this see the documentation for {TransparentUpgradeableProxy}.",
+        "fullyImplemented": true,
+        "id": 3810,
+        "linearizedBaseContracts": [
+          3810,
+          1501,
+          22
+        ],
+        "name": "ProxyAdmin",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 3722,
+              "nodeType": "Block",
+              "src": "664:332:29",
+              "statements": [
+                {
+                  "assignments": [
+                    3699,
+                    3701
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 3699,
+                      "name": "success",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 3722,
+                      "src": "832:12:29",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 3698,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "832:4:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    {
+                      "constant": false,
+                      "id": 3701,
+                      "name": "returndata",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 3722,
+                      "src": "846:23:29",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 3700,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "846:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 3709,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "5c60da1b",
+                        "id": 3707,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "899:13:29",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_96a4c6be7716f5be15d118c16bd1d464cb27f01187d0b9218993a5d488a47c29",
+                          "typeString": "literal_string (contains invalid UTF-8 sequence at position 4)"
+                        },
+                        "value": null
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_96a4c6be7716f5be15d118c16bd1d464cb27f01187d0b9218993a5d488a47c29",
+                          "typeString": "literal_string (contains invalid UTF-8 sequence at position 4)"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 3704,
+                            "name": "proxy",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3693,
+                            "src": "881:5:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                              "typeString": "contract TransparentUpgradeableProxy"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                              "typeString": "contract TransparentUpgradeableProxy"
+                            }
+                          ],
+                          "id": 3703,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "873:7:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 3702,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "873:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": null,
+                              "typeString": null
+                            }
+                          }
+                        },
+                        "id": 3705,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "873:14:29",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 3706,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "staticcall",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "873:25:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_barestaticcall_view$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
+                        "typeString": "function (bytes memory) view returns (bool,bytes memory)"
+                      }
+                    },
+                    "id": 3708,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "873:40:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                      "typeString": "tuple(bool,bytes memory)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "831:82:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3711,
+                        "name": "success",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3699,
+                        "src": "931:7:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 3710,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "923:7:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 3712,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "923:16:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3713,
+                  "nodeType": "ExpressionStatement",
+                  "src": "923:16:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3716,
+                        "name": "returndata",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3701,
+                        "src": "967:10:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "components": [
+                          {
+                            "argumentTypes": null,
+                            "id": 3718,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "980:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 3717,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "980:7:29",
+                              "typeDescriptions": {
+                                "typeIdentifier": null,
+                                "typeString": null
+                              }
+                            }
+                          }
+                        ],
+                        "id": 3719,
+                        "isConstant": false,
+                        "isInlineArray": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "979:9:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        },
+                        {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3714,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -1,
+                        "src": "956:3:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 3715,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "decode",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "956:10:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abidecode_pure$__$returns$__$",
+                        "typeString": "function () pure"
+                      }
+                    },
+                    "id": 3720,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "956:33:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "functionReturnParameters": 3697,
+                  "id": 3721,
+                  "nodeType": "Return",
+                  "src": "949:40:29"
+                }
+              ]
+            },
+            "documentation": "@dev Returns the current implementation of `proxy`.\n\n     * Requirements:\n\n     * - This contract must be the admin of `proxy`.",
+            "functionSelector": "204e1c7a",
+            "id": 3723,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getProxyImplementation",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3694,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3693,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3723,
+                  "src": "599:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3692,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "599:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "598:35:29"
+            },
+            "returnParameters": {
+              "id": 3697,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3696,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3723,
+                  "src": "655:7:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3695,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "655:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "654:9:29"
+            },
+            "scope": 3810,
+            "src": "567:429:29",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3754,
+              "nodeType": "Block",
+              "src": "1246:323:29",
+              "statements": [
+                {
+                  "assignments": [
+                    3731,
+                    3733
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 3731,
+                      "name": "success",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 3754,
+                      "src": "1405:12:29",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 3730,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1405:4:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    {
+                      "constant": false,
+                      "id": 3733,
+                      "name": "returndata",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 3754,
+                      "src": "1419:23:29",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 3732,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1419:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 3741,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "f851a440",
+                        "id": 3739,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1472:13:29",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_cb23cf6c353ccb16f0d92c8e6b5c5b425654e65dd07e2d295b394de4cf15afb7",
+                          "typeString": "literal_string (contains invalid UTF-8 sequence at position 0)"
+                        },
+                        "value": null
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_cb23cf6c353ccb16f0d92c8e6b5c5b425654e65dd07e2d295b394de4cf15afb7",
+                          "typeString": "literal_string (contains invalid UTF-8 sequence at position 0)"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 3736,
+                            "name": "proxy",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3725,
+                            "src": "1454:5:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                              "typeString": "contract TransparentUpgradeableProxy"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                              "typeString": "contract TransparentUpgradeableProxy"
+                            }
+                          ],
+                          "id": 3735,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1446:7:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 3734,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1446:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": null,
+                              "typeString": null
+                            }
+                          }
+                        },
+                        "id": 3737,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1446:14:29",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      "id": 3738,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "staticcall",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1446:25:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_barestaticcall_view$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
+                        "typeString": "function (bytes memory) view returns (bool,bytes memory)"
+                      }
+                    },
+                    "id": 3740,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1446:40:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                      "typeString": "tuple(bool,bytes memory)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1404:82:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3743,
+                        "name": "success",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3731,
+                        "src": "1504:7:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 3742,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "1496:7:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 3744,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1496:16:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3745,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1496:16:29"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3748,
+                        "name": "returndata",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3733,
+                        "src": "1540:10:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "components": [
+                          {
+                            "argumentTypes": null,
+                            "id": 3750,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "1553:7:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 3749,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "1553:7:29",
+                              "typeDescriptions": {
+                                "typeIdentifier": null,
+                                "typeString": null
+                              }
+                            }
+                          }
+                        ],
+                        "id": 3751,
+                        "isConstant": false,
+                        "isInlineArray": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "1552:9:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        },
+                        {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3746,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -1,
+                        "src": "1529:3:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 3747,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "decode",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1529:10:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abidecode_pure$__$returns$__$",
+                        "typeString": "function () pure"
+                      }
+                    },
+                    "id": 3752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1529:33:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "functionReturnParameters": 3729,
+                  "id": 3753,
+                  "nodeType": "Return",
+                  "src": "1522:40:29"
+                }
+              ]
+            },
+            "documentation": "@dev Returns the current admin of `proxy`.\n\n     * Requirements:\n\n     * - This contract must be the admin of `proxy`.",
+            "functionSelector": "f3b7dead",
+            "id": 3755,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getProxyAdmin",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3726,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3725,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3755,
+                  "src": "1181:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3724,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "1181:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1180:35:29"
+            },
+            "returnParameters": {
+              "id": 3729,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3728,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3755,
+                  "src": "1237:7:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3727,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1237:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1236:9:29"
+            },
+            "scope": 3810,
+            "src": "1158:411:29",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3770,
+              "nodeType": "Block",
+              "src": "1841:44:29",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3767,
+                        "name": "newAdmin",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3759,
+                        "src": "1869:8:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3764,
+                        "name": "proxy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3757,
+                        "src": "1851:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                          "typeString": "contract TransparentUpgradeableProxy"
+                        }
+                      },
+                      "id": 3766,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "changeAdmin",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3923,
+                      "src": "1851:17:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address) external"
+                      }
+                    },
+                    "id": 3768,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1851:27:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3769,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1851:27:29"
+                }
+              ]
+            },
+            "documentation": "@dev Changes the admin of `proxy` to `newAdmin`.\n\n     * Requirements:\n\n     * - This contract must be the current admin of `proxy`.",
+            "functionSelector": "7eff275e",
+            "id": 3771,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 3762,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 3761,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1452,
+                  "src": "1831:9:29",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1831:9:29"
+              }
+            ],
+            "name": "changeProxyAdmin",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3760,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3757,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3771,
+                  "src": "1771:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3756,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "1771:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3759,
+                  "name": "newAdmin",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3771,
+                  "src": "1806:16:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3758,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1806:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1770:53:29"
+            },
+            "returnParameters": {
+              "id": 3763,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1841:0:29"
+            },
+            "scope": 3810,
+            "src": "1745:140:29",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3786,
+              "nodeType": "Block",
+              "src": "2185:48:29",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3783,
+                        "name": "implementation",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3775,
+                        "src": "2211:14:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3780,
+                        "name": "proxy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3773,
+                        "src": "2195:5:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                          "typeString": "contract TransparentUpgradeableProxy"
+                        }
+                      },
+                      "id": 3782,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "upgradeTo",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3935,
+                      "src": "2195:15:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address) external"
+                      }
+                    },
+                    "id": 3784,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2195:31:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3785,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2195:31:29"
+                }
+              ]
+            },
+            "documentation": "@dev Upgrades `proxy` to `implementation`. See {TransparentUpgradeableProxy-upgradeTo}.\n\n     * Requirements:\n\n     * - This contract must be the admin of `proxy`.",
+            "functionSelector": "99a88ec4",
+            "id": 3787,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 3778,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 3777,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1452,
+                  "src": "2175:9:29",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2175:9:29"
+              }
+            ],
+            "name": "upgrade",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3776,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3773,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3787,
+                  "src": "2109:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3772,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "2109:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3775,
+                  "name": "implementation",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3787,
+                  "src": "2144:22:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3774,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2144:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2108:59:29"
+            },
+            "returnParameters": {
+              "id": 3779,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2185:0:29"
+            },
+            "scope": 3810,
+            "src": "2092:141:29",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3808,
+              "nodeType": "Block",
+              "src": "2628:79:29",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3804,
+                        "name": "implementation",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3791,
+                        "src": "2679:14:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 3805,
+                        "name": "data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3793,
+                        "src": "2695:4:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 3798,
+                          "name": "proxy",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3789,
+                          "src": "2638:5:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                            "typeString": "contract TransparentUpgradeableProxy"
+                          }
+                        },
+                        "id": 3800,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "upgradeToAndCall",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 3960,
+                        "src": "2638:22:29",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_payable$_t_address_$_t_bytes_memory_ptr_$returns$__$",
+                          "typeString": "function (address,bytes memory) payable external"
+                        }
+                      },
+                      "id": 3803,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "names": [
+                        "value"
+                      ],
+                      "nodeType": "FunctionCallOptions",
+                      "options": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 3801,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -15,
+                            "src": "2668:3:29",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 3802,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2668:9:29",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "src": "2638:40:29",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_payable$_t_address_$_t_bytes_memory_ptr_$returns$__$value",
+                        "typeString": "function (address,bytes memory) payable external"
+                      }
+                    },
+                    "id": 3806,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2638:62:29",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3807,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2638:62:29"
+                }
+              ]
+            },
+            "documentation": "@dev Upgrades `proxy` to `implementation` and calls a function on the new implementation. See\n{TransparentUpgradeableProxy-upgradeToAndCall}.\n\n     * Requirements:\n\n     * - This contract must be the admin of `proxy`.",
+            "functionSelector": "9623609d",
+            "id": 3809,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 3796,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 3795,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1452,
+                  "src": "2618:9:29",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "2618:9:29"
+              }
+            ],
+            "name": "upgradeAndCall",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 3794,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3789,
+                  "name": "proxy",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3809,
+                  "src": "2525:33:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                    "typeString": "contract TransparentUpgradeableProxy"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 3788,
+                    "name": "TransparentUpgradeableProxy",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4002,
+                    "src": "2525:27:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TransparentUpgradeableProxy_$4002",
+                      "typeString": "contract TransparentUpgradeableProxy"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3791,
+                  "name": "implementation",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3809,
+                  "src": "2560:22:29",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3790,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2560:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3793,
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 3809,
+                  "src": "2584:17:29",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 3792,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2584:5:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2524:78:29"
+            },
+            "returnParameters": {
+              "id": 3797,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2628:0:29"
+            },
+            "scope": 3810,
+            "src": "2501:206:29",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3811,
+        "src": "364:2345:29"
+      }
+    ],
+    "src": "33:2677:29"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.1",
+  "updatedAt": "2020-11-05T03:19:23.428Z",
+  "devdoc": {
+    "details": "This is an auxiliary contract meant to be assigned as the admin of a {TransparentUpgradeableProxy}. For an explanation of why you would want to use this see the documentation for {TransparentUpgradeableProxy}.",
+    "methods": {
+      "changeProxyAdmin(address,address)": {
+        "details": "Changes the admin of `proxy` to `newAdmin`.      * Requirements:      * - This contract must be the current admin of `proxy`."
+      },
+      "getProxyAdmin(address)": {
+        "details": "Returns the current admin of `proxy`.      * Requirements:      * - This contract must be the admin of `proxy`."
+      },
+      "getProxyImplementation(address)": {
+        "details": "Returns the current implementation of `proxy`.      * Requirements:      * - This contract must be the admin of `proxy`."
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      },
+      "upgrade(address,address)": {
+        "details": "Upgrades `proxy` to `implementation`. See {TransparentUpgradeableProxy-upgradeTo}.      * Requirements:      * - This contract must be the admin of `proxy`."
+      },
+      "upgradeAndCall(address,address,bytes)": {
+        "details": "Upgrades `proxy` to `implementation` and calls a function on the new implementation. See {TransparentUpgradeableProxy-upgradeToAndCall}.      * Requirements:      * - This contract must be the admin of `proxy`."
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
