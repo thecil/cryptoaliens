@@ -192,3 +192,18 @@ async function normaldecoration() {
     $('.alien__head-dots_first').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
     $('.alien__head-dots_second').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
 }
+
+//CLOTHE TYPES
+async function clothesType0(){
+
+}
+async function clothesType1(){
+  await $('.clothes__arm--left').css('background-color', 'red')
+  await $('.clothes__arm--right').css('background-color', 'red')
+}
+async function clothesType2(){
+
+}
+async function clothesType3(){
+
+}
