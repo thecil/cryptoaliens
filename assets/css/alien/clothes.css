@@ -1,0 +1,54 @@
+#clothes{
+  position: absolute;
+  width: 35px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: black;
+  z-index: 2;
+}
+#clothes-armsDiv{
+  position: absolute;
+  bottom: 57%;
+}
+.clothes__arm--left, .clothes__arm--right{
+  position: absolute;
+  top: -28px;
+  left: 10px;
+  width: 15px;
+  height: 30px;
+  border-radius: 50% 50% 0% 0%;
+  background-color: blue;
+}
+.clothes__arm--left{
+  transform: rotate(30deg);
+  border-left: solid 1px;
+  left: -12px;
+}
+.clothes__arm--right{
+  transform: rotate(-30deg);
+  border-right: solid 1px;
+  left: 32px;
+}
+.clothes__legSpace{
+  position: absolute;
+  top: 62px;
+  left: 17px;
+  width: 0.9px;
+  height: 38px;
+  background: white;
+  border-radius: 50% 0%;
+}
+.clothes_belt{
+  position: absolute;
+  top: 55px;
+  width: 35px;
+  height: 5px;
+  background: yellow;
+}
+#clothe_logo{
+  position: absolute;
+  top: 25px;
+  left:5px;
+  width: 15px;
+  height: 15px;
+}
