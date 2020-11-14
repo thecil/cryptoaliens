@@ -19,7 +19,7 @@ contract AlienNFT is ERC721, Ownable {
         uint256 alienId,
         uint32 mumId,
         uint32 dadId,
-        uint16 genes
+        uint256 genes
         );
 
     struct Alien {
@@ -35,17 +35,12 @@ contract AlienNFT is ERC721, Ownable {
 
     }
 
-    function deployAliens() public onlyOwner {
-      createAlienGen0(100);
-      createAlienGen0(101);
-    }
-
-    function createAlienGen0(uint256 _genes) internal onlyOwner returns(uint256){
+    function createAlienGen0(uint256 genes) public onlyOwner returns(uint256){
         require(gen0Counter < CREATION_LIMIT_GEN0, "Maximum amount of aliens Gen 0 reached");
         gen0Counter++;
 
         //Gen0 have no owners they are own by the contract
-        return _createtAlien(_genes, 0, 0, 0, msg.sender);
+        return _createtAlien(genes, 0, 0, 0, msg.sender);
     }
 
     function _createtAlien(
@@ -70,7 +65,7 @@ contract AlienNFT is ERC721, Ownable {
             transferFrom(address(0), _owner, alienId);
         }
 
-        emit Birth(_owner, alienId, _mumId, _dadId, _generation);
+        emit Birth(_owner, alienId, _mumId, _dadId, _genes);
     }
 
     function getAlien(uint256 index) external view returns(

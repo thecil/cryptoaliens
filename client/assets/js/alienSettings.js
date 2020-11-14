@@ -37,8 +37,8 @@ function getDna(){
     dna += $('#dnaArmleg').html()
     dna += $('#dnashape').html()
 
-    dna += $('#dnaanimation1').html()
-    dna += $('#dnaanimation2').html()
+    dna += $('#dnadanimation1').html()
+    dna += $('#dnadanimation2').html()
     dna += $('#dnaspecial').html()
 
     return parseInt(dna)
@@ -101,4 +101,16 @@ $('#randomAlien').click(function(){
     "lastNum" : Math.floor(Math.random() * 5) + 1
   }
   renderAlien(randomDNA)
+})
+
+$('#createAlien').click(function(){
+  var _genes =  getDna()
+
+  instance.methods.createAlienGen0(_genes)
+  .send({}, function(error, txHash){
+    if(error){
+      console.log(error)
+    }else{console.log(txHash)}
+  })
+
 })
