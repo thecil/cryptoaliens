@@ -1,0 +1,199 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Aliens</title>
+
+    <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src="assets/bootstrap/js/popper.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrap/js/web3.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/mystyle.css">
+    <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="assets/css/factory.css">
+    <link rel="stylesheet" href="assets/css/frontend.css">
+
+    <link rel="stylesheet" href="assets/css/alien/body.css">
+    <link rel="stylesheet" href="assets/css/alien/head.css">
+    <link rel="stylesheet" href="assets/css/alien/clothes.css">
+    <link rel="stylesheet" href="assets/anim/animations.css">
+
+    <!--<link rel="stylesheet" href="assets/anim/aura.css"> -->
+  </head>
+  <body class="bg-img">
+    <div class="container p-5" style="margin-top: 12vh;margin-bottom: 10vh;">
+      <div align="center">
+      <h1 class="c-white">Alien-Factory</h1>
+      <p class="c-white">Create your custom Alien</p>
+      <div class="row">
+        <div class="col-lg-4 alienBox m-2 light-b-shadow">
+        <!-- Alien -->
+
+          <!-- animation test -->
+          <div class="magnet_field">
+            <div class="magnet_field--l1 flame"></div>
+            <div class="magnet_field--l2 flame"></div>
+            <div class="magnet_field--l3 flame"></div>
+            <div class="magnet_field--l4 flame"></div>
+          </div>
+
+      <!-- Alien head-->
+      <div id="head" class="alien__head">
+        <div class="">
+          <img id="imgLogo" class="logoSize" alt="cryptoLogos">
+        </div>
+        <div class="alien__eye">
+          <div class="alien__eye--left">
+              <span class="alien__pupil--left "></span>
+          </div>
+          <div class="alien__eye--right">
+              <span class="alien__pupil--right "></span>
+          </div>
+        </div>
+        <div class="alien__mouth"></div>
+      </div><!-- End Alien head-->
+        <!-- Alien body-->
+        <div id="body" class="alien__body">
+
+          <div id="alien_chest" class="alien__chest ">
+            <!-- Clothes test -->
+            <div id="clothes" class="alien_clothes">
+              <img id="clothe_logo" src="assets/css/alien/clothes_logos/space_explorer.jpg">
+              <div id="clothes-armsDiv">
+                <div class="clothes__arm--left">
+
+                </div>
+                <div class="clothes__arm--right">
+
+                </div>
+              </div>
+              <div class="clothes_belt"></div>
+              <div class="clothes__legSpace"></div>
+            </div>
+            <div id="armsDiv">
+             <div class="alien__arm--left">
+              <span class="alien__finger1--left"></span>
+              <span class="alien__finger2--left"></span>
+            </div>
+            <div class="alien__arm--right">
+              <span class="alien__finger1--right"></span>
+              <span class="alien__finger2--right"></span>
+            </div>
+            </div>
+
+            <div id="alien__leg">
+              <div class="alien__legSpace"></div>
+              <div class="alien__leg--left"></div>
+              <div class="alien__leg--right"></div>
+            </div>
+        </div><!-- End Alien chest-->
+
+
+
+        </div><!-- End Alien body-->
+
+
+    <!-- DNA -->
+    <br>
+
+    <div class="dnaDiv" id="alienDNA">
+        <b>
+            DNA:
+            <!-- Colors -->
+             <span id="dnabody"></span>
+             <span id="dnaeyes"></span>
+             <span id="dnaArmleg"></span>
+             <!-- Attributes -->
+             <span id="dnashape"></span>
+             <span id="dnadanimation1"></span>
+             <span id="dnadanimation2"></span>
+             <span id="dnaspecial"></span>
+        </b>
+    </div><!-- End DNA -->
+  </div><!-- End alienBox -->
+
+  <div class="col-lg-7 alienAtributes m-2 light-b-shadow">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="alien-tab" data-toggle="tab" href="#alien" role="tab" aria-controls="alien" aria-selected="true">Alien Body</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="alienAttr-tab" data-toggle="tab" href="#alienAttr" role="tab" aria-controls="alienAttr" aria-selected="false">Attributes</a>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active pt-2" id="alien" role="tabpanel" aria-labelledby="alien-tab">
+    <!-- Alien colors -->
+    <div id="alienColors">
+          <div class="form-group">
+              <label for="formControlRange"><b>Head and body Color</b><span class="badge badge-dark ml-2" id="headcode"></span></label>
+              <input type="range" min="10" max="98" class="form-control-range" id="bodycolor">
+          </div>
+    </div>
+    <div id="alienEyes">
+          <div class="form-group">
+              <label for="formControlRange"><b>Eyes Color</b><span class="badge badge-dark ml-2" id="eyescode"></span></label>
+              <input type="range" min="10" max="98" class="form-control-range" id="eyescolor">
+          </div>
+    </div>
+    <div id="alienArmLegs">
+          <div class="form-group">
+              <label for="formControlRange"><b>Arm & Legs Color</b><span class="badge badge-dark ml-2" id="armLegcode"></span></label>
+              <input type="range" min="10" max="98" class="form-control-range" id="armLegColor">
+          </div>
+    </div>
+    <div id="alienEyeShape">
+          <div class="form-group">
+              <label for="formControlRange"><b>Eyes Shape</b><span class="badge badge-dark ml-2" id="shapecode"></span></label>
+              <input type="range" min="1" max="5" class="form-control-range" id="eyeShape">
+          </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="alienAttr" role="tabpanel" aria-labelledby="alienAttr-tab">
+    <div class="mt-2" id="alienAnim">
+      <p><b>Animations:</b></p>
+          <div class="form-group">
+
+              <label for="formControlRange"><b>1st Animation</b><span class="badge badge-dark ml-2" id="1animcode"></span></label>
+              <input type="range" min="1" max="5" class="form-control-range" id="1anim">
+              <label for="formControlRange"><b>Logo</b><span class="badge badge-dark ml-2" id="cryptoLogocode"></span></label>
+              <input type="range" min="10" max="99" class="form-control-range" id="cryptoLogo">
+          </div>
+    </div>
+    <div class="mt-2" id="alienType">
+      <p><b>Team Race:</b></p>
+          <div class="form-group">
+              <label for="formControlRange"><b>Team Spec</b><span class="badge badge-dark ml-2" id="speccode"></span></label>
+              <input type="range" min="1" max="4" class="form-control-range" id="alienTypeSpec">
+              <label for="formControlRange"><b>Clothes Color</b><span class="badge badge-dark ml-2" id="specColorcode"></span></label>
+              <input type="range" min="10" max="99" class="form-control-range" id="clothesColor">
+          </div>
+    </div>
+  </div>
+</div>
+  </div><!-- End alienAtributes -->
+  <div class="button-section">
+    <div class="buttonrow mx-auto" role="group" aria-label="BasicAlienMenu">
+      <button id="randomAlien" type="button" class="btn btn-primary light-b-shadow float-left ml-2 mr-2">Random Alien</button>
+      <button id="resetAlien" type="button" class="btn btn-secondary light-b-shadow float-left mr-2">Reset</button>
+      <button id="createAlien" type="button" class="btn btn-success light-b-shadow float-right mr-2">Create Alien</button>
+    </div>
+  </div>
+  </div><!-- End Row -->
+
+  </div>
+  <br>
+  </div><!-- End Container -->
+    <!-- Footer -->
+    <footer style="opacity: 0.5" align="left">
+        <p>Ivan on Tech Academy Bootcamp July 2020 - LAS LACRAS</p>
+    </footer>
+  </body>
+  <script src="assets/js/colors.js"></script>
+  <script src="assets/js/alienSettings.js"></script>
+  <script src="assets/js/alienFactory.js"></script>
+  <script src="assets/js/gecko.js"></script>
+</html>

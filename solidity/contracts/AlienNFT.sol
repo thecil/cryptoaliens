@@ -9,7 +9,8 @@ import "./@openzeppelin/contracts/utils/Counters.sol";
 contract AlienNFT is ERC721, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-
+    uint256 private gen0Counter;
+    uint256 private constant CREATION_LIMIT_GEN0 = 10;
     string public constant _name = "AlienNFT";
     string public constant _symbol = "ALNFT";
 
@@ -34,10 +35,12 @@ contract AlienNFT is ERC721, Ownable {
 
     }
 
-    uint256 public gen0Counter;
-    uint256 public constant CREATION_LIMIT_GEN0 = 10;
+    function deployAliens() public onlyOwner {
+      createAlienGen0(100);
+      createAlienGen0(101);
+    }
 
-    function createAlienGen0(uint256 _genes) public onlyOwner returns(uint256){
+    function createAlienGen0(uint256 _genes) internal onlyOwner returns(uint256){
         require(gen0Counter < CREATION_LIMIT_GEN0, "Maximum amount of aliens Gen 0 reached");
         gen0Counter++;
 
@@ -70,7 +73,7 @@ contract AlienNFT is ERC721, Ownable {
         emit Birth(_owner, alienId, _mumId, _dadId, _generation);
     }
 
-    function getAlien(uint256 index) public view returns(
+    function getAlien(uint256 index) external view returns(
       address owner,
       uint256 genes,
       uint256 birthTime,

@@ -8974,7 +8974,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-11-14T05:40:48.590Z",
+  "updatedAt": "2020-11-14T05:55:34.671Z",
   "devdoc": {
     "details": "A xref:ROOT:gsn-strategies.adoc#gsn-strategies[GSN strategy] that charges transaction fees in a special purpose ERC20 token, which we refer to as the gas payment token. The amount charged is exactly the amount of Ether charged to the recipient. This means that the token is essentially pegged to the value of Ether. * The distribution strategy of the gas payment token to users is not defined by this contract. It's a mintable token whose only minter is the recipient, so the strategy must be implemented in a derived contract, making use of the internal {_mint} function.",
     "methods": {
