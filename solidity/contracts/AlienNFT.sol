@@ -65,7 +65,9 @@ contract AlienNFT is ERC721, Ownable {
         aliens.push(_alien);
 
         uint256 alienId = mint(_owner);
-        transferFrom(address(0), _owner, alienId);
+        if(_owner != owner()){
+            transferFrom(address(0), _owner, alienId);
+        }
 
         emit Birth(_owner, alienId, _mumId, _dadId, _generation);
     }
