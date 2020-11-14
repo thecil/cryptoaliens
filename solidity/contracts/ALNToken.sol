@@ -6,6 +6,6 @@ import "./@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract ALNToken is ERC20 {
     constructor() public ERC20("AlienCoin", "ALN") {
-        _mint(msg.sender, 21000000);
+        _mint(msg.sender, 10000000);
     }
 }
