@@ -14,7 +14,7 @@ function genColors(){
     return colors
 }
 
-//This function code needs to modified so that it works with Your cat code.
+//This function code needs to modified so that it works with Your alien code.
 function headColor(color,code) {
     $('.alien__head, .alien__chest').css('background', '#' + color)  //This changes the color of the alien
     $('#headcode').html('code: '+code) //This updates text of the badge next to the slider
