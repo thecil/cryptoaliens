@@ -2,16 +2,27 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoAliens</title>
-
+    <title>Crypto Aliens</title>
 
     <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="assets/bootstrap/js/popper.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/web3.min.js"></script>
+    <script src="abi.js"></script>
+
     <link rel="stylesheet" href="assets/css/mystyle.css">
     <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="assets/css/factory.css">
     <link rel="stylesheet" href="assets/css/frontend.css">
+
+    <link rel="stylesheet" href="assets/css/alien/body.css">
+    <link rel="stylesheet" href="assets/css/alien/head.css">
+    <link rel="stylesheet" href="assets/css/alien/clothes.css">
+    <link rel="stylesheet" href="assets/anim/animations.css">
+
+
+    <link rel="stylesheet" href="assets/anim/orbs.css">
   </head>
   <body>
     <body cz-shortcut-listen="true">
@@ -25,29 +36,15 @@
             <div class="particle particle-3"></div>
         </div>
 
-        <div class="frontend" align="center">
+        <div class="container myAliens" align="center">
 
-            <img src="assets/images/group.png" class="catGroup">
-            <div class="container">
-                <div class="banner">
-                    <h3 class="c-white m-2">Collect and clone you army of CryptoAliens!</h3>
-                    <button class="btn white-btn mt-2 c-red">Get your first Alien</button>
-                </div>
-            </div>
-            <div>
-
-            </div>
-
-        </div>
-
-        <div class="container middleBox" align="center">
             <h1 class="m-4">Features</h1>
             <div class="row">
                 <div class="col-lg-4 pointer">
                     <div class="featureBox">
-                        <div class="egg">
-                            <img src="assets/images/coin.png" style="margin: 25px;">
-                        </div>
+                      <!-- Start menu -->
+                   <div id="orbs"></div>
+                      <!-- End menu -->
                         <h4>Buy & sell aliens</h4>
                         <p>
                          Buy or sell aliens in a market place using crypto-currency!
@@ -83,12 +80,20 @@
 
         </div>
 
-        <footer align="left">
+        <!-- Footer -->
+        <footer class="d-flex" style="opacity: 0.3" align="left">
+          <img id="my_logo" src="assets/images/clothes_logos/chad.gif">
             <p>Ivan on Tech Academy Bootcamp July 2020</p>
         </footer>
 
     </body>
 
+    <script src="index.js"></script>
+    <script src="assets/js/colors.js"></script>
+    <script src="assets/js/alienSettings.js"></script>
+    <script src="assets/js/alienFactory.js"></script>
+    <script src="assets/js/gecko.js"></script>
     <script src="assets/js/components.js"></script>
+    <script src="assets/anim/orbs.js"></script>
   </body>
 </html>

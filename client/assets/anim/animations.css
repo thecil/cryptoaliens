@@ -2,13 +2,31 @@
 .shadowAnim{
   animation: alienShadow 6s infinite ;
 }
+@keyframes alienShadow{
+  50% {box-shadow:0px 0px 30px 5px #0ff;}
+}
 /* Moving head with eyes together */
 .movingHead{
   animation: moveHead 6s infinite;
 }
+@keyframes moveHead{
+  0%{transform: rotate(-45deg)}
+  50%{transform: rotate(-41deg)}
+  100%{transform: rotate(-45deg)}
+}
+@keyframes headPulse{
+  0% {transform: scale(1) rotate(-45deg)}
+  50% {transform: scale(1.04) rotate(-45deg)}
+  100% {transform: scale(1) rotate(-45deg)}
+}
 /* Move Arms a little MUST IMPROVE*/
 .movingArm{
   animation: moveArm 6s infinite;
+}
+@keyframes moveArm {
+  0%{transform: rotate(30deg); left:-25px}
+  50%{transform: rotate(115deg);left:-44px; top:-31px}
+  100%{transform: rotate(30deg);left:-25px}
 }
 /* Head scale*/
 .pulseAnim{
@@ -18,29 +36,6 @@
 .inviAnim{
   animation: invisible 6s infinite;
 }
-
-@keyframes moveArm {
-  0%{transform: rotate(30deg); left:-25px}
-  50%{transform: rotate(115deg);left:-44px; top:-31px}
-  100%{transform: rotate(30deg);left:-25px}
-}
-
-@keyframes alienShadow{
-  50% {box-shadow:0px 0px 30px 5px #0ff;}
-}
-
-@keyframes moveHead{
-  0%{transform: rotate(-45deg)}
-  50%{transform: rotate(-41deg)}
-  100%{transform: rotate(-45deg)}
-}
-
-@keyframes headPulse{
-  0% {transform: scale(1) rotate(-45deg)}
-  50% {transform: scale(1.04) rotate(-45deg)}
-  100% {transform: scale(1) rotate(-45deg)}
-}
-
 @keyframes invisible{
   0%{opacity: 1}
   50%{opacity: 0.05}

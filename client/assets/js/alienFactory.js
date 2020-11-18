@@ -36,11 +36,11 @@ function eyeShapes(type,code) {
     $('#dnashape').html(code) //This updates the body color part of the DNA that is displayed below the alien
 }
 async function logoCrypto(code) {
-  var code = code - 10;
+  let _code = code - 10;
   const _logos = await getGeckoData()
-  await $('#imgLogo').attr("src", `${_logos[code]._logoUrl}`)  //This changes the color of the alien
-  await $('#cryptoLogocode').html(_logos[code]._name) //This updates text of the badge next to the slider
-  await $('#dnadanimation2').html(code + 10) //This updates the body color part of the DNA that is displayed below the alien
+  await $('#imgLogo').attr("src", `${_logos[_code]._logoUrl}`)  //This changes the color of the alien
+  await $('#cryptoLogocode').html(_logos[_code]._name) //This updates text of the badge next to the slider
+  await $('#dnadanimation2').html(_code + 10) //This updates the body color part of the DNA that is displayed below the alien
 }
 //###################################################
 //Functions below will be used later on in the project
