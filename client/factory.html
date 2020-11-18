@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="assets/css/alien/head.css">
     <link rel="stylesheet" href="assets/css/alien/clothes.css">
     <link rel="stylesheet" href="assets/anim/animations.css">
-
+    <link rel="stylesheet" href="assets/anim/buttons.css">
     <!--<link rel="stylesheet" href="assets/anim/aura.css"> -->
   </head>
   <body>
@@ -171,9 +171,13 @@
       <p><b>Team Race:</b></p>
           <div class="form-group">
               <label for="formControlRange"><b>Team Spec</b><span class="badge badge-dark ml-2" id="speccode"></span></label>
+              <select class="custom-select custom-select-sm">
+                <option selected>Open this select menu</option>
+                <option value="1">Citizen</option>
+                <option value="2">Explorer</option>
+                <option value="3">Finance</option>
+              </select>
               <input type="range" min="1" max="4" class="form-control-range" id="alienTypeSpec">
-              <label for="formControlRange"><b>Clothes Color</b><span class="badge badge-dark ml-2" id="specColorcode"></span></label>
-              <input type="range" min="10" max="99" class="form-control-range" id="clothesColor">
           </div>
     </div>
   </div>
@@ -183,7 +187,9 @@
     <div class="buttonrow mx-auto" role="group" aria-label="BasicAlienMenu">
       <button id="randomAlien" type="button" class="btn btn-primary light-b-shadow float-left ml-2 mr-2">Random Alien</button>
       <button id="resetAlien" type="button" class="btn btn-secondary light-b-shadow float-left mr-2">Reset</button>
-      <button id="createAlien" type="button" class="btn btn-success light-b-shadow float-right mr-2">Create Alien</button>
+      <button id="createAlien" type="button" class="btn-21">
+        <span class="pt-2">Click here</span>
+      </button>
     </div>
     <div class="alert alert-success" role="alert" id="alienCreation" style="display: none;">
 

@@ -1,10 +1,26 @@
 $( document ).ready(function() {
-    orbs()
+    orbs("#orbs1","market")
+    orbs("#orbs2","monitor")
+    orbs("#orbs3","aliens")
      });
 
-function orbs(image){
+function orbs(id, image){
+  var _image
+  switch (image) {
+    case "market":
+      _image = "assets/images/blockchain.png"
+      break
+    case "monitor":
+      _image = "assets/images/monitor.png"
+      break
+    case "aliens":
+      _image = "assets/images/ufo.png"
+      break
+  }
+
   var orbs = `
   <div class="spinner-box">
+    <img src="${_image}" class="" style="width:40px; height:40px;">
     <div class="blue-orbit leo">
     </div>
 
@@ -15,12 +31,16 @@ function orbs(image){
     </div>
 
     <div class="white-orbit w1 leo">
-    </div><div class="white-orbit w2 leo">
-    </div><div class="white-orbit w3 leo">
+
     </div>
+    <div class="white-orbit w2 leo">
+    </div>
+    <div class="white-orbit w3 leo">
+    </div>
+
   </div>
   `
-  $('#orbs').html(orbs)
+  $(id).html(orbs)
 }
 /*
 
