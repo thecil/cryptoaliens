@@ -7,7 +7,7 @@ $( document ).ready(function() {
 
 function menu(){
 
-    var menu = `<nav class="menu navbar navbar-expand-md navbar-light fixed-top bg-ligh p-4">
+    var menu = `<nav class="menu navbar navbar-expand-md navbar-light fixed-top bg-ligh p-4" style="opacity:0.9;">
       <div class="container">
         <img src="assets/images/illuminati.png" class="align-self-start mr-3" style="width:40px; height:40px;>
           <a class="navbar-brand" href="index.html"><b>CryptoAliens</b></a>
