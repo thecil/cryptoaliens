@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import "./AlienFactory.sol";
+import "./interfaces/IAlienERC721.sol";
 
-contract AlienMarketPlace is AlienFactory {
+contract AlienMarketPlace{
+  IAlienERC721 public aln721;
 
   struct Offer {
       address payable seller;
@@ -38,7 +39,7 @@ contract AlienMarketPlace is AlienFactory {
     *   We are checking if the user is owning the kitty inside the approve function
     */
 
-    approve(address(this), _tokenId);
+    aln721.approve(address(this), _tokenId);
 
     tokenIdToOffer[_tokenId].seller = msg.sender;
     tokenIdToOffer[_tokenId].price = _price;
@@ -48,13 +49,13 @@ contract AlienMarketPlace is AlienFactory {
   function removeOffer(uint256 _tokenId)
     public
   {
-    require(_owns(msg.sender, _tokenId), "The user doesn't own the token");
+    require(aln721.isApprovedOwner(msg.sender, _tokenId), "The user doesn't own the token");
 
     Offer memory offer = tokenIdToOffer[_tokenId];
     require(offer.seller == msg.sender, "You should own the alien to be able to remove this offer");
 
     delete tokenIdToOffer[_tokenId];
-    _isApprovedOrOwner(_tokenId);
+    aln721.isApprovedOwner(msg.sender, _tokenId);
 
     emit MarketTransaction("Remove offer", msg.sender, _tokenId);
   }
@@ -69,7 +70,7 @@ contract AlienMarketPlace is AlienFactory {
     delete tokenIdToOffer[_tokenId];
 
 
-    transferFrom(offer.seller, msg.sender, _tokenId);
+    aln721.transferFrom(offer.seller, msg.sender, _tokenId);
 
 
     offer.seller.transfer(msg.value);
