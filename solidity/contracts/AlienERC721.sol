@@ -11,30 +11,11 @@ import "./@openzeppelin/contracts/access/Ownable.sol";
 import "./@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import "./interfaces/IAlienToken.sol";
-//import "./@openzeppelin/contracts/utils/EnumerableMap.sol";
 // SPDX-License-Identifier: MIT
-
-contract TokenRecover is Ownable {
-    /**
-     * @dev Remember that only owner can call so be careful when use on contracts generated from other contracts.
-     * @param tokenAddress The token contract address
-     * @param tokenAmount Number of tokens to be sent
-     */
-    function recoverERC20(address tokenAddress, uint256 tokenAmount)
-        public
-        onlyOwner
-    {
-        IERC20(tokenAddress).transfer(owner(), tokenAmount);
-    }
-}
-
-
-
 //ERC721
 contract AlienERC721 is
   Ownable,
   ERC721PresetMinterPauserAutoId,
-  TokenRecover,
   ERC1155Holder
 {
   bytes32 public constant OPERATOR_ROLE = keccak256("OPERATOR_ROLE");
@@ -59,13 +40,6 @@ contract AlienERC721 is
   mapping(uint256 => uint256) public timeUntilStarving;
   mapping(uint256 => uint256) public timeAlienBorn;
 
-  // items/benefits for the Alien could be anything in the future.
-  mapping(uint256 => uint256) public itemPrice;
-  mapping(uint256 => uint256) public itemPoints;
-  mapping(uint256 => string) public itemName;
-  mapping(uint256 => uint256) public itemTimeExtension;
-
-
   constructor(address _AlienToken) public ERC721PresetMinterPauserAutoId(
     "AlienNFT",
      "ALNFT",
@@ -74,7 +48,7 @@ contract AlienERC721 is
     _setupRole(OPERATOR_ROLE, _msgSender());
     aln = IAlienToken(_AlienToken);
     // We are creating the first alien at index 0
-    _createtAlien(0, 0, 0, uint16(-1), address(0));
+    _createtAlien(0, 0, 0, uint16(-1), msg.sender);
   }
 
   event AlienMinted(
@@ -83,12 +57,6 @@ contract AlienERC721 is
     uint32 mumId,
     uint32 dadId,
     uint256 genes
-  );
-  event ItemCreated(
-    uint256 id,
-    string name,
-    uint256 price,
-    uint256 points
   );
 
   modifier notPaused() {
@@ -154,48 +122,12 @@ contract AlienERC721 is
       gameStopped = _pause;
   }
 
-
-
-  function itemExists(uint256 itemId) public view returns (bool) {
-      if (bytes(itemName[itemId]).length > 0) {
-          return true;
-      }
-  }
   // check that Alien didn't starve
   function isAlienAlive(uint256 _nftId) public view returns (bool) {
     uint256 _timeUntilStarving = timeUntilStarving[_nftId];
     if (_timeUntilStarving != 0 && _timeUntilStarving >= block.timestamp) {
       return true;
     }
-  }
-
-  function getItemInfo(uint256 _itemId)
-      public
-      view
-      returns (
-          string memory _name,
-          uint256 _price,
-          uint256 _points,
-          uint256 _timeExtension
-      )
-  {
-      _name = itemName[_itemId];
-      _price = itemPrice[_itemId];
-      _timeExtension = itemTimeExtension[_itemId];
-      _points = itemPoints[_itemId];
-  }
-  // edit specific item in case token goes up in value and the price for items gets to expensive for normal users.
-  function editItem(
-      uint256 _id,
-      uint256 _price,
-      uint256 _points,
-      string calldata _name,
-      uint256 _timeExtension
-  ) external onlyOperator {
-      itemPrice[_id] = _price;
-      itemPoints[_id] = _points;
-      itemName[_id] = _name;
-      itemTimeExtension[_id] = _timeExtension;
   }
 
   function getAlien(uint256 _nftId) public view returns(
@@ -228,20 +160,5 @@ contract AlienERC721 is
   function isApprovedOwner(address _owner, uint256 _nftId) public view returns (bool){
     return _isApprovedOrOwner(_owner, _nftId);
   }
-  function editCurves(
-    uint256 _la,
-    uint256 _lb,
-    uint256 _ra,
-    uint256 _rb
-    ) external onlyOperator {
-      la = _la;
-      lb = _lb;
-      ra = _ra;
-      rb = _rb;
-  }
-  uint256 la = 2;
-  uint256 lb = 2;
-  uint256 ra = 6;
-  uint256 rb = 7;
 
 }
