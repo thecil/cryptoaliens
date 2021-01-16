@@ -12,18 +12,7 @@ interface IAlienERC721 {
     address _owner
     ) external returns (uint256);
 
-  function itemExists(uint256 itemId) external view returns (bool);
   function isAlienAlive(uint256 _nftId) external view returns (bool);
-
-  function getItemInfo(uint256 _itemId)
-    external
-    view
-    returns (
-      string memory _name,
-      uint256 _price,
-      uint256 _points,
-      uint256 _timeExtension
-  );
 
   function getAlien(uint256 _nftId) external view returns(
     uint256 _genes,

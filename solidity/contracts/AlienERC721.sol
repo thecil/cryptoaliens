@@ -23,7 +23,6 @@ contract AlienERC721 is
 
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
-  Counters.Counter private _itemIds;
 
   bool public gameStopped = false;
 
@@ -154,9 +153,11 @@ contract AlienERC721 is
       uint32 _dadId,
       uint16 _generation,
       address _owner
-      ) external {
-        _createtAlien(_genes, _mumId, _dadId, _generation, _owner);
+      ) external returns(uint256){
+        uint256 _newAlien = _createtAlien(_genes, _mumId, _dadId, _generation, _owner);
+        return _newAlien;
   }
+
   function isApprovedOwner(address _owner, uint256 _nftId) public view returns (bool){
     return _isApprovedOrOwner(_owner, _nftId);
   }

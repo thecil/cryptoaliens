@@ -4,14 +4,17 @@ pragma solidity ^0.6.0;
 import "./@openzeppelin/contracts/access/Ownable.sol";
 import "./AlienMarketPlace.sol";
 
+
 contract AlienCore is Ownable, AlienMarketPlace{
 
   uint256 private constant CREATION_LIMIT_GEN0 = 10;
   // Counts the number of cats the contract owner has created.
   uint256 private gen0Counter;
+  address public IAlienAddress;
 
   constructor(address _AlienERC721) public {
-    aln721 = IAlienERC721(_AlienERC721);
+    IAlienAddress = _AlienERC721;
+    aln721 = IAlienERC721(IAlienAddress);
   }
 /*
 *       we get a
@@ -110,9 +113,9 @@ contract AlienCore is Ownable, AlienMarketPlace{
   function createAlienGen0(uint256 genes) public onlyOwner returns(uint256){
       require(gen0Counter < CREATION_LIMIT_GEN0, "Maximum amount of aliens Gen 0 reached");
       gen0Counter++;
-
+      uint256 _newAlien = aln721.createtAlien(genes, 0, 0, 0, msg.sender);
       //Gen0 have no owners they are own by the contract
-      return aln721.createtAlien(genes, 0, 0, 0, msg.sender);
+      return _newAlien;
   }
 
 }

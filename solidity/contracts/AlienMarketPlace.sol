@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
-
 import "./interfaces/IAlienERC721.sol";
-
 contract AlienMarketPlace{
-  IAlienERC721 public aln721;
 
+  IAlienERC721 public aln721;
   struct Offer {
       address payable seller;
       uint256 price;
