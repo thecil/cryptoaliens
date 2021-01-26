@@ -8,9 +8,8 @@ import "./@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 import "./@openzeppelin/contracts/token/ERC1155/ERC1155Holder.sol";
 import "./@openzeppelin/contracts/utils/Counters.sol";
 import "./@openzeppelin/contracts/access/Ownable.sol";
-import "./@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-import "./interfaces/IAlienToken.sol";
+
 // SPDX-License-Identifier: MIT
 //ERC721
 contract AlienERC721 is
@@ -19,7 +18,6 @@ contract AlienERC721 is
   ERC1155Holder
 {
   bytes32 public constant OPERATOR_ROLE = keccak256("OPERATOR_ROLE");
-  IAlienToken public aln;
 
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
@@ -39,13 +37,13 @@ contract AlienERC721 is
   mapping(uint256 => uint256) public timeUntilStarving;
   mapping(uint256 => uint256) public timeAlienBorn;
 
-  constructor(address _AlienToken) public ERC721PresetMinterPauserAutoId(
+  constructor() public ERC721PresetMinterPauserAutoId(
     "AlienNFT",
      "ALNFT",
      "http:localhost/"
      ) {
     _setupRole(OPERATOR_ROLE, _msgSender());
-    aln = IAlienToken(_AlienToken);
+    _setupRole(MINTER_ROLE, address(this));
     // We are creating the first alien at index 0
     _createtAlien(0, 0, 0, uint16(-1), msg.sender);
   }
@@ -85,7 +83,7 @@ contract AlienERC721 is
       uint32 _dadId,
       uint16 _generation,
       address _owner
-      ) internal returns (uint256) {
+    ) private returns (uint256) {
 
       alienDetails[_tokenIds.current()] = AlienObj(
         uint256(_genes),
@@ -100,7 +98,7 @@ contract AlienERC721 is
       require(_tokenIds.current() == uint256(uint32(_tokenIds.current())));
 
       if(_owner != owner()){
-          transferFrom(address(0), _owner, _tokenIds.current());
+          transferFrom(address(this), _owner, _tokenIds.current());
       }
 
       emit AlienMinted(_owner, _tokenIds.current(), _mumId, _dadId, _genes);
@@ -153,7 +151,7 @@ contract AlienERC721 is
       uint32 _dadId,
       uint16 _generation,
       address _owner
-      ) external returns(uint256){
+    ) public returns(uint256){
         uint256 _newAlien = _createtAlien(_genes, _mumId, _dadId, _generation, _owner);
         return _newAlien;
   }
