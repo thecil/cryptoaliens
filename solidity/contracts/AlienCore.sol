@@ -15,6 +15,10 @@ contract AlienCore is Ownable, AlienMarketPlace{
   constructor(address _AlienERC721) public {
     IAlienAddress = _AlienERC721;
     aln721 = IAlienERC721(IAlienAddress);
+    // We are creating the first alien at index 0
+    createAlienGen0(0);
+    createAlienGen0(11);
+    createAlienGen0(22);
   }
 /*
 *       we get a
@@ -101,8 +105,8 @@ contract AlienCore is Ownable, AlienMarketPlace{
   }
 
   function cloneAlien(uint256 _dadId, uint256 _mumId) public {
-      require(aln721.isApprovedOwner(msg.sender, _dadId), "The user doesn't own the token");
-      require(aln721.isApprovedOwner(msg.sender, _mumId), "The user doesn't own the token");
+      require(aln721.isApprovedOwner(msg.sender, _dadId) == true, "The user doesn't own the token");
+      require(aln721.isApprovedOwner(msg.sender, _mumId) == true, "The user doesn't own the token");
 
       uint256 geneKid = getGenesKid(_dadId, _mumId);
       uint256 kidGen = getGenerationKid(_dadId, _mumId);
