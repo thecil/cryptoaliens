@@ -1,35 +1,48 @@
-const AlienCore = artifacts.require("AlienCore")
-const AlienERC721 = artifacts.require("AlienERC721")
-const AlienMarket = artifacts.require("AlienMarketPlace")
-
 const {
   BN,           // Big Number support
   constants,    // Common constants, like the zero address and largest integers
   expectEvent,  // Assertions for emitted events
   expectRevert, // Assertions for transactions that should fail
-} = require('@openzeppelin/test-helpers');
+} = require('./contracts/@openzeppelin/test-helpers')
 //track balance
-const balance = require('@openzeppelin/test-helpers/src/balance');
+const balance = require('./contracts/@openzeppelin/test-helpers/src/balance')
+//Contracts
+const AlienCore = artifacts.require("AlienCore")
+const AlienERC721 = artifacts.require("AlienERC721")
+const AlienMarket = artifacts.require("AlienMarketPlace")
 
-contract("Marketplace", ([owner, alice, bob, charlie]) => {
+// Main function that is executed during the test
+contract("Marketplace", () => {
   // Global variable declarations
-  let kittycontract;
-  let marketplace;
-)}
-it("Should: SetOffer, getOffer, buyAlien from account[1]", async function (){
-  // get the owner address
-  const accounts = await web3.eth.getAccounts()
-  const OWNER = accounts[0]
-  //instances
-  let alienCore = await AlienCore.deployed()
-  let nftInstance = await AlienERC721.deployed()
-  let marketInstance = await AlienMarket.deployed()
-  let nftSupply = await nftInstance.totalSupply()
-  //setOffer alien
-  let setOffer = await marketInstance.setOffer()
+  let alienCore
+  let marketplace
+  let nftAlien
+  const price = web3.utils.toWei("0.1");
 
-
-  nftSupply = await nftInstance.totalSupply()
-  console.log(`CLONE ALIEN DATA:: ${JSON.stringify(cloneAlien)}`)
-  console.log(`NFT TOTAL SUPPLY::${nftSupply}`)
+  //set contracts instances
+  before(async function() {
+    // Deploy AlienERC721 to testnet
+    nftAlien = await AlienERC721.new()
+    // Deploy AlienCore to testnet
+    alienCore = await AlienCore.new()
+    // Deploy AlienMarket to testnet
+    marketplace = await AlienMarket.new(kittycontract.address)
+    //accounts participants
+    const accounts = await web3.eth.getAccounts()
+    const addresses = {
+      owner:accounts[0],
+      acc1:accounts[1],
+      acc2:accounts[2]
+    }
+  })
+  describe("Initial Values", () => {
+    it("Should: SetOffer, getOffer, buyAlien from account[1]", async function(){
+      let nftSupply = await nftAlien.totalSupply()
+      //setOffer alien
+      let setOffer = await marketplace.setOffer(price, nftSupply)
+      nftSupply = await nftAlien.totalSupply()
+      console.log(`SET OFFER DATA:: ${JSON.stringify(setOffer)}`)
+      console.log(`NFT TOTAL SUPPLY::${nftSupply}`)
+    })
+  })
 })
