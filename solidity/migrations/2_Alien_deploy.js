@@ -6,9 +6,11 @@ module.exports = async function(deployer) {
   await deployer.deploy(AlienCore, AlienERC721.address)
   let nft = await AlienERC721.deployed()
   let alcore = await AlienCore.deployed()
+  let totSupply = await nft.totalSupply()
   console.log("MIGRATION ADDRESSES, CHECK WITH UNIT TESTING")
   console.log(`NFT:: ${nft.address}`)
   console.log(`ALCORE:: ${alcore.address}`)
+  console.log(`NFT TOTAL SUPPLY:: ${totSupply}`)
   /*
   try{
     console.log("alcore ",alcore.address,"nft: ",nft.address)

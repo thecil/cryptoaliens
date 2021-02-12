@@ -42,16 +42,16 @@ contract AlienERC721 is
   event AlienMinted(
     address owner,
     uint256 alienId,
-    uint32 mumId,
-    uint32 dadId,
+    uint256 mumId,
+    uint256 dadId,
     uint256 genes
   );
 
-  function _createtAlien(
+  function _createAlien(
       uint256 _genes,
-      uint32 _mumId,
-      uint32 _dadId,
-      uint16 _generation,
+      uint256 _mumId,
+      uint256 _dadId,
+      uint256 _generation,
       address _owner
     ) private returns (uint256) {
       _tokenIds.increment();
@@ -80,7 +80,7 @@ contract AlienERC721 is
     uint32 _dadId,
     uint16 _generation
     ){
-      AlienObj storage alien = alienDetails[_nftId];
+      AlienObj memory alien = alienDetails[_nftId];
 
       _genes = uint256(alien.genes);
       _mumId = uint32(alien.mumId);
@@ -89,14 +89,14 @@ contract AlienERC721 is
       return (_genes, _mumId, _dadId, _generation);
   }
 
-  function createtAlien(
+  function createAlien(
       uint256 _genes,
-      uint32 _mumId,
-      uint32 _dadId,
-      uint16 _generation,
+      uint256 _mumId,
+      uint256 _dadId,
+      uint256 _generation,
       address _owner
     ) external returns(uint256){
-        uint256 _newAlien = _createtAlien(_genes, _mumId, _dadId, _generation, _owner);
+        uint256 _newAlien = _createAlien(_genes, _mumId, _dadId, _generation, _owner);
         return _newAlien;
   }
 

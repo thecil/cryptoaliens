@@ -17,8 +17,7 @@ contract AlienCore is Ownable, AlienMarketPlace{
     aln721 = IAlienERC721(IAlienAddress);
     // We are creating the first alien at index 0
     createAlienGen0(0);
-    createAlienGen0(11);
-    createAlienGen0(22);
+
   }
 /*
 *       we get a
@@ -48,28 +47,22 @@ contract AlienCore is Ownable, AlienMarketPlace{
 *       mum - mum - dad -dad -mum - mum - dad - mum
 *
 */
-
-  function getGenesKid(uint256 _dadId, uint256 _mumId) private view returns (uint256){
-    ( uint256 Dadgenes,,,,) = aln721.getAlien(_dadId);
-
-    ( uint256 Mumgenes,,,,) = aln721.getAlien(_mumId);
-
-    uint256 geneKid;
+function getGenesKid(uint256 _Dadgenes, uint256 _Mumgenes) internal view returns (uint256){
+    uint256 _geneKid;
     uint256 [8] memory geneArray;
     uint256 index = 7;
     uint8 random = uint8(now % 255);
     uint256 i = 0;
 
     for(i = 1; i <= 128; i=i*2){
-
         /* We are */
         if(random & i != 0){
-            geneArray[index] = uint8(Mumgenes % 100);
+            geneArray[index] = uint8(_Mumgenes % 100);
         } else {
-            geneArray[index] = uint8(Dadgenes % 100);
+            geneArray[index] = uint8(_Dadgenes % 100);
         }
-        Mumgenes /= 100;
-        Dadgenes /= 100;
+        _Mumgenes /= 100;
+        _Dadgenes /= 100;
       index -= 1;
     }
 
@@ -79,45 +72,46 @@ contract AlienCore is Ownable, AlienMarketPlace{
 
     /* We reverse the DNa in the right order */
     for (i = 0 ; i < 8; i++ ){
-      geneKid += geneArray[i];
+      _geneKid += geneArray[i];
       if(i != 7){
-          geneKid *= 100;
+          _geneKid *= 100;
       }
     }
-    return geneKid;
+    return _geneKid;
   }
 
-  function getGenerationKid(uint256 _dadId, uint256 _mumId) private view returns (uint256){
-    ( ,,,,uint256 DadGeneration ) = aln721.getAlien(_dadId);
-
-    (,,,,uint256 MumGeneration ) = aln721.getAlien(_mumId);
+  function getGenerationKid(uint256 _DadGeneration, uint256 _MumGeneration) internal pure returns (uint256){
     uint256 _kidGen = 0;
-    if (DadGeneration < MumGeneration){
-      _kidGen = MumGeneration + 1;
+    if (_DadGeneration < _MumGeneration){
+      _kidGen = _MumGeneration + 1;
       _kidGen /= 2;
-    } else if (DadGeneration > MumGeneration){
-      _kidGen = DadGeneration + 1;
+    } else if (_DadGeneration > _MumGeneration){
+      _kidGen = _DadGeneration + 1;
       _kidGen /= 2;
     } else{
-      _kidGen = MumGeneration + 1;
+      _kidGen = _MumGeneration + 1;
     }
     return _kidGen;
   }
 
-  function cloneAlien(uint256 _dadId, uint256 _mumId) public {
+  function cloneAlien(uint256 _dadId, uint256 _mumId) public returns(uint256){
       require(aln721.isApprovedOwner(msg.sender, _dadId) == true, "The user doesn't own the token");
       require(aln721.isApprovedOwner(msg.sender, _mumId) == true, "The user doesn't own the token");
 
-      uint256 geneKid = getGenesKid(_dadId, _mumId);
-      uint256 kidGen = getGenerationKid(_dadId, _mumId);
+      (uint256 Dadgenes,,,uint256 DadGeneration ) = aln721.getAlien(_dadId);
+      (uint256 Mumgenes,,,uint256 MumGeneration ) = aln721.getAlien(_mumId);
 
-      aln721.createtAlien(geneKid, uint32(_mumId), uint32(_dadId), uint16(kidGen), msg.sender);
+      uint256 _geneKid = getGenesKid(Dadgenes, Mumgenes);
+      uint256 _kidGen = getGenerationKid(DadGeneration, MumGeneration);
+
+      uint256 _newAlien = aln721.createAlien(_geneKid, _mumId, _dadId, _kidGen, msg.sender);
+      return _newAlien;
   }
 
   function createAlienGen0(uint256 genes) public onlyOwner returns(uint256){
       require(gen0Counter < CREATION_LIMIT_GEN0, "Maximum amount of aliens Gen 0 reached");
       gen0Counter++;
-      uint256 _newAlien = aln721.createtAlien(genes, 0, 0, 0, msg.sender);
+      uint256 _newAlien = aln721.createAlien(genes, 0, 0, 0, msg.sender);
       //Gen0 have no owners they are own by the contract
       return _newAlien;
   }
