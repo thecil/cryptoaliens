@@ -1,3 +1,6 @@
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const Web3 = require("web3");
+const mnemonic = "tumble then poet spot sail spike forward system theory ankle pottery cute"; // 12 word mnemonic
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -43,9 +46,9 @@ module.exports = {
     // options below to some value.
     //
      development: {
-      host: "127.0.0.1",     // Localhost (default: none)
-      port: 8545,            // Standard Ethereum port (default: none)
+      provider: () => new HDWalletProvider(mnemonic, 'http://127.0.0.1:8545'),
       network_id: "*",       // Any network (default: none)
+      websockets: true
      },
 
     // Another network with more advanced options...

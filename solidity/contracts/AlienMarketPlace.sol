@@ -4,12 +4,16 @@ import "./interfaces/IAlienERC721.sol";
 contract AlienMarketPlace{
 
   IAlienERC721 public aln721;
+  
+
   struct Offer {
       address payable seller;
       uint256 price;
   }
 
   mapping (uint256 => Offer) tokenIdToOffer;
+
+
 
   event MarketTransaction(string TxType, address owner, uint256 tokenId);
 
