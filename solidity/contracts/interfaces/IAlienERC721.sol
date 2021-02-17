@@ -1,7 +1,5 @@
 pragma solidity ^0.6.0;
 
-// import "@openzeppelin/contracts/introspection/IERC165.sol";
-
 interface IAlienERC721 {
 
   function createAlien(
@@ -32,4 +30,6 @@ interface IAlienERC721 {
   function approve(address to, uint256 tokenId) external;
 
   function getApproved(uint256 tokenId) external view returns (address operator);
+
+  function isApprovedForAll(address owner, address operator) external view returns (bool);
 }
