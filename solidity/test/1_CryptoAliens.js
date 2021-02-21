@@ -13,9 +13,8 @@ const {
 //track balance
 const balance = require('@openzeppelin/test-helpers/src/balance')
 
-
 // Main function that is executed during the test
-contract("CryptoAliens", ([owner, alice, bob, charlie]) => {
+contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
   // Global variable declarations
   let alienCore
   let marketplace
@@ -45,7 +44,7 @@ contract("CryptoAliens", ([owner, alice, bob, charlie]) => {
   })
   describe("Initial Values", () => {
     it("1.  show AlienCore, interface, marketplace & AlienNFT contract addresses", async function (){
-            let interfaceAddress = await alienCore.IAlienAddress()
+            const interfaceAddress = await alienCore.IAlienNFT()
             console.log("UNIT TEST ADDRESSES")
             console.log(`ALIENCORE:: ${alienCore.address}`)
             console.log(`INTERFACE:: ${interfaceAddress}`)
@@ -54,49 +53,78 @@ contract("CryptoAliens", ([owner, alice, bob, charlie]) => {
     })
 
     it("2. ALIENCORE: create a gen 0 alien", async function (){
-      //nftSupply = await nftAlien.totalSupply()
-      await alienCore.createAlienGen0(gen0Alien.genes1)
+      const newAlien = await alienCore.createAlienGen0(gen0Alien.genes1)
       //console.log(`Alien created, ID::${JSON.stringify(createAlien)}`)
 
-      /*
-      //show getAliens
-      console.log(`NEW TOTAL:: ${JSON.stringify(nftSupply)}`)
-      for (var i = 0; i < nftSupply; i++) {
-        let getAliens = await nftAlien.getAlien(i)
-        console.log(`ALIENS DATA ID:${i}:: ${JSON.stringify(getAliens)}`)
-      }
-      */
     })
 
     it("3. ALIENCORE: Clone Alien", async function (){
-      let nftSupply = await nftAlien.totalSupply()
+      const nftSupply = await nftAlien.totalSupply()
       //let cloneAlien =
       await alienCore.cloneAlien(nftSupply,(nftSupply - 1))
-      //console.log(`CLONE ALIEN DATA:: ${JSON.stringify(cloneAlien)}`)
-      //console.log(`NEW NFT TOTAL SUPPLY::${nftSupply}`)
+
     })
 
     it("4. ALIEN MARKETPLACE: SetOffer, getOffer", async function(){
-      await alienCore.createAlienGen0(gen0Alien.genes2)
+      await alienCore.createAlienGen0(gen0Alien.genes2);
       // set marketplace address to approve for all
-      await nftAlien.setApprovalForAll(marketplace.address, true)
+      await nftAlien.setApprovalForAll(marketplace.address, true);
       //setOffer alien
-      await marketplace.setOffer(price, "1")
+      const _setOffer = await marketplace.setOffer(price, "1");
       // fetch the offer object for token ID = 1
       const newOffer = await marketplace.getOffer(1);
-
-
-      //console.log(`SET OFFER DATA:: ${JSON.stringify(setOffer)}`)
-      //console.log(`GET OFFER DATA:: ${JSON.stringify(newOffer)}`)
       assert.equal(newOffer.price, price);
+      // Event assertions can verify that the arguments are the expected ones
+      expectEvent(_setOffer, "MarketTransaction", {
+        TxType: "Create offer",
+        owner: owner,
+        tokenId: '1'
+      });
     })
-/*
+
     it("5. ALIEN MARKETPLACE: totalOffers, buyAlien from account[1]", async function(){
-      let totalOffers = await marketplace.totalOffers()
-      console.log(`TOTAL OFFERS:: ${JSON.stringify(totalOffers)}`)
-      let buyAlien = await marketplace.buyAlien(totalOffers,{from:addresses.acc1})
-      console.log(`BUY ALIEN DATA:: ${JSON.stringify(buyAlien)}`)
+      await alienCore.createAlienGen0(gen0Alien.genes3);
+      await marketplace.setOffer(price, "5");
+
+      const _totalOffers = await marketplace.totalOffers();
+      //console.log(`TOTAL OFFERS:: ${JSON.stringify(totalOffers)}`)
+      // buyAlien ID = 1
+      const _buyAlien = await marketplace.buyAlien(_totalOffers, {from:alfa, value:price});
+      expectEvent(_buyAlien, "MarketTransaction", {
+        TxType: "Buy Alien",
+        owner: alfa,
+        tokenId: '1'
+      });
+
     })
-*/
+
+    // Conditions that trigger a require statement can be precisely tested
+    it("6. ALIENCORE:REVERT: create a gen 0 alien from account[1]", async function (){
+      await expectRevert(
+        alienCore.createAlienGen0(gen0Alien.genes1, {from:alfa}),
+        "Ownable: caller is not the owner"
+      );
+    })
+
+    // Conditions that trigger a require statement can be precisely tested
+    it("7. ALIENCORE:REVERT: clone alien that account[0] does not own 1 of them", async function (){
+      await expectRevert(
+        alienCore.cloneAlien("1", "3"),
+        "The user doesn't own the token _mumId"
+      );
+    })
+
+    it("8. ALIENCORE:MARKETPLACE: account[1] buy second offer, clone 2 aliens owned", async function (){
+      // buyAlien ID = 5
+      const _totalOffers = await marketplace.getOffer("5");
+
+      const _buyAlienTwo = await marketplace.buyAlien("5", {from:alfa, value:price});
+      expectEvent(_buyAlienTwo, "MarketTransaction", {
+        TxType: "Buy Alien",
+        owner: alfa,
+        tokenId: '5'
+      });
+    })
+
   })//describe
 })//contract

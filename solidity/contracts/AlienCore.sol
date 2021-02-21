@@ -2,19 +2,20 @@
 pragma solidity ^0.6.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./AlienMarketPlace.sol";
+import "./interfaces/IAlienERC721.sol";
 
 
-contract AlienCore is Ownable, AlienMarketPlace{
+contract AlienCore is Ownable{
 
   uint256 private constant CREATION_LIMIT_GEN0 = 10;
   // Counts the number of cats the contract owner has created.
   uint256 private gen0Counter;
-  address public IAlienAddress;
+  address public IAlienNFT;
+  IAlienERC721 public aln721;
 
   constructor(address _AlienERC721) public {
-    IAlienAddress = _AlienERC721;
-    aln721 = IAlienERC721(IAlienAddress);
+    IAlienNFT = _AlienERC721;
+    aln721 = IAlienERC721(IAlienNFT);
     // We are creating the first alien at index 0
     createAlienGen0(0);
 
@@ -95,8 +96,9 @@ function getGenesKid(uint256 _Dadgenes, uint256 _Mumgenes) internal view returns
   }
 
   function cloneAlien(uint256 _dadId, uint256 _mumId) public returns(uint256){
-      require(aln721.isApprovedOwner(msg.sender, _dadId) == true, "The user doesn't own the token");
-      require(aln721.isApprovedOwner(msg.sender, _mumId) == true, "The user doesn't own the token");
+      require(aln721.isApprovedOwner(msg.sender, _dadId) == true, "The user doesn't own the token _dadId");
+      require(aln721.isApprovedOwner(msg.sender, _mumId) == true, "The user doesn't own the token _mumId");
+      require( _dadId != _mumId, "tokenId should be different");
 
       (uint256 Dadgenes,,,uint256 DadGeneration ) = aln721.getAlien(_dadId);
       (uint256 Mumgenes,,,uint256 MumGeneration ) = aln721.getAlien(_mumId);

@@ -354,14 +354,14 @@
     "absolutePath": "@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol",
     "exportedSymbols": {
       "IERC721Enumerable": [
-        3518
+        3620
       ]
     },
-    "id": 3519,
+    "id": 3621,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3493,
+        "id": 3595,
         "literals": [
           "solidity",
           ">=",
@@ -372,16 +372,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "35:31:22"
+        "src": "35:31:23"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "file": "./IERC721.sol",
-        "id": 3494,
+        "id": 3596,
         "nodeType": "ImportDirective",
-        "scope": 3519,
-        "sourceUnit": 3492,
-        "src": "70:23:22",
+        "scope": 3621,
+        "sourceUnit": 3594,
+        "src": "70:23:23",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -392,33 +392,33 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 3495,
+              "id": 3597,
               "name": "IERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3491,
-              "src": "269:7:22",
+              "referencedDeclaration": 3593,
+              "src": "269:7:23",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721_$3491",
+                "typeIdentifier": "t_contract$_IERC721_$3593",
                 "typeString": "contract IERC721"
               }
             },
-            "id": 3496,
+            "id": 3598,
             "nodeType": "InheritanceSpecifier",
-            "src": "269:7:22"
+            "src": "269:7:23"
           }
         ],
         "contractDependencies": [
-          1251,
-          3491
+          1353,
+          3593
         ],
         "contractKind": "interface",
         "documentation": "@title ERC-721 Non-Fungible Token Standard, optional enumeration extension\n@dev See https://eips.ethereum.org/EIPS/eip-721",
         "fullyImplemented": false,
-        "id": 3518,
+        "id": 3620,
         "linearizedBaseContracts": [
-          3518,
-          3491,
-          1251
+          3620,
+          3593,
+          1353
         ],
         "name": "IERC721Enumerable",
         "nodeType": "ContractDefinition",
@@ -427,7 +427,7 @@
             "body": null,
             "documentation": "@dev Returns the total amount of tokens stored by the contract.",
             "functionSelector": "18160ddd",
-            "id": 3501,
+            "id": 3603,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -435,23 +435,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3497,
+              "id": 3599,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "396:2:22"
+              "src": "396:2:23"
             },
             "returnParameters": {
-              "id": 3500,
+              "id": 3602,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3499,
+                  "id": 3601,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3501,
-                  "src": "422:7:22",
+                  "scope": 3603,
+                  "src": "422:7:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -459,10 +459,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3498,
+                    "id": 3600,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "422:7:22",
+                    "src": "422:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -472,10 +472,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "421:9:22"
+              "src": "421:9:23"
             },
-            "scope": 3518,
-            "src": "376:55:22",
+            "scope": 3620,
+            "src": "376:55:23",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -484,7 +484,7 @@
             "body": null,
             "documentation": "@dev Returns a token ID owned by `owner` at a given `index` of its token list.\nUse along with {balanceOf} to enumerate all of ``owner``'s tokens.",
             "functionSelector": "2f745c59",
-            "id": 3510,
+            "id": 3612,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -492,17 +492,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3506,
+              "id": 3608,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3503,
+                  "id": 3605,
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3510,
-                  "src": "648:13:22",
+                  "scope": 3612,
+                  "src": "648:13:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -510,10 +510,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3502,
+                    "id": 3604,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "648:7:22",
+                    "src": "648:7:23",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -525,12 +525,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3505,
+                  "id": 3607,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3510,
-                  "src": "663:13:22",
+                  "scope": 3612,
+                  "src": "663:13:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -538,10 +538,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3504,
+                    "id": 3606,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "663:7:22",
+                    "src": "663:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -551,20 +551,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "647:30:22"
+              "src": "647:30:23"
             },
             "returnParameters": {
-              "id": 3509,
+              "id": 3611,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3508,
+                  "id": 3610,
                   "name": "tokenId",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3510,
-                  "src": "701:15:22",
+                  "scope": 3612,
+                  "src": "701:15:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -572,10 +572,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3507,
+                    "id": 3609,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "701:7:22",
+                    "src": "701:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -585,10 +585,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "700:17:22"
+              "src": "700:17:23"
             },
-            "scope": 3518,
-            "src": "619:99:22",
+            "scope": 3620,
+            "src": "619:99:23",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -597,7 +597,7 @@
             "body": null,
             "documentation": "@dev Returns a token ID at a given `index` of all the tokens stored by the contract.\nUse along with {totalSupply} to enumerate all tokens.",
             "functionSelector": "4f6ccce7",
-            "id": 3517,
+            "id": 3619,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -605,17 +605,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3513,
+              "id": 3615,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3512,
+                  "id": 3614,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3517,
-                  "src": "921:13:22",
+                  "scope": 3619,
+                  "src": "921:13:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -623,10 +623,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3511,
+                    "id": 3613,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "921:7:22",
+                    "src": "921:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -636,20 +636,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "920:15:22"
+              "src": "920:15:23"
             },
             "returnParameters": {
-              "id": 3516,
+              "id": 3618,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3515,
+                  "id": 3617,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3517,
-                  "src": "959:7:22",
+                  "scope": 3619,
+                  "src": "959:7:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -657,10 +657,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3514,
+                    "id": 3616,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "959:7:22",
+                    "src": "959:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -670,33 +670,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "958:9:22"
+              "src": "958:9:23"
             },
-            "scope": 3518,
-            "src": "899:69:22",
+            "scope": 3620,
+            "src": "899:69:23",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3519,
-        "src": "238:733:22"
+        "scope": 3621,
+        "src": "238:733:23"
       }
     ],
-    "src": "35:938:22"
+    "src": "35:938:23"
   },
   "legacyAST": {
     "absolutePath": "@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol",
     "exportedSymbols": {
       "IERC721Enumerable": [
-        3518
+        3620
       ]
     },
-    "id": 3519,
+    "id": 3621,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3493,
+        "id": 3595,
         "literals": [
           "solidity",
           ">=",
@@ -707,16 +707,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "35:31:22"
+        "src": "35:31:23"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
         "file": "./IERC721.sol",
-        "id": 3494,
+        "id": 3596,
         "nodeType": "ImportDirective",
-        "scope": 3519,
-        "sourceUnit": 3492,
-        "src": "70:23:22",
+        "scope": 3621,
+        "sourceUnit": 3594,
+        "src": "70:23:23",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -727,33 +727,33 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 3495,
+              "id": 3597,
               "name": "IERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3491,
-              "src": "269:7:22",
+              "referencedDeclaration": 3593,
+              "src": "269:7:23",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC721_$3491",
+                "typeIdentifier": "t_contract$_IERC721_$3593",
                 "typeString": "contract IERC721"
               }
             },
-            "id": 3496,
+            "id": 3598,
             "nodeType": "InheritanceSpecifier",
-            "src": "269:7:22"
+            "src": "269:7:23"
           }
         ],
         "contractDependencies": [
-          1251,
-          3491
+          1353,
+          3593
         ],
         "contractKind": "interface",
         "documentation": "@title ERC-721 Non-Fungible Token Standard, optional enumeration extension\n@dev See https://eips.ethereum.org/EIPS/eip-721",
         "fullyImplemented": false,
-        "id": 3518,
+        "id": 3620,
         "linearizedBaseContracts": [
-          3518,
-          3491,
-          1251
+          3620,
+          3593,
+          1353
         ],
         "name": "IERC721Enumerable",
         "nodeType": "ContractDefinition",
@@ -762,7 +762,7 @@
             "body": null,
             "documentation": "@dev Returns the total amount of tokens stored by the contract.",
             "functionSelector": "18160ddd",
-            "id": 3501,
+            "id": 3603,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -770,23 +770,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3497,
+              "id": 3599,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "396:2:22"
+              "src": "396:2:23"
             },
             "returnParameters": {
-              "id": 3500,
+              "id": 3602,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3499,
+                  "id": 3601,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3501,
-                  "src": "422:7:22",
+                  "scope": 3603,
+                  "src": "422:7:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -794,10 +794,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3498,
+                    "id": 3600,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "422:7:22",
+                    "src": "422:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -807,10 +807,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "421:9:22"
+              "src": "421:9:23"
             },
-            "scope": 3518,
-            "src": "376:55:22",
+            "scope": 3620,
+            "src": "376:55:23",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -819,7 +819,7 @@
             "body": null,
             "documentation": "@dev Returns a token ID owned by `owner` at a given `index` of its token list.\nUse along with {balanceOf} to enumerate all of ``owner``'s tokens.",
             "functionSelector": "2f745c59",
-            "id": 3510,
+            "id": 3612,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -827,17 +827,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3506,
+              "id": 3608,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3503,
+                  "id": 3605,
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3510,
-                  "src": "648:13:22",
+                  "scope": 3612,
+                  "src": "648:13:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -845,10 +845,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3502,
+                    "id": 3604,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "648:7:22",
+                    "src": "648:7:23",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -860,12 +860,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3505,
+                  "id": 3607,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3510,
-                  "src": "663:13:22",
+                  "scope": 3612,
+                  "src": "663:13:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -873,10 +873,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3504,
+                    "id": 3606,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "663:7:22",
+                    "src": "663:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -886,20 +886,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "647:30:22"
+              "src": "647:30:23"
             },
             "returnParameters": {
-              "id": 3509,
+              "id": 3611,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3508,
+                  "id": 3610,
                   "name": "tokenId",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3510,
-                  "src": "701:15:22",
+                  "scope": 3612,
+                  "src": "701:15:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -907,10 +907,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3507,
+                    "id": 3609,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "701:7:22",
+                    "src": "701:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -920,10 +920,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "700:17:22"
+              "src": "700:17:23"
             },
-            "scope": 3518,
-            "src": "619:99:22",
+            "scope": 3620,
+            "src": "619:99:23",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -932,7 +932,7 @@
             "body": null,
             "documentation": "@dev Returns a token ID at a given `index` of all the tokens stored by the contract.\nUse along with {totalSupply} to enumerate all tokens.",
             "functionSelector": "4f6ccce7",
-            "id": 3517,
+            "id": 3619,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -940,17 +940,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3513,
+              "id": 3615,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3512,
+                  "id": 3614,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3517,
-                  "src": "921:13:22",
+                  "scope": 3619,
+                  "src": "921:13:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -958,10 +958,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3511,
+                    "id": 3613,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "921:7:22",
+                    "src": "921:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -971,20 +971,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "920:15:22"
+              "src": "920:15:23"
             },
             "returnParameters": {
-              "id": 3516,
+              "id": 3618,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3515,
+                  "id": 3617,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3517,
-                  "src": "959:7:22",
+                  "scope": 3619,
+                  "src": "959:7:23",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -992,10 +992,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3514,
+                    "id": 3616,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "959:7:22",
+                    "src": "959:7:23",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1005,20 +1005,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "958:9:22"
+              "src": "958:9:23"
             },
-            "scope": 3518,
-            "src": "899:69:22",
+            "scope": 3620,
+            "src": "899:69:23",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3519,
-        "src": "238:733:22"
+        "scope": 3621,
+        "src": "238:733:23"
       }
     ],
-    "src": "35:938:22"
+    "src": "35:938:23"
   },
   "compiler": {
     "name": "solc",
@@ -1026,7 +1026,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2021-02-17T01:07:01.876Z",
+  "updatedAt": "2021-02-18T04:57:15.648Z",
   "devdoc": {
     "details": "See https://eips.ethereum.org/EIPS/eip-721",
     "methods": {

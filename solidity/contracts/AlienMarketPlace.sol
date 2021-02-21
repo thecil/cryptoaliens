@@ -1,15 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
+import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./interfaces/IAlienERC721.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import "./interfaces/IAlienMarketPlace.sol";
 
-contract AlienMarketPlace is Ownable{
+contract AlienMarketPlace is Ownable, IAlienMarketPlace{
 
   IAlienERC721 public aln721;
   using Counters for Counters.Counter;
   Counters.Counter private activeOffers;
+  address public IAlienNFT;
+
+  constructor(address _AlienERC721) public {
+    IAlienNFT = _AlienERC721;
+    aln721 = IAlienERC721(IAlienNFT);
+  }
 
   struct Offer {
       address payable seller;
@@ -24,13 +31,14 @@ contract AlienMarketPlace is Ownable{
 
   event MarketTransaction(string TxType, address owner, uint256 tokenId);
 
-  function totalOffers() public view returns(uint256) {
+  function totalOffers() public view override returns(uint256) {
     return activeOffers.current();
   }
 
   function getOffer(uint256 _tokenId)
       public
       view
+      override
       returns
   (
     address seller,
@@ -54,6 +62,7 @@ contract AlienMarketPlace is Ownable{
   * @param _tokenId the token ID to set offer for */
   function setOffer(uint256 _price, uint256 _tokenId)
     public
+    override
   {
     // only owner can create offer
     require(aln721.ownerOf(_tokenId) == msg.sender, "only owner can sell tokenId");
@@ -84,6 +93,7 @@ contract AlienMarketPlace is Ownable{
   * @param _tokenId the token ID for the cat we remove from marketplace */
   function removeOffer(uint256 _tokenId)
     public
+    override
   {
     Offer memory _offer = tokenIdToOffer[_tokenId];
     require(_offer.seller == msg.sender, "You should own the alien to be able to remove this offer");
@@ -102,6 +112,7 @@ contract AlienMarketPlace is Ownable{
   function buyAlien(uint256 _tokenId)
     public
     payable
+    override
   {
     Offer memory _offer = tokenIdToOffer[_tokenId];
     require(msg.value == _offer.price, "The price amount must be the same as the price");

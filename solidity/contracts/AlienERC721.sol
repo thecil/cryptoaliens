@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/ERC1155Holder.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./interfaces/IAlienERC721.sol";
 
 
 // SPDX-License-Identifier: MIT
@@ -95,7 +96,7 @@ contract AlienERC721 is
       uint256 _dadId,
       uint256 _generation,
       address _owner
-    ) external returns(uint256){
+    ) public returns(uint256){
         uint256 _newAlien = _createAlien(_genes, _mumId, _dadId, _generation, _owner);
         return _newAlien;
   }
