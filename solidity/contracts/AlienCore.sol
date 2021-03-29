@@ -16,9 +16,6 @@ contract AlienCore is Ownable{
   constructor(address _AlienERC721) public {
     IAlienNFT = _AlienERC721;
     aln721 = IAlienERC721(IAlienNFT);
-    // We are creating the first alien at index 0
-    createAlienGen0(0);
-
   }
 /*
 *       we get a

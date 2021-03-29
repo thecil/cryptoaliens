@@ -31,8 +31,10 @@ contract AlienERC721 is
   }
 
   // Mapping from token ID to NFT struct details
-  mapping(uint256 => AlienObj) public alienDetails;
-
+  // mapping(uint256 => AlienObj) public alienDetails;
+  // [address] => (tokenId => Aliens)
+  mapping(address => mapping(uint256 => AlienObj)) public alienDetails;
+  
   constructor() public ERC721(
     "AlienNFT",
      "ALNFT"
@@ -42,7 +44,7 @@ contract AlienERC721 is
 
   event AlienMinted(
     address owner,
-    uint256 alienId,
+    uint256 tokenId,
     uint256 mumId,
     uint256 dadId,
     uint256 genes
@@ -56,7 +58,7 @@ contract AlienERC721 is
       address _owner
     ) private returns (uint256) {
       _tokenIds.increment();
-      alienDetails[_tokenIds.current()] = AlienObj(
+      alienDetails[msg.sender][_tokenIds.current()] = AlienObj(
         uint256(_genes),
         uint32(_mumId),
         uint32(_dadId),
@@ -81,7 +83,7 @@ contract AlienERC721 is
     uint32 _dadId,
     uint16 _generation
     ){
-      AlienObj memory alien = alienDetails[_nftId];
+      AlienObj memory alien = alienDetails[msg.sender][_nftId];
 
       _genes = uint256(alien.genes);
       _mumId = uint32(alien.mumId);
