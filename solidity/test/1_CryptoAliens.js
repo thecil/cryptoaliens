@@ -142,14 +142,13 @@ contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
         "The user doesn't own the token _mumId"
       );
     })
-*/    
+   
     it("8. ALIENCORE:MARKETPLACE: account[1] buy second offer, clone 2 aliens owned", async function (){
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
       let _totalSupply = await nftAlien.totalSupply();
       assert.equal(_totalSupply, 2, "NFT totalSupply should be 2");
-      /*
       // set marketplace address to approve for all
       await nftAlien.setApprovalForAll(marketplace.address, true);
       // set 1 alien to sell
@@ -162,22 +161,28 @@ contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
         TxType: "Buy Alien",
         owner: alfa,
         tokenId: '2'
-      });
-*/
-      
-      let _balanceOf = await nftAlien.balanceOf(owner);
-      let _res = []
-      for(let _i = 1; _i <= _balanceOf; _i++){
-        let _alien = await nftAlien.alienDetails(owner, _i);
-        console.log(JSON.stringify(_alien));
-        
-        let _getAlien = await nftAlien.getAlien(1);
-        console.log(JSON.stringify(_getAlien));
-        _res.push(_getAlien);
-      }
-      console.log(_res)
-      
+      });   
     })
+*/ 
+    it("8. Get all aliens by owner", async function (){
+      // create 2 gen0
+      await alienCore.createAlienGen0(gen0Alien.genes1);
+      await alienCore.createAlienGen0(gen0Alien.genes2);
+      let _totalSupply = await nftAlien.totalSupply();
+      assert.equal(_totalSupply, 2, "NFT totalSupply should be 2");
+
+      let _balanceOf = await nftAlien.balanceOf(owner);
+      // let _res = []
+      let _alienA = await nftAlien.getAllAliens(owner);
+      let _alien = await nftAlien.alienDetails(owner, "1");
+      console.log(JSON.stringify(_alienA));
+      console.log(JSON.stringify(_alien));
+
+      /*
+      for(let _i = 1; _i <= 2; _i++){instance.alienDetails(accounts[0], _i)}
+      */
+      // console.log(_res)
+    });
 /*
 */
   })//describe

@@ -1,4 +1,5 @@
 pragma solidity ^0.6.0;
+pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721Burnable.sol";
@@ -34,6 +35,7 @@ contract AlienERC721 is
   // mapping(uint256 => AlienObj) public alienDetails;
   // [address] => (tokenId => Aliens)
   mapping(address => mapping(uint256 => AlienObj)) public alienDetails;
+  mapping(address => uint256[]) public userAliens;
   
   constructor() public ERC721(
     "AlienNFT",
@@ -70,8 +72,7 @@ contract AlienERC721 is
       // let's just be 100% sure we never let this happen.
       require(_tokenIds.current() == uint256(uint32(_tokenIds.current())));
 
-
-
+      userAliens[msg.sender].push(_tokenIds.current());
       emit AlienMinted(_owner, _tokenIds.current(), _mumId, _dadId, _genes);
       return _tokenIds.current();
     }
@@ -90,6 +91,10 @@ contract AlienERC721 is
       _dadId = uint32(alien.dadId);
       _generation = uint16(alien.generation);
       return (_genes, _mumId, _dadId, _generation);
+  }
+
+  function getAllAliens(address _owner) public view returns(uint256 [] memory){
+    return userAliens[_owner];
   }
 
   function createAlien(
