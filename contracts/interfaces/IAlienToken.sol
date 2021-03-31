@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 // Interface for our erc20 token
 interface IAlienToken {

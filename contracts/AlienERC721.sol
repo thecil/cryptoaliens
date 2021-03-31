@@ -1,14 +1,12 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721Burnable.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721Pausable.sol";
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
-import "@openzeppelin/contracts/token/ERC1155/ERC1155Holder.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
+import "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
+
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+
 import "./interfaces/IAlienERC721.sol";
 
 
@@ -16,8 +14,7 @@ import "./interfaces/IAlienERC721.sol";
 //ERC721
 contract AlienERC721 is
   Ownable,
-  ERC721,
-  ERC721Burnable,
+  ERC721Pausable,
   ERC1155Holder
 {
 
@@ -111,5 +108,18 @@ contract AlienERC721 is
   function isApprovedOwner(address _owner, uint256 _nftId) public view returns (bool){
     return _isApprovedOrOwner(_owner, _nftId);
   }
+  // burnable
+    /**
+     * @dev Burns `tokenId`. See {ERC721-_burn}.
+     *
+     * Requirements:
+     *
+     * - The caller must own `tokenId` or be an approved operator.
+     */
+    function burn(uint256 tokenId) public virtual {
+        //solhint-disable-next-line max-line-length
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721Burnable: caller is not owner nor approved");
+        _burn(tokenId);
+    }
 
 }

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -74,7 +74,7 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
     require(_price > 0, "offer price must be greater than 0");
 
     Offer memory _offer = Offer({
-        seller: msg.sender,
+        seller: payable(msg.sender),
         price: _price,
         index: offers.length,
         tokenId: _tokenId,

@@ -1,7 +1,6 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 interface IAlienMarketPlace {
-  event MarketTransaction(string TxType, address owner, uint256 tokenId);
 
   function totalOffers() external view returns(uint256);
 

@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./interfaces/IAlienERC721.sol";
 
+import "hardhat/console.sol";
 
 contract AlienCore is Ownable{
 
@@ -14,6 +15,8 @@ contract AlienCore is Ownable{
   IAlienERC721 public aln721;
 
   constructor(address _AlienERC721) public {
+    console.log("AlienCore Constructor:");
+    console.log("AlienERC721 contract address: '%s'", _AlienERC721);
     IAlienNFT = _AlienERC721;
     aln721 = IAlienERC721(IAlienNFT);
   }
@@ -49,7 +52,7 @@ function getGenesKid(uint256 _Dadgenes, uint256 _Mumgenes) internal view returns
     uint256 _geneKid;
     uint256 [8] memory geneArray;
     uint256 index = 7;
-    uint8 random = uint8(now % 255);
+    uint8 random = uint8(block.timestamp % 255);
     uint256 i = 0;
 
     for(i = 1; i <= 128; i=i*2){
