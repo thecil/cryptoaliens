@@ -122,4 +122,10 @@ contract AlienERC721 is
         _burn(tokenId);
     }
 
+      /**
+     * @dev See {supportsInterface}.
+     */
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721, ERC1155Receiver) returns (bool) {
+        return super.supportsInterface(interfaceId);
+    }
 }
