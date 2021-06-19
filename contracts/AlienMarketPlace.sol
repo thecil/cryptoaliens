@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -13,7 +13,7 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
   Counters.Counter private activeOffers;
   address public IAlienNFT;
 
-  constructor(address _AlienERC721) public {
+  constructor(address _AlienERC721) {
     IAlienNFT = _AlienERC721;
     aln721 = IAlienERC721(IAlienNFT);
   }

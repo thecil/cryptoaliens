@@ -10,6 +10,7 @@ task("accounts", "Prints the list of accounts", async () => {
     console.log(account.address);
   }
 });
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */

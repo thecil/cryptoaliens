@@ -1,27 +1,11 @@
-//Contracts
-const AlienCore = artifacts.require("AlienCore")
-const AlienERC721 = artifacts.require("AlienERC721")
-const AlienMarket = artifacts.require("AlienMarketPlace")
-
-const {
-  BN,           // Big Number support
-  constants,    // Common constants, like the zero address and largest integers
-  expectEvent,  // Assertions for emitted events
-  expectRevert, // Assertions for transactions that should fail
-} = require('@openzeppelin/test-helpers')
-
-// @openzeppelin/test-helpers utils
-const balance = require('@openzeppelin/test-helpers/src/balance');
-const ether = require('@openzeppelin/test-helpers/src/ether');
+const { expect } = require('chai');
 const { toNumber } = require('lodash');
 
 // Main function that is executed during the test
-contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
-  // Global variable declarations
-  let nftAlien;
-  let alienCore;
-  let marketplace;
-  const price = ether("0.25");
+  describe("CryptoAliens", () => {
+      // Global variable declarations
+  let _contractInstance, nftAlien, alienCore, marketplace, owner, addr1, addr2
+  const price = web3.utils.toWei("0.25");
 
   const gen0Alien = {
     genes1:'10152033',
@@ -39,15 +23,20 @@ contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
   //set contracts instances
   beforeEach(async function() {
     // Deploy AlienERC721 to testnet
-    nftAlien = await AlienERC721.new(); 
+    _contractInstance = await ethers.getContractFactory('AlienERC721')
+    nftAlien = await _contractInstance.deploy();
     // Deploy AlienCore to testnet
-    alienCore = await AlienCore.new(nftAlien.address); 
+    _contractInstance = await ethers.getContractFactory('AlienCore')
+    alienCore = await _contractInstance.deploy(nftAlien.address); 
     // Deploy AlienMarket to testnet
-    marketplace = await AlienMarket.new(nftAlien.address); 
+    _contractInstance = await ethers.getContractFactory('AlienMarketPlace')
+    marketplace = await _contractInstance.deploy(nftAlien.address); 
+    //get 3 of all accounts from hardhat
+    [owner, addr1, addr2] = await ethers.getSigners();
   })
-  describe("Initial Values", () => {
-/*    
-    it("1.  show AlienCore, interface, marketplace & AlienNFT contract addresses", async function (){
+
+   
+    it.skip("1.  show AlienCore, interface, marketplace & AlienNFT contract addresses", async () => {
             const interfaceAddress = await alienCore.IAlienNFT()
             console.log("UNIT TEST ADDRESSES")
             console.log(`ALIENCORE:: ${alienCore.address}`)
@@ -56,35 +45,34 @@ contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
             console.log(`AlienNFT::${nftAlien.address}`)
     })
 
-    it("2. ALIENCORE: create a gen 0 alien, expect revert at 10", async function (){
+    it("2. ALIENCORE: create a gen 0 alien, expect revert at 10", async () => {
       for(_i in gen0Alien){
        await alienCore.createAlienGen0(gen0Alien[_i]);
       }
       
-      await expectRevert(
-        alienCore.createAlienGen0(gen0Alien.genes1),
+      await expect(alienCore.createAlienGen0(gen0Alien.genes1)).to.be.revertedWith(
         "Maximum amount of aliens Gen 0 reached"
-      );   
+      );
+  
       // ALIENCORE:REVERT: create a gen 0 alien from account[1]
-      await expectRevert(
-        alienCore.createAlienGen0(gen0Alien.genes1, {from:alfa}),
+      await expect(alienCore.connect(addr1).createAlienGen0(gen0Alien.genes1)).to.be.revertedWith(
         "Ownable: caller is not the owner"
       );
-
-      const _totalSupply = await nftAlien.totalSupply();
-      assert.equal(_totalSupply, 10, "NFT totalSupply should be 10, gen0");
+      // NFT totalSupply should be 10, gen0
+      expect(await nftAlien.totalSupply()).to.equal(10)
     })
 
-    it("3. ALIENCORE: Clone Alien", async function (){
+    it("3. ALIENCORE: Clone Alien", async () => {
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
 
-      let _totalSupply = await nftAlien.totalSupply();
-      await alienCore.cloneAlien(_totalSupply,(_totalSupply - 1));
-      _totalSupply = await nftAlien.totalSupply();
-      assert.equal(_totalSupply, 3, "NFT totalSupply should be 3");
+      const _totalSupply = await nftAlien.totalSupply();
+      await alienCore.cloneAlien(parseInt(_totalSupply),(parseInt(_totalSupply) - 1));
+ 
+      // NFT totalSupply should be 3
+      expect(await nftAlien.totalSupply()).to.equal(3)
     })
-
+/*
     it("4. ALIEN MARKETPLACE: SetOffer, getOffer", async function(){
       await alienCore.createAlienGen0(gen0Alien.genes1);
       assert.equal(_totalSupply, 1, "NFT totalSupply should be 1");
@@ -123,7 +111,7 @@ contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
 
     })
 
-    it("7. ALIENCORE:REVERT: clone alien that account[0] does not own 1 of them", async function (){
+    it("7. ALIENCORE:REVERT: clone alien that account[0] does not own 1 of them", async () => {
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
@@ -143,7 +131,7 @@ contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
       );
     })
    
-    it("8. ALIENCORE:MARKETPLACE: account[1] buy second offer, clone 2 aliens owned", async function (){
+    it("8. ALIENCORE:MARKETPLACE: account[1] buy second offer, clone 2 aliens owned", async () => {
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
@@ -163,27 +151,22 @@ contract("CryptoAliens", ([owner, alfa, beta, charlie]) => {
         tokenId: '2'
       });   
     })
+
+          // checking if MonkeyCreated event was correctly triggered
+      await expect(_MonkeyContract.createGen0Monkey(1111111111111111))
+      .to.emit(_MonkeyContract, 'MonkeyCreated')
+      .withArgs(owner.address, _totalSupply, 0, 0, 1111111111111111);
+
 */ 
-    it("8. Get all aliens by owner", async function (){
+    it("9. Get all aliens by owner", async () => {
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
-      let _totalSupply = await nftAlien.totalSupply();
-      assert.equal(_totalSupply, 2, "NFT totalSupply should be 2");
+      expect(await nftAlien.totalSupply()).to.be.equal(2)
 
-      let _balanceOf = await nftAlien.balanceOf(owner);
-      // let _res = []
-      let _alienA = await nftAlien.getAllAliens(owner);
-      let _alien = await nftAlien.alienDetails(owner, "1");
-      console.log(JSON.stringify(_alienA));
-      console.log(JSON.stringify(_alien));
-
-      /*
-      for(let _i = 1; _i <= 2; _i++){instance.alienDetails(accounts[0], _i)}
-      */
-      // console.log(_res)
+      await nftAlien.getAllAliens(owner.address);
+      await nftAlien.alienDetails(owner.address, "1");
     });
 /*
 */
   })//describe
-})//contract
