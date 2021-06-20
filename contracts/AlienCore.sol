@@ -3,27 +3,21 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./interfaces/IAlienERC721.sol";
+import "./AlienOwnership.sol";
 
 import "hardhat/console.sol";
 
-contract AlienFactory is Ownable{
+/**
+ * @title The AlienCore contract.
+ * @author Carlos Zambrano - thecil
+ * @dev This contract is split in the following way:
+ *      - AlienOwnership: This provides the methods required for basic non-fungible token
+ */
+contract AlienCore is AlienOwnership{
   using Counters for Counters.Counter;
-
-  uint private constant CREATION_LIMIT_GEN0 = 10;
+  
+  uint256 private constant CREATION_LIMIT_GEN0 = 10;
   Counters.Counter private gen0Counter;
-
-  address public IAlienNFT;
-  IAlienERC721 public aln721;
-
-  constructor(address _AlienERC721){
-    /*
-    console.log("AlienCore Constructor:");
-    console.log("AlienERC721 contract address: '%s'", _AlienERC721);\
-    */
-    IAlienNFT = _AlienERC721;
-    aln721 = IAlienERC721(IAlienNFT);
-  }
 
   /**
    * @dev Returns a binary between 00000000-11111111
@@ -35,20 +29,20 @@ contract AlienFactory is Ownable{
   /**
    * @dev calculates the max of 2 numbers (generation from parents)
    */
-  function maxGeneration(uint _gen1, uint _gen2) internal pure returns (uint) {
+  function maxGeneration(uint256 _gen1, uint256 _gen2) internal pure returns (uint256) {
       return _gen1 >= _gen2 ? _gen1 : _gen2;
   }
 
   /**
   * @dev mix a new dna based on 2 inputed dna (mum || dad)
   */
-  function _mixDna(uint _dna1, uint _dna2) internal view returns(uint){
-    uint[8] memory _geneArray;
+  function _mixDna(uint256 _dna1, uint256 _dna2) internal view returns(uint256){
+    uint256[8] memory _geneArray;
     uint8 _random = _getRandom();
     uint8 index = 7;
 
     // Bitshift: move to next binary bit
-    for (uint i = 1; i <= 128; i = i * 2) {
+    for (uint256 i = 1; i <= 128; i = i * 2) {
       // Then add 2 last digits from the dna to the new dna
       if (_random & i != 0) {
           _geneArray[index] = uint8(_dna1 % 100);
@@ -57,16 +51,16 @@ contract AlienFactory is Ownable{
       }
       _dna1 = _dna1 / 100;
       _dna2 = _dna2 / 100;
-      index = index - 1;
+      index = index--;
     }
 
     // Add a random parameter in a random place
     uint8 _newDnaIndex = _random % 7;
     _geneArray[_newDnaIndex] = _random % 99;
 
-    uint _newDna;
+    uint256 _newDna;
 
-    for (uint i = 0; i < 8; i = i + 1) {
+    for (uint256 i = 0; i < 8; i = i + 1) {
       _newDna = _newDna + _geneArray[i];
 
       if (i != 7) {
@@ -82,25 +76,26 @@ contract AlienFactory is Ownable{
   * @param _dadId the id of the dad
   * @param _mumId the id of the mom
   */
-  function cloneAlien(uint _dadId, uint _mumId) public returns(uint){
-      require(aln721.isApprovedOwner(msg.sender, _dadId) == true, "The user doesn't own the token _dadId");
-      require(aln721.isApprovedOwner(msg.sender, _mumId) == true, "The user doesn't own the token _mumId");
+  function cloneAlien(uint256 _dadId, uint256 _mumId) public returns(uint256){
+      require(isApprovedOwner(msg.sender, _dadId), "The user doesn't own the token _dadId");
+      require(isApprovedOwner(msg.sender, _mumId), "The user doesn't own the token _mumId");
       require(_dadId != _mumId, "tokenId should be different");
+    
+      AlienObj storage _dad = _aliens[_dadId];    
+      AlienObj storage _mum  = _aliens[_mumId];
+      
+      uint256 _newGenes = _mixDna(_dad.genes, _mum.genes);
+      uint256 _newGeneration = maxGeneration(_dad.generation, _mum.generation);
 
-      (uint Dadgenes,,,uint DadGeneration ) = aln721.getAlien(_dadId);
-      (uint Mumgenes,,,uint MumGeneration ) = aln721.getAlien(_mumId);
-
-      uint _newGenes = _mixDna(Dadgenes, Mumgenes);
-      uint _newGeneration = maxGeneration(DadGeneration, MumGeneration);
-
-      uint _newAlien = aln721.createAlien(_newGenes, _mumId, _dadId, _newGeneration, msg.sender);
+      uint256 _newAlien = createAlien(_newGenes, _mumId, _dadId, _newGeneration, msg.sender);
       return _newAlien;
   }
 
-  function createAlienGen0(uint _genes) public onlyOwner returns(uint){
+
+  function createAlienGen0(uint256 _genes) public onlyOwner returns(uint256){
       require(gen0Counter.current() < CREATION_LIMIT_GEN0, "Maximum amount of aliens Gen 0 reached");
       gen0Counter.increment();
-      uint _newAlien = aln721.createAlien(_genes, 0, 0, 0, msg.sender);
+      uint256 _newAlien = createAlien(_genes, 0, 0, 0, msg.sender);
       //Gen0 have no owners they are own by the contract
       return _newAlien;
   }

@@ -5,11 +5,7 @@ interface IAlienMarketPlace {
 
   function totalOffers() external view returns(uint256);
 
-  function getOffer(uint256 _tokenId)
-      external
-      view
-      returns
-  (
+  function getOffer(uint256 _tokenId) external view returns(
     address seller,
     uint256 price,
     uint256 index,

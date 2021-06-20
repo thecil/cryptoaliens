@@ -1,10 +1,9 @@
 const { expect } = require('chai');
-const { toNumber } = require('lodash');
 
 // Main function that is executed during the test
   describe("CryptoAliens", () => {
       // Global variable declarations
-  let _contractInstance, nftAlien, alienCore, marketplace, owner, addr1, addr2
+  let _contractInstance, alienCore, marketplace, owner, addr1, addr2
   const price = web3.utils.toWei("0.25");
 
   const gen0Alien = {
@@ -22,27 +21,22 @@ const { toNumber } = require('lodash');
 
   //set contracts instances
   beforeEach(async function() {
-    // Deploy AlienERC721 to testnet
-    _contractInstance = await ethers.getContractFactory('AlienERC721')
-    nftAlien = await _contractInstance.deploy();
     // Deploy AlienCore to testnet
     _contractInstance = await ethers.getContractFactory('AlienCore')
-    alienCore = await _contractInstance.deploy(nftAlien.address); 
+    alienCore = await _contractInstance.deploy(); 
     // Deploy AlienMarket to testnet
     _contractInstance = await ethers.getContractFactory('AlienMarketPlace')
-    marketplace = await _contractInstance.deploy(nftAlien.address); 
+    marketplace = await _contractInstance.deploy(alienCore.address); 
     //get 3 of all accounts from hardhat
     [owner, addr1, addr2] = await ethers.getSigners();
   })
 
    
-    it.skip("1.  show AlienCore, interface, marketplace & AlienNFT contract addresses", async () => {
-            const interfaceAddress = await alienCore.IAlienNFT()
+    it("1.  show AlienCore, interface, marketplace & AlienNFT contract addresses", async () => {
             console.log("UNIT TEST ADDRESSES")
             console.log(`ALIENCORE:: ${alienCore.address}`)
-            console.log(`INTERFACE:: ${interfaceAddress}`)
             console.log(`MARKETPLACE:: ${marketplace.address}`)
-            console.log(`AlienNFT::${nftAlien.address}`)
+
     })
 
     it("2. ALIENCORE: create a gen 0 alien, expect revert at 10", async () => {
@@ -59,113 +53,104 @@ const { toNumber } = require('lodash');
         "Ownable: caller is not the owner"
       );
       // NFT totalSupply should be 10, gen0
-      expect(await nftAlien.totalSupply()).to.equal(10)
+      expect(await alienCore.totalSupply()).to.equal(10)
     })
 
     it("3. ALIENCORE: Clone Alien", async () => {
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
-
-      const _totalSupply = await nftAlien.totalSupply();
-      await alienCore.cloneAlien(parseInt(_totalSupply),(parseInt(_totalSupply) - 1));
+      const _totalAliens = await alienCore.getAllAliens(owner.address);
+      console.log(`total#2[${_totalAliens}]`)
+      await alienCore.cloneAlien(_totalAliens[0], _totalAliens[1]);
  
       // NFT totalSupply should be 3
-      expect(await nftAlien.totalSupply()).to.equal(3)
+      expect(await alienCore.totalSupply()).to.equal(3)
     })
-/*
+
     it("4. ALIEN MARKETPLACE: SetOffer, getOffer", async function(){
       await alienCore.createAlienGen0(gen0Alien.genes1);
-      assert.equal(_totalSupply, 1, "NFT totalSupply should be 1");
+      const _totalAliens = await alienCore.getAllAliens(owner.address);
+      // NFT totalSupply should be 1
+      expect(await alienCore.totalSupply()).to.equal(1)
       // set marketplace address to approve for all
-      await nftAlien.setApprovalForAll(marketplace.address, true);
+      await alienCore.setApprovalForAll(marketplace.address, true);
       //setOffer alien
-      const _setOffer = await marketplace.setOffer(price, "1");
+      console.log(`total#4[${_totalAliens}], length[${_totalAliens.length}]`)
+      await expect(marketplace.setOffer(price, _totalAliens[0]))
+      .to.emit(marketplace, 'MarketTransaction')
+      .withArgs("Create offer", owner.address, _totalAliens[0]);
       // fetch the offer object for token ID = 1
-      const newOffer = await marketplace.getOffer("1");
-      let _offerPrice = newOffer.price;
-      assert.equal(_offerPrice.toString(), price, "Price should be the same as newOffer");
-      // Event assertions can verify that the arguments are the expected ones
-      expectEvent(_setOffer, "MarketTransaction", {
-        TxType: "Create offer",
-        owner: owner,
-        tokenId: "1"
-      });
+      const newOffer = await marketplace.getOffer(_totalAliens[0]);
+      // Price should be the same as newOffer
+      expect(newOffer.price).to.equal(price) 
+
     })
 
     it("5. ALIEN MARKETPLACE: totalOffers, buyAlien from account[1]", async function(){
       await alienCore.createAlienGen0(gen0Alien.genes1);
-      let _totalSupply = await nftAlien.totalSupply();
-      assert.equal(_totalSupply, 1, "NFT totalSupply should be 1");
-
+      const _totalAliens = await alienCore.getAllAliens(owner.address);
+      // NFT totalSupply should be 1
+      expect(await alienCore.totalSupply()).to.equal(1)
       // set marketplace address to approve for all
-      await nftAlien.setApprovalForAll(marketplace.address, true);
-
-      await marketplace.setOffer(price, _totalSupply);
-
-      const _buyAlien = await marketplace.buyAlien(_totalSupply, {from:alfa, value:price});
-      expectEvent(_buyAlien, "MarketTransaction", {
-        TxType: "Buy Alien",
-        owner: alfa,
-        tokenId: '1'
-      });
+      await alienCore.setApprovalForAll(marketplace.address, true);
+      //setOffer alien
+      await expect(marketplace.setOffer(price, _totalAliens[0]))
+      .to.emit(marketplace, 'MarketTransaction')
+      .withArgs("Create offer", owner.address, _totalAliens[0]);
+      // buyAlien from account[1]
+      await expect(marketplace.connect(addr1).buyAlien(_totalAliens[0], {value:price}))
+      .to.emit(marketplace, 'MarketTransaction')
+      .withArgs("Buy Alien", addr1.address, _totalAliens[0]);
 
     })
 
-    it("7. ALIENCORE:REVERT: clone alien that account[0] does not own 1 of them", async () => {
+    it("6. ALIENCORE:REVERT: clone alien that account[0] does not own 1 of them", async () => {
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
-      let _totalSupply = await nftAlien.totalSupply();
-      assert.equal(_totalSupply, 2, "NFT totalSupply should be 2");
+      // NFT totalSupply should be 2
+      const _totalAliens = await alienCore.getAllAliens(owner.address);
+      expect(await alienCore.totalSupply()).to.equal(2)
       // transfer tokenId 2 from owner to accounts[1]
-      let _transfer = await nftAlien.safeTransferFrom(owner, alfa, "2");
-      expectEvent(_transfer, "Transfer", {
-        from: owner,
-        to: alfa,
-        tokenId: '2'
-      });
-
-      await expectRevert(
-        alienCore.cloneAlien("1", "2"),
+      await expect(alienCore.transferFrom(owner.address, addr1.address, _totalAliens[0]))
+      .to.emit(alienCore, 'Transfer')
+      .withArgs(owner.address, addr1.address, _totalAliens[0]);
+      // account[0] does not own alien ID = 0, will fail to clone mumId
+      await expect(alienCore.cloneAlien(_totalAliens[1],_totalAliens[0])).to.be.revertedWith(
         "The user doesn't own the token _mumId"
+      );
+      // account[1] does not own alien ID = 1, will fail to clone dadId
+      await expect(alienCore.connect(addr1).cloneAlien(_totalAliens[1],_totalAliens[0])).to.be.revertedWith(
+        "The user doesn't own the token _dadId"
       );
     })
    
-    it("8. ALIENCORE:MARKETPLACE: account[1] buy second offer, clone 2 aliens owned", async () => {
+    it("7. ALIENCORE:MARKETPLACE: account[1] buy second offer, clone 2 aliens owned", async () => {
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
-      let _totalSupply = await nftAlien.totalSupply();
-      assert.equal(_totalSupply, 2, "NFT totalSupply should be 2");
+      // NFT totalSupply should be 2
+      const _totalAliens = await alienCore.getAllAliens(owner.address);
+      expect(await alienCore.totalSupply()).to.equal(2)
       // set marketplace address to approve for all
-      await nftAlien.setApprovalForAll(marketplace.address, true);
+      await alienCore.setApprovalForAll(marketplace.address, true);
       // set 1 alien to sell
-      await marketplace.setOffer(price, "2");
-      // buyAlien tokenId = 2
-      const _totalOffers = await marketplace.getOffer("2");
-
-      const _buyAlien = await marketplace.buyAlien("2", {from:alfa, value:price});
-      expectEvent(_buyAlien, "MarketTransaction", {
-        TxType: "Buy Alien",
-        owner: alfa,
-        tokenId: '2'
-      });   
+      await expect(marketplace.setOffer(price, _totalAliens[0]))
+      .to.emit(marketplace, 'MarketTransaction')
+      .withArgs("Create offer", owner.address, _totalAliens[0]);
+      // buyAlien tokenId = 0
+      await expect(marketplace.connect(addr1).buyAlien(_totalAliens[0], {value:price}))
+      .to.emit(marketplace, 'MarketTransaction')
+      .withArgs("Buy Alien", addr1.address, _totalAliens[0]);   
     })
 
-          // checking if MonkeyCreated event was correctly triggered
-      await expect(_MonkeyContract.createGen0Monkey(1111111111111111))
-      .to.emit(_MonkeyContract, 'MonkeyCreated')
-      .withArgs(owner.address, _totalSupply, 0, 0, 1111111111111111);
-
-*/ 
-    it("9. Get all aliens by owner", async () => {
+    it("8. Get all aliens by owner", async () => {
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
-      expect(await nftAlien.totalSupply()).to.be.equal(2)
+      expect(await alienCore.totalSupply()).to.be.equal(2)
 
-      await nftAlien.getAllAliens(owner.address);
-      await nftAlien.alienDetails(owner.address, "1");
+      await alienCore.getAllAliens(owner.address);
     });
 /*
 */

@@ -3,51 +3,59 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./interfaces/IAlienERC721.sol";
+import "./interfaces/IAlienOwnership.sol";
 import "./interfaces/IAlienMarketPlace.sol";
 
+/**
+ * @title The MarketPlace contract.
+ * @author Carlos Zambrano - thecil
+ * @dev It takes ownership of the alien for the duration that it is on the marketplace
+ */
 contract AlienMarketPlace is Ownable, IAlienMarketPlace{
 
-  IAlienERC721 public aln721;
+  IAlienOwnership public IAlienNft;
   using Counters for Counters.Counter;
   Counters.Counter private activeOffers;
   address public IAlienNFT;
 
   constructor(address _AlienERC721) {
     IAlienNFT = _AlienERC721;
-    aln721 = IAlienERC721(IAlienNFT);
+    IAlienNft = IAlienOwnership(IAlienNFT);
   }
 
   struct Offer {
       address payable seller;
-      uint256 price;
-      uint256 index;
-      uint256 tokenId;
+      uint price;
+      uint index;
+      uint tokenId;
       bool active;
   }
   Offer[] offers;
 
-  mapping (uint256 => Offer) tokenIdToOffer;
+  mapping (uint => Offer) private _tokenIdToOffer;
 
-  event MarketTransaction(string TxType, address owner, uint256 tokenId);
+  event MarketTransaction(string TxType, address owner, uint tokenId);
 
-  function totalOffers() public view override returns(uint256) {
+  /**
+   * return the total amount of offers
+   */ 
+  function totalOffers() public view override returns(uint) {
     return activeOffers.current();
   }
 
-  function getOffer(uint256 _tokenId)
-      public
-      view
-      override
-      returns
-  (
+  /**
+   * @notice Get the details about a offer for _tokenId. Throws an error if there is no active offer for _tokenId.
+   * @param _tokenId the id of the token to get the offer from
+   * return the offer
+   */
+  function getOffer(uint _tokenId) public view override returns(
     address seller,
-    uint256 price,
-    uint256 index,
-    uint256 tokenId,
+    uint price,
+    uint index,
+    uint tokenId,
     bool active
   ) {
-      Offer storage _offer = tokenIdToOffer[_tokenId];
+      Offer storage _offer = _tokenIdToOffer[_tokenId];
       return (
           _offer.seller,
           _offer.price,
@@ -60,16 +68,16 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
   /** @notice Creates a new offer for _tokenId for the price _price.
   * @param _price the ethereum price in wei
   * @param _tokenId the token ID to set offer for */
-  function setOffer(uint256 _price, uint256 _tokenId)
+  function setOffer(uint _price, uint _tokenId)
     public
     override
   {
     // only owner can create offer
-    require(aln721.ownerOf(_tokenId) == msg.sender, "only owner can sell tokenId");
+    require(IAlienNft.ownerOf(_tokenId) == msg.sender, "only owner can sell tokenId");
     //There can only be one active offer for a token at a time
-    require(tokenIdToOffer[_tokenId].active == false, "offer already exists");
+    require(_tokenIdToOffer[_tokenId].active == false, "offer already exists");
     //Marketplace contract (this) needs to be an approved operator when the offer is created
-    require(aln721.isApprovedForAll(msg.sender, address(this)), "contract is not approved");
+    require(IAlienNft.isApprovedForAll(msg.sender, address(this)), "contract is not approved");
     //Offer price must be greater than 0
     require(_price > 0, "offer price must be greater than 0");
 
@@ -81,7 +89,7 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
         active: true
     });
 
-    tokenIdToOffer[_tokenId] = _offer; //update mapping
+    _tokenIdToOffer[_tokenId] = _offer; //update mapping
     offers.push(_offer); //update array
 
     activeOffers.increment(); // adds 1 to the activeOffers tracker.
@@ -91,17 +99,17 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
 
   /** @notice removes cat of tokenId from the Adopt Kitties marketplace
   * @param _tokenId the token ID for the cat we remove from marketplace */
-  function removeOffer(uint256 _tokenId)
+  function removeOffer(uint _tokenId)
     public
     override
   {
-    Offer memory _offer = tokenIdToOffer[_tokenId];
+    Offer memory _offer = _tokenIdToOffer[_tokenId];
     require(_offer.seller == msg.sender, "You should own the alien to be able to remove this offer");
 
-    //change the offer active status from offers array with index tokenIdToOffer[_tokenId].index
+    //change the offer active status from offers array with index _tokenIdToOffer[_tokenId].index
     offers[_offer.index].active = false;
     //now delete it from the mapping
-    delete tokenIdToOffer[_tokenId];
+    delete _tokenIdToOffer[_tokenId];
 
     // substract 1 to the activeOffers tracker.
     activeOffers.decrement();
@@ -109,21 +117,21 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
     emit MarketTransaction("Remove offer", msg.sender, _tokenId);
   }
 
-  function buyAlien(uint256 _tokenId)
+  function buyAlien(uint _tokenId)
     public
     payable
     override
   {
-    Offer memory _offer = tokenIdToOffer[_tokenId];
+    Offer memory _offer = _tokenIdToOffer[_tokenId];
     require(msg.value == _offer.price, "The price amount must be the same as the price");
     //There must be an active _offer for _tokenId
     require(_offer.active == true, "no offer is active");
 
-    delete tokenIdToOffer[_tokenId];
+    delete _tokenIdToOffer[_tokenId];
     offers[_offer.index].active = false;
 
     _offer.seller.transfer(_offer.price);
-    aln721.transferFrom(_offer.seller, msg.sender, _tokenId);
+    IAlienNft.transferFrom(_offer.seller, msg.sender, _tokenId);
     // substract 1 to the activeOffers tracker.
     activeOffers.decrement();
 

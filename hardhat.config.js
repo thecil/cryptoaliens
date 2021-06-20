@@ -1,6 +1,4 @@
 require("@nomiclabs/hardhat-waffle");
-require("hardhat-gas-reporter");
-require("@nomiclabs/hardhat-truffle5");
 require("@nomiclabs/hardhat-web3");
 
 task("accounts", "Prints the list of accounts", async () => {
