@@ -1,44 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\GitHub\\cryptoaliens\\contracts\\AlienBase.sol": {
-      "lastModificationDate": 1624157190513,
-      "contentHash": "a17ebe2f4b91de0ab9904a418f4792d1",
-      "sourceName": "contracts/AlienBase.sol",
-      "solcConfig": {
-        "version": "0.8.3",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "AlienBase"
-      ]
-    },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
-      "lastModificationDate": 1624151920170,
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1617156851414,
       "contentHash": "17d9f40220b0ab370db2c77e7c92c4ef",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -73,8 +37,8 @@
         "Ownable"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1624151920126,
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1617156851377,
       "contentHash": "bc047f55d4e6dcc5a9c7ee096f530312",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -107,10 +71,10 @@
         "Context"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\contracts\\AlienOwnership.sol": {
-      "lastModificationDate": 1624161116638,
-      "contentHash": "c30bb03c2994a4597b16cd381e4699dc",
-      "sourceName": "contracts/AlienOwnership.sol",
+    "D:\\github\\cryptoaliens\\contracts\\AlienMarketPlace.sol": {
+      "lastModificationDate": 1625777229479,
+      "contentHash": "b0c0d71db28695522a39b7040bb6c305",
+      "sourceName": "contracts/AlienMarketPlace.sol",
       "solcConfig": {
         "version": "0.8.3",
         "settings": {
@@ -134,61 +98,20 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/utils/Counters.sol",
         "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/math/SafeMath.sol"
+        "./interfaces/IAlienCore.sol",
+        "./interfaces/IAlienMarketPlace.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "AlienOwnership"
+        "AlienMarketPlace"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
-      "lastModificationDate": 1624151920151,
-      "contentHash": "8fc7506d6ee32c5fbc527b0c42f0e615",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-      "solcConfig": {
-        "version": "0.8.3",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC721.sol",
-        "./IERC721Receiver.sol",
-        "./extensions/IERC721Metadata.sol",
-        "../../utils/Address.sol",
-        "../../utils/Context.sol",
-        "../../utils/Strings.sol",
-        "../../utils/introspection/ERC165.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ERC721"
-      ]
-    },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1624151920126,
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
+      "lastModificationDate": 1617156851377,
       "contentHash": "86ddbfba30a7d811a86f54416c364be3",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
@@ -221,8 +144,42 @@
         "Counters"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
-      "lastModificationDate": 1624151920165,
+    "D:\\github\\cryptoaliens\\contracts\\interfaces\\IAlienMarketPlace.sol": {
+      "lastModificationDate": 1624225135332,
+      "contentHash": "4d5301df78540e717711af9984e6cc80",
+      "sourceName": "contracts/interfaces/IAlienMarketPlace.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAlienMarketPlace"
+      ]
+    },
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
+      "lastModificationDate": 1617156851409,
       "contentHash": "93a5aa8a276e028a4f46f22b5d8f7bd3",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
@@ -257,8 +214,121 @@
         "IERC721"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
-      "lastModificationDate": 1624151920166,
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
+      "lastModificationDate": 1617156851407,
+      "contentHash": "9a04322bb8f6b8f2767d8358d1d2537b",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    },
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Enumerable.sol": {
+      "lastModificationDate": 1617156851410,
+      "contentHash": "f2ae82a09cc670ca19d644f60990b94d",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC721.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Enumerable"
+      ]
+    },
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
+      "lastModificationDate": 1617156851397,
+      "contentHash": "8f1c15639d1801a8117bdc64882e710b",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC721.sol",
+        "./IERC721Receiver.sol",
+        "./extensions/IERC721Metadata.sol",
+        "./extensions/IERC721Enumerable.sol",
+        "../../utils/Address.sol",
+        "../../utils/Context.sol",
+        "../../utils/Strings.sol",
+        "../../utils/introspection/ERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC721"
+      ]
+    },
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
+      "lastModificationDate": 1617156851411,
       "contentHash": "e6d69a0b5b95ac1112eb4746a2d66f3e",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
@@ -291,8 +361,8 @@
         "IERC721Receiver"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
-      "lastModificationDate": 1624151920166,
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
+      "lastModificationDate": 1617156851410,
       "contentHash": "75cedcb24edaec014d2071ed59a03ff3",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -327,8 +397,8 @@
         "IERC721Metadata"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
-      "lastModificationDate": 1624151920123,
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
+      "lastModificationDate": 1617156851373,
       "contentHash": "37103cdc416efc2601c6f6734044b559",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
@@ -361,8 +431,8 @@
         "Address"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
-      "lastModificationDate": 1624151920181,
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
+      "lastModificationDate": 1617156851422,
       "contentHash": "e575d915a7dbf0decd510699a7fd53dc",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
@@ -395,8 +465,8 @@
         "Strings"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1624151920138,
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
+      "lastModificationDate": 1617156851389,
       "contentHash": "a9a5319dff9088c6ffe757ea1c2a6729",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -431,10 +501,10 @@
         "ERC165"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1624151920162,
-      "contentHash": "9a04322bb8f6b8f2767d8358d1d2537b",
-      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+    "D:\\github\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SafeMath.sol": {
+      "lastModificationDate": 1617156851422,
+      "contentHash": "9f282272a197e5e800ef035117e86f2f",
+      "sourceName": "@openzeppelin/contracts/utils/math/SafeMath.sol",
       "solcConfig": {
         "version": "0.8.3",
         "settings": {
@@ -462,121 +532,12 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "IERC165"
+        "SafeMath"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\contracts\\AlienMarketPlace.sol": {
-      "lastModificationDate": 1624151681690,
-      "contentHash": "c01ce166fc5ac5a25198f16aafb64de7",
-      "sourceName": "contracts/AlienMarketPlace.sol",
-      "solcConfig": {
-        "version": "0.8.3",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "./interfaces/IAlienOwnership.sol",
-        "./interfaces/IAlienMarketPlace.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "AlienMarketPlace"
-      ]
-    },
-    "C:\\GitHub\\cryptoaliens\\contracts\\interfaces\\IAlienOwnership.sol": {
-      "lastModificationDate": 1624158062562,
-      "contentHash": "ce482b9492301e5136c1c528a1ceebed",
-      "sourceName": "contracts/interfaces/IAlienOwnership.sol",
-      "solcConfig": {
-        "version": "0.8.3",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/IERC721.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAlienOwnership"
-      ]
-    },
-    "C:\\GitHub\\cryptoaliens\\contracts\\interfaces\\IAlienMarketPlace.sol": {
-      "lastModificationDate": 1624154926313,
-      "contentHash": "4d5301df78540e717711af9984e6cc80",
-      "sourceName": "contracts/interfaces/IAlienMarketPlace.sol",
-      "solcConfig": {
-        "version": "0.8.3",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAlienMarketPlace"
-      ]
-    },
-    "C:\\GitHub\\cryptoaliens\\contracts\\AlienCore.sol": {
-      "lastModificationDate": 1624158393717,
-      "contentHash": "dcbd6aab828a4e735def077c6dec244f",
+    "D:\\github\\cryptoaliens\\contracts\\AlienCore.sol": {
+      "lastModificationDate": 1625777618883,
+      "contentHash": "da0117f19b7eb548238525430888034f",
       "sourceName": "contracts/AlienCore.sol",
       "solcConfig": {
         "version": "0.8.3",
@@ -601,10 +562,9 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/utils/Counters.sol",
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "@openzeppelin/contracts/access/Ownable.sol",
-        "./AlienOwnership.sol",
-        "hardhat/console.sol"
+        "@openzeppelin/contracts/utils/math/SafeMath.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
@@ -613,8 +573,8 @@
         "AlienCore"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\hardhat\\console.sol": {
-      "lastModificationDate": 1624151758735,
+    "D:\\github\\cryptoaliens\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1617156820209,
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
@@ -647,10 +607,10 @@
         "console"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\contracts\\interfaces\\IAlienToken.sol": {
-      "lastModificationDate": 1624151681690,
-      "contentHash": "e77517d364baf57336d1d843d6726fde",
-      "sourceName": "contracts/interfaces/IAlienToken.sol",
+    "D:\\github\\cryptoaliens\\contracts\\AlienFactory.sol": {
+      "lastModificationDate": 1625777025848,
+      "contentHash": "5e411a9a0d965fef089aa91ce72a89bd",
+      "sourceName": "contracts/AlienFactory.sol",
       "solcConfig": {
         "version": "0.8.3",
         "settings": {
@@ -673,18 +633,23 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "@openzeppelin/contracts/utils/Counters.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "./AlienCore.sol",
+        "hardhat/console.sol"
+      ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "IAlienToken"
+        "AlienFactory"
       ]
     },
-    "C:\\GitHub\\cryptoaliens\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SafeMath.sol": {
-      "lastModificationDate": 1624151920178,
-      "contentHash": "9f282272a197e5e800ef035117e86f2f",
-      "sourceName": "@openzeppelin/contracts/utils/math/SafeMath.sol",
+    "D:\\github\\cryptoaliens\\contracts\\interfaces\\IAlienCore.sol": {
+      "lastModificationDate": 1625777192106,
+      "contentHash": "e832e8195d5d076292c49f871b9c2982",
+      "sourceName": "contracts/interfaces/IAlienCore.sol",
       "solcConfig": {
         "version": "0.8.3",
         "settings": {
@@ -707,12 +672,14 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/IERC721.sol"
+      ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "SafeMath"
+        "IAlienCore"
       ]
     }
   }

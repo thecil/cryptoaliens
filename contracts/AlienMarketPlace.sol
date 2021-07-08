@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./interfaces/IAlienOwnership.sol";
+import "./interfaces/IAlienCore.sol";
 import "./interfaces/IAlienMarketPlace.sol";
 
 /**
@@ -13,14 +13,14 @@ import "./interfaces/IAlienMarketPlace.sol";
  */
 contract AlienMarketPlace is Ownable, IAlienMarketPlace{
 
-  IAlienOwnership public IAlienNft;
+  IAlienCore public IAlienNft;
   using Counters for Counters.Counter;
   Counters.Counter private activeOffers;
   address public IAlienNFT;
 
   constructor(address _AlienERC721) {
     IAlienNFT = _AlienERC721;
-    IAlienNft = IAlienOwnership(IAlienNFT);
+    IAlienNft = IAlienCore(IAlienNFT);
   }
 
   struct Offer {
