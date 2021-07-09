@@ -8,7 +8,7 @@ var defaultDNA = {
     //attributes
     "eyesShape" : 1,
     "animation1" :  1,
-    "animation2" :  10,
+    "animation2" :  1,
     "lastNum" :  1
     }
 

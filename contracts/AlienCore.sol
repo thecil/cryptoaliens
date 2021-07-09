@@ -12,7 +12,10 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
  * @author Carlos Zambrano - thecil
  */
 contract AlienCore is Ownable, ERC721{
+
     using SafeMath for uint256;
+    address public contractAddress;
+
     struct AlienObj {
         // Unique genes of this alien
         uint256 genes;
@@ -41,7 +44,7 @@ contract AlienCore is Ownable, ERC721{
     mapping(uint256 => uint256[]) internal _alienToChildren;
 
     constructor() ERC721("CryptoAliens", "ALIEN"){
-
+        contractAddress = address(this);
     }
 
     /**

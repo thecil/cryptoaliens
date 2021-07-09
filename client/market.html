@@ -1,76 +1,82 @@
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academy kitties </title>
-
+    <title>Crypto Aliens</title>
 
     <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="assets/bootstrap/js/popper.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="./web3.min.js"></script>
-    <script type="text/javascript" src="./abi.js"></script>
-    <script type="text/javascript" src="./index.js"></script>
+    <script src="assets/js/web3.min.js"></script>
+    <script src="abi.js"></script>
 
     <link rel="stylesheet" href="assets/css/mystyle.css">
     <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="assets/css/factory.css">
     <link rel="stylesheet" href="assets/css/frontend.css">
-    <!-- Cats -->
-    <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="stylesheet" href="assets/css/cats.css">
 
-</head>
-
-<body cz-shortcut-listen="true">
-
-    <!-- Start menu -->
-    <div id="menu"></div>>
-    <!-- End menu -->
-    <div class="animation-wrapper">
-        <div class="particle particle-1"></div>
-    </div>
+    <link rel="stylesheet" href="assets/css/alien/body.css">
+    <link rel="stylesheet" href="assets/css/alien/head.css">
+    <link rel="stylesheet" href="assets/css/alien/clothes.css">
+    <link rel="stylesheet" href="assets/anim/animations.css">
 
 
-    <div class="header" align="center">
+    <link rel="stylesheet" href="assets/anim/orbs.css">
+  </head>
 
-        <div class="container">
+    <body cz-shortcut-listen="true">
 
-            <h2 class="menu-title">Catalogue</h2>
-
-        </div>
-    </div>
-
-
-    <div class="container middleBox">
-        <div class="row" id="catsDiv">
-
+        <!-- Start menu -->
+        <div id="menu"></div>>
+        <!-- End menu -->
+        <div class="animation-wrapper">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
         </div>
 
-    </div>
-    <!-- Footer -->
-    <footer class="d-flex" style="opacity: 0.3" align="left">
-      <img id="my_logo" src="assets/images/clothes_logos/chad.gif">
-        <p>Ivan on Tech Academy Bootcamp July 2020</p>
-    </footer>
+        <div class="container sectionTitle" align="center">
 
-</body>
+            <h1 class="m-4">Alien Marketplace</h1>
 
-<script>
-    // when page load create the catalog
-$(document).ready(function () {
-    setTimeout(() => {
-        contractCatalog()
-    }, 1000)
-});
-</script>
+            <div class="container middleBox">
+                <div class="row" id="catsDiv">
+        
+                </div>
+        
+            </div>
 
-<script src="assets/js/colors.js"></script>
-<script src="assets/js/catalogue/buildCat.js"></script>
-<script src="assets/js/catalogue/showCats.js"></script>
-<script src="assets/js/components.js"></script>
-<script src="assets/js/helpers.js"></script>
+        </div>
+    
+    
 
+
+        <!-- Footer -->
+        <footer class="d-flex" style="opacity: 0.3" align="left">
+          <img id="my_logo" src="assets/images/clothes_logos/chad.gif">
+            <p>Ivan on Tech Academy Bootcamp July 2020</p>
+        </footer>
+    
+    </body>
+    <script>
+        // when page load create the catalog
+    $(document).ready(function () {
+        setTimeout(() => {
+            contractCatalog()
+        }, 1000)
+    });
+    </script>
+    <script src="index.js"></script>
+    <script src="assets/js/colors.js"></script>
+    <script src="assets/js/alienSettings.js"></script>
+    <script src="assets/js/alienFactory.js"></script>
+    <script src="assets/js/gecko.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/coinsArray.js"></script>
+    <script src="assets/anim/orbs.js"></script>
+  </body>
 </html>
+
+
+

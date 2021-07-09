@@ -1,4 +1,4 @@
-var coinsId = [      
+var coinLogosId = [      
  "bitcoin",
  "ethereum",
  "tether",
