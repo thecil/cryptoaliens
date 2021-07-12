@@ -4,27 +4,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Aliens</title>
 
-    <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="assets/js/utils/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="assets/bootstrap/js/popper.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/web3.min.js"></script>
+
+    <script src="assets/js/utils/web3.min.js"></script>
     <script src="abi.js"></script>
+    
 
     <link rel="stylesheet" href="assets/css/mystyle.css">
     <link rel="stylesheet" href="assets/css/colors.css">
-    <link rel="stylesheet" href="assets/css/factory.css">
     <link rel="stylesheet" href="assets/css/frontend.css">
 
     <link rel="stylesheet" href="assets/css/alien/body.css">
     <link rel="stylesheet" href="assets/css/alien/head.css">
-    <link rel="stylesheet" href="assets/css/alien/clothes.css">
+
     <link rel="stylesheet" href="assets/anim/animations.css">
 
 
     <link rel="stylesheet" href="assets/anim/orbs.css">
   </head>
-  <body>
+  
     <body cz-shortcut-listen="true">
 
         <!-- Start menu -->
@@ -36,39 +37,41 @@
             <div class="particle particle-3"></div>
         </div>
 
-        <div class="container sectionTitle" align="center">
-
+        <div class="sectionTitle" align="center">
             <h1 class="m-4">My Aliens</h1>
-            <div class="row">
-                <div class="col-lg-4 pointer">
-                    <div class="featureBox">
-
-                        <h4>Alien DNA</h4>
-                        <p>
-                          Alien Details
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
 
+        <div class="container p-3">
+          <button class="btn red-btn mb-3 mt-3" onclick="go_to('clone.html')">Clone </button>
+          <br>
+          <div class="row" id="aliensDiv">
+  
+          </div>
+  
+      </div>
         <!-- Footer -->
-        <footer class="d-flex" style="opacity: 0.3" align="left">
+        <footer style="opacity: 0.3" align="left">
           <img id="my_logo" src="assets/images/clothes_logos/chad.gif">
             <p>Ivan on Tech Academy Bootcamp July 2020</p>
         </footer>
 
-    </body>
+      <script>
+        // when page load create the catalog
+        $(document).ready(function () {
+          setTimeout(() => {
+            myAliens()
+          }, 1000)
+        });
+      </script>
 
+    </body>
     <script src="index.js"></script>
     <script src="assets/js/colors.js"></script>
-    <script src="assets/js/alienSettings.js"></script>
-    <script src="assets/js/alienFactory.js"></script>
-    <script src="assets/js/gecko.js"></script>
     <script src="assets/js/components.js"></script>
-    <script src="assets/js/coinsArray.js"></script>
+    <script src="assets/js/gecko/gecko.js"></script>
+    <script src="assets/js/gecko/coinsArray.js"></script>
     <script src="assets/anim/orbs.js"></script>
-  </body>
+    <script src="assets/js/catalogue/buildAlien.js"></script>
+    <script src="assets/js/catalogue/showAliens.js"></script>
+    <script src="assets/js/utils/helpers.js"></script>
 </html>
