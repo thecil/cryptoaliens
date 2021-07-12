@@ -4,11 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Aliens</title>
 
-    <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="assets/js/utils/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="assets/bootstrap/js/popper.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/web3.min.js"></script>
+    
+    <script src="assets/js/utils/web3.min.js"></script>
     <script src="abi.js"></script>
 
     <link rel="stylesheet" href="assets/css/mystyle.css">
@@ -18,10 +19,10 @@
 
     <link rel="stylesheet" href="assets/css/alien/body.css">
     <link rel="stylesheet" href="assets/css/alien/head.css">
-    <link rel="stylesheet" href="assets/css/alien/clothes.css">
+
     <link rel="stylesheet" href="assets/anim/animations.css">
     <link rel="stylesheet" href="assets/anim/buttons.css">
-    <!--<link rel="stylesheet" href="assets/anim/aura.css"> -->
+    
   </head>
   <body>
     <!-- Start menu -->
@@ -34,21 +35,12 @@
       <div class="row">
         <div class="col-lg-4 alienBox m-2 light-b-shadow">
         <!-- Alien -->
-
-          <!-- animation test -->
-          <div class="magnet_field">
-            <div class="magnet_field--l1 flame"></div>
-            <div class="magnet_field--l2 flame"></div>
-            <div class="magnet_field--l3 flame"></div>
-            <div class="magnet_field--l4 flame"></div>
-          </div>
-
       <!-- Alien head-->
       <div id="head" class="alien__head">
-        <div class="">
+        <div id="imgHeadDiv">
           <img id="imgLogo" class="logoSize" alt="cryptoLogos">
         </div>
-        <div class="alien__eye">
+        <div id="eyes" class="alien__eye">
           <div class="alien__eye--left">
               <span class="alien__pupil--left "></span>
           </div>
@@ -76,7 +68,7 @@
               <div class="clothes_belt"></div>
               <div class="clothes__legSpace"></div>
             </div>
-            <div id="armsDiv">
+            <div id="armsDiv" class="armsDiv">
              <div class="alien__arm--left">
               <span class="alien__finger1--left"></span>
               <span class="alien__finger2--left"></span>
@@ -87,7 +79,7 @@
             </div>
             </div>
 
-            <div id="alien__leg">
+            <div id="alien__leg" class="alien__leg">
               <div class="alien__legSpace"></div>
               <div class="alien__leg--left"></div>
               <div class="alien__leg--right"></div>
@@ -172,8 +164,7 @@
           <div class="form-group">
               <label for="formControlRange"><b>Team Spec</b><span class="badge badge-dark ml-2" id="speccode"></span></label>
               <select class="custom-select custom-select-sm">
-                <option selected>Open this select menu</option>
-                <option value="1">Citizen</option>
+                <option selected value="1">Citizen</option>
                 <option value="2">Explorer</option>
                 <option value="3">Finance</option>
               </select>
@@ -201,15 +192,17 @@
   <br>
   </div><!-- End Container -->
   <!-- Footer -->
-  <footer class="d-flex" style="opacity: 0.3" align="left">
+  <footer style="opacity: 0.3" align="left">
     <img id="my_logo" src="assets/images/clothes_logos/chad.gif">
     <p>Ivan on Tech Academy Bootcamp July 2020</p>
   </footer>
   </body>
   <script src="index.js"></script>
   <script src="assets/js/colors.js"></script>
-  <script src="assets/js/alienSettings.js"></script>
-  <script src="assets/js/alienFactory.js"></script>
-  <script src="assets/js/gecko.js"></script>
   <script src="assets/js/components.js"></script>
+  <script src="assets/js/alienFactory/alienSettings.js"></script>
+  <script src="assets/js/alienFactory/alienFactory.js"></script>
+  <script src="assets/js/gecko/gecko.js"></script>
+  <script src="assets/js/gecko/coinsArray.js"></script>
+  <script src="assets/anim/orbs.js"></script>
 </html>

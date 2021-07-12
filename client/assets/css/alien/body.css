@@ -1,17 +1,19 @@
 .alien__chest{
+  margin: auto;
+  position: relative;
   top: 5px;
-  left: 145px;
   width: 35px;
   height: 100px;
   border-radius: 50%;
+  z-index: 3;
 }
 .alien__arm--left, .alien__arm--right{
-  position: absolute;
   top: 10px;
-  left: 10px;
+  position: absolute;
   width: 15px;
   height: 60px;
   border-radius: 50%;
+  z-index: 4; 
 }
 .alien__arm--left{
   transform: rotate(30deg);
@@ -23,36 +25,36 @@
   border-right: solid 1px;
   left: 40px;
 }
-#armsDiv {
+.armsDiv {
   position: absolute;
-  bottom: 57%;
+  
 }
-#alien__leg {
+.alien__leg {
   position: absolute;
+  display: flex;
 }
 
 .alien__leg--left, .alien__leg--right{
-  position: absolute;
+  position: relative;
   width: 10px;
   height: 35px;
   border-radius: 50%;
+  top: 82px;
 }
 .alien__leg--left{
-  top: 82px;
-  left: -6px;
+  left: -5px;
   transform: rotate(90deg);
   border-right: solid 1px;
 }
 .alien__leg--right{
-  top: 82px;
-  left: 31px;
+  left: 20px;
   transform: rotate(90deg);
   border-right: solid 1px;
 }
 .alien__legSpace{
-  position: absolute;
-  top: 62px;
+  position: relative;
   left: 17px;
+  bottom: -62px;
   width: 0.9px;
   height: 38px;
   background: black;
@@ -64,6 +66,7 @@
   width: 0.7px;
   height: 9px;
   border-radius: 50% 50%;
+  z-index: 2;
 }
 .alien__finger1--left{
   top: 47px;

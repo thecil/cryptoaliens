@@ -7,11 +7,6 @@ html {
     box-sizing: border-box;
     overflow-y: scroll;
 }
-body {
-  background: url('../images/bga.jpg') no-repeat;
-  background-size: cover;
-  background-position:bottom;
-}
 
 .frontend {
     height: 90vh;
@@ -54,18 +49,21 @@ body {
     margin-bottom: 120px;
 }
 footer {
+    display: flex;
     position: static;
     bottom: 0;
     width: 100%;
     height: 100px;
-    padding: 4vh;
+    padding: 3vh;
     background: #F8F8F8;
 }
 .featureBox {
+    background: #F8F8F8;
+    opacity: 0.9;
     padding-left:30px;
     padding-right:30px;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     border: 1px solid #ffc5c2;
     border-radius: 10px;
     margin:10px;

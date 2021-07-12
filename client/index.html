@@ -5,7 +5,7 @@
     <title>CryptoAliens</title>
 
 
-    <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="assets/js/utils/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="assets/bootstrap/js/popper.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -19,7 +19,7 @@
     <body cz-shortcut-listen="true">
 
         <!-- Start menu -->
-     <div id="menu"></div>
+        <div id="menu"></div>
         <!-- End menu -->
         <div class="animation-wrapper">
             <div class="particle particle-1"></div>
@@ -36,61 +36,67 @@
                     <button class="btn white-btn mt-2 c-red">Get your first Alien</button>
                 </div>
             </div>
-            <div>
+            
+            <div class="container" align="center">
 
+                <h1 class="m-4">Features</h1>
+                <div class="row">
+
+                    <div class="col-lg-4 pointer">
+                        <div class="featureBox">
+                          <!-- Start menu -->
+                       <div id="orbs1"></div>
+                          <!-- End menu -->
+                            <h4>Buy & sell aliens</h4>
+                            <p>
+                             Buy or sell aliens in a market place using crypto-currency!
+                             you can find all kind or weird and special aliens.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 pointer">
+                        <div class="featureBox">
+                          <div id="orbs2"></div>
+                            <h4>Create collections & earn rewards</h4>
+                            <p>
+                               Collect all types of aliens, build a crypto-fan army!
+                               Earn special kitties from breeding, sell them or <b>start collecting your army.</b>
+                            </p>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-4 pointer">
+                        <div class="featureBox">
+                            <div id="orbs3"></div>
+                            <h4>Clone aliens & unlock rare traits</h4>
+                            <p>
+                                Create unique aliens by cloning two aliens. Fuse them to get the most rare crypto-fan alien!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+    
             </div>
-
-        </div>
-
-        <div class="container middleBox" align="center">
-
-            <h1 class="m-4">Features</h1>
-            <div class="row">
-                <div class="col-lg-4 pointer">
-                    <div class="featureBox">
-                      <!-- Start menu -->
-                   <div id="orbs1"></div>
-                      <!-- End menu -->
-                        <h4>Buy & sell aliens</h4>
-                        <p>
-                         Buy or sell aliens in a market place using crypto-currency!
-                         you can find all kind or weird and special aliens.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 pointer">
-                    <div class="featureBox">
-                      <div id="orbs2"></div>
-                        <h4>Create collections & earn rewards</h4>
-                        <p>
-                           Collect all types of aliens, build a crypto-fan army!
-                           Earn special kitties from breeding, sell them or <b>start collecting your army.</b>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 pointer">
-                    <div class="featureBox">
-                        <div id="orbs3"></div>
-                        <h4>Clone aliens & unlock rare traits</h4>
-                        <p>
-                            Create unique aliens by cloning two aliens. Fuse them to get the most rare crypto-fan alien!
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
         <!-- Footer -->
-        <footer class="d-flex" style="opacity: 0.3" align="left">
-          <img id="my_logo" src="assets/images/clothes_logos/chad.gif">
-            <p>Ivan on Tech Academy Bootcamp July 2020</p>
+        <footer style="opacity: 0.3" align="left">
+            <img id="my_logo" src="assets/images/clothes_logos/chad.gif">
+              <p>Ivan on Tech Academy Bootcamp July 2020</p>
         </footer>
+        </div>
+
+
+
+
 
     </body>
-
+    <script src="assets/js/colors.js"></script>
     <script src="assets/js/components.js"></script>
+    <script src="assets/js/gecko/gecko.js"></script>
+    <script src="assets/js/gecko/coinsArray.js"></script>
     <script src="assets/anim/orbs.js"></script>
+    <script src="assets/js/catalogue/buildAlien.js"></script>
+    <script src="assets/js/catalogue/showAliens.js"></script>
+    <script src="assets/js/utils/helpers.js"></script>
   </body>
 </html>
