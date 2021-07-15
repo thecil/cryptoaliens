@@ -6,6 +6,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./interfaces/IAlienCore.sol";
 import "./interfaces/IAlienMarketPlace.sol";
 
+import "hardhat/console.sol";
+
 /**
  * @title The MarketPlace contract.
  * @author Carlos Zambrano - thecil
@@ -66,20 +68,25 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
   }
 
   function getAllTokenOnSale() public view override returns(uint256[] memory listOfToken){
-    
+    console.log("getAllTokenOnSale started");
     if (totalOffers() == 0) {
+      console.log("totalOffers is zero");
         return new uint256[](0);
     } else {
   
       uint256[] memory resultOfToken = new uint256[](totalOffers());
-
       uint256 offerId;
   
       for (offerId = 0; offerId < totalOffers(); offerId++) {
-        if(offers[offerId].price != 0){
+          console.log("iterator[%s], offerId[%s].tokenId", offerId, offers[offerId].tokenId);
+          console.log("iterator[%s], offerId[%s].index",offerId, offers[offerId].index);
+          console.log("iterator[%s], offerId[%s].active",offerId, offers[offerId].active);
+        if(offers[offerId].price != 0 && offers[offerId].active == true){
           resultOfToken[offerId] = offers[offerId].tokenId;
+          console.log("IF iterator[%s], resultOfToken[%s]",offerId, resultOfToken[offerId]);
         }
       }
+      console.log("resultOfToken[%s].length", resultOfToken.length);
       return resultOfToken;
     }
   }
@@ -141,14 +148,18 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
     payable
     override
   {
+    console.log("buyAlien started");
     Offer memory _offer = _tokenIdToOffer[_tokenId];
+    console.log("buyAlien:: _offer[%s].tokenId", _offer.tokenId);
+    console.log("buyAlien:: _offer[%s].index", _offer.index);
+    console.log("buyAlien:: _offer[%s].active", _offer.active);
     require(msg.value == _offer.price, "The price amount must be the same as the price");
     //There must be an active _offer for _tokenId
     require(_offer.active == true, "no offer is active");
 
     delete _tokenIdToOffer[_tokenId];
     offers[_offer.index].active = false;
-
+    console.log("buyAlien:: _offer.index[%s], _offer[%s].active",_offer.index, offers[_tokenId].active);
     _offer.seller.transfer(_offer.price);
     IAlienNft.transferFrom(_offer.seller, msg.sender, _offer.tokenId);
     // substract 1 to the activeOffers tracker.

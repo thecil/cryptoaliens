@@ -67,7 +67,7 @@ const { expect } = require('chai');
       expect(await alienCore.totalSupply()).to.equal(3)
     })
 
-    it("4. ALIEN MARKETPLACE: SetOffer, getOffer", async function(){
+    it.skip("4. ALIEN MARKETPLACE: SetOffer, getOffer", async function(){
       // create 2 gen0 aliens
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
@@ -88,37 +88,57 @@ const { expect } = require('chai');
       expect(newOffer.tokenId).to.equal(1)
     })
 
-    it.skip("5. ALIEN MARKETPLACE: totalOffers, buyAlien from account[1]", async function(){
+    it("5. ALIEN MARKETPLACE: totalOffers, buyAlien from account[1]", async function(){
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
+      await alienCore.createAlienGen0(gen0Alien.genes3);
+      await alienCore.createAlienGen0(gen0Alien.genes4);
       let _totalAliens = await alienCore.getAllAliens(accounts[0].address);
       // NFT totalSupply should be 2
-      expect(await alienCore.totalSupply()).to.equal(2)
+      expect(await alienCore.totalSupply()).to.equal(4)
       // set marketplace address to approve for all
       await alienCore.setApprovalForAll(marketplace.address, true);
-      //setOffer alien
-      await expect(marketplace.setOffer(price, _totalAliens[0]))
+      //setOffer alien tokenId = 1
+      await expect(marketplace.setOffer(price, _totalAliens[1]))
       .to.emit(marketplace, 'MarketTransaction')
-      .withArgs("Create offer", accounts[0].address, _totalAliens[0]);
+      .withArgs("Create offer", accounts[0].address, _totalAliens[1]);
+      //setOffer alien tokenId = 1
+      await expect(marketplace.setOffer(price, _totalAliens[3]))
+      .to.emit(marketplace, 'MarketTransaction')
+      .withArgs("Create offer", accounts[0].address, _totalAliens[3]);
+      // check total offers
+      let _getAllTokenOnSale = await marketplace.getAllTokenOnSale();
+      console.log(`_getAllTokenOnSale[${_getAllTokenOnSale}]`);
       // buyAlien from account[1]
-      await expect(marketplace.connect(accounts[1]).buyAlien(_totalAliens[0], {value:price}))
+      console.log(`buy alien from account[1], tokenId[${_totalAliens[1]}]`)
+      await expect(marketplace.connect(accounts[1]).buyAlien(_totalAliens[1], {value:price}))
       .to.emit(marketplace, 'MarketTransaction')
-      .withArgs("Buy Alien", accounts[1].address, _totalAliens[0]);
+      .withArgs("Buy Alien", accounts[1].address, _totalAliens[1]);
       // verify everyone owns the proper tokenId after buying
-      let _totAliens = await alienCore.getAllAliens(accounts[1].address)
+      let _totAliens = await alienCore.getAllAliens(accounts[1].address);
       _totalAliens = await alienCore.getAllAliens(accounts[0].address);
-      // each account should own 1 tokenId
-      expect(_formatUnit(_totAliens[0])).to.equal("0");
-      expect(_formatUnit(_totalAliens[0])).to.equal("1");
+      /*
+      for(i in _totalAliens){
+        console.log(`_totalAliens[${i}][${_totalAliens[i]}]`);
+      }
+      */
+      // there should be zero offers
+      _getAllTokenOnSale = await marketplace.getAllTokenOnSale();
+      console.log(`_getAllTokenOnSale[${_getAllTokenOnSale}]`);
+      // each account should accounts[0] = 2, accounts[1] = 1 tokenId
+      expect(_formatUnit(_totAliens.length)).to.equal("1");
+      expect(_formatUnit(_totalAliens.length)).to.equal("3");
       // verify ERC721Enumerable indexs should contain the same tokenId
       let _tokenByIndex = await alienCore.tokenByIndex(_formatUnit(_totAliens[0]));
-      expect(_formatUnit(_tokenByIndex)).to.equal("0");
-      _tokenByIndex = await alienCore.tokenByIndex(_formatUnit(_totalAliens[0]));
       expect(_formatUnit(_tokenByIndex)).to.equal("1");
+      _tokenByIndex = await alienCore.tokenByIndex(_formatUnit(_totalAliens[0]));
+      expect(_formatUnit(_tokenByIndex)).to.equal("0");
+      _tokenByIndex = await alienCore.tokenByIndex(_formatUnit(_totalAliens[1]));
+      expect(_formatUnit(_tokenByIndex)).to.equal("3");
       let _tokenOfOwnerByIndex = await alienCore.tokenOfOwnerByIndex(accounts[0].address, 0);
-      expect(_formatUnit(_tokenOfOwnerByIndex)).to.equal("1");
-      _tokenOfOwnerByIndex = await alienCore.tokenOfOwnerByIndex(accounts[1].address, 0);
       expect(_formatUnit(_tokenOfOwnerByIndex)).to.equal("0");
+      _tokenOfOwnerByIndex = await alienCore.tokenOfOwnerByIndex(accounts[1].address, 0);
+      expect(_formatUnit(_tokenOfOwnerByIndex)).to.equal("1");
     })
 
     it.skip("6. ALIENCORE:REVERT: clone alien that account[0] does not own 1 of them", async () => {

@@ -163,7 +163,6 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
         }
 
         uint256[] memory result = new uint256[](tokenCount);
-        uint256 resultIndex = 0;
 
         uint256 alienId;
         for (alienId = 0; alienId < tokenCount; alienId++) {
