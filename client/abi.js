@@ -748,6 +748,19 @@ var abiAlienMarketplace = [
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "getAllTokenOnSale",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "listOfToken",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",

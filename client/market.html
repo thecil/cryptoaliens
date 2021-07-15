@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="assets/bootstrap/js/popper.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
     <script src="assets/js/utils/web3.min.js"></script>
     <script src="abi.js"></script>
+    
 
     <link rel="stylesheet" href="assets/css/mystyle.css">
     <link rel="stylesheet" href="assets/css/colors.css">
-    <link rel="stylesheet" href="assets/css/factory.css">
     <link rel="stylesheet" href="assets/css/frontend.css">
 
     <link rel="stylesheet" href="assets/css/alien/body.css">
@@ -24,11 +25,11 @@
 
     <link rel="stylesheet" href="assets/anim/orbs.css">
   </head>
-
+  
     <body cz-shortcut-listen="true">
 
         <!-- Start menu -->
-        <div id="menu"></div>>
+     <div id="menu"></div>
         <!-- End menu -->
         <div class="animation-wrapper">
             <div class="particle particle-1"></div>
@@ -36,38 +37,32 @@
             <div class="particle particle-3"></div>
         </div>
 
-        <div class="container sectionTitle" align="center">
-
-            <h1 class="m-4">Alien Marketplace</h1>
-
-            <div class="container middleBox">
-                <div class="row" id="catsDiv">
-        
-                </div>
-        
-            </div>
-
+        <div class="sectionTitle" align="center">
+            <h1 class="m-4">Alien Market-Place</h1>
         </div>
-    
-    
 
-
+        <div class="container p-3">
+          <div class="row" id="aliensDiv">
+  
+          </div>
+  
+      </div>
         <!-- Footer -->
         <footer style="opacity: 0.3" align="left">
           <img id="my_logo" src="assets/images/clothes_logos/chad.gif">
             <p>Ivan on Tech Academy Bootcamp July 2020</p>
         </footer>
-    
-    </body>
-    <script>
+
+      <script>
         // when page load create the catalog
-    $(document).ready(function () {
-        setTimeout(() => {
+        $(document).ready(function () {
+          setTimeout(() => {
             contractCatalog()
-        }, 1000)
-    });
-    </script>
-    
+          }, 1000)
+        });
+      </script>
+
+    </body>
     <script src="index.js"></script>
     <script src="assets/js/colors.js"></script>
     <script src="assets/js/components.js"></script>
@@ -77,8 +72,4 @@
     <script src="assets/js/catalogue/buildAlien.js"></script>
     <script src="assets/js/catalogue/showAliens.js"></script>
     <script src="assets/js/utils/helpers.js"></script>
-  </body>
 </html>
-
-
-

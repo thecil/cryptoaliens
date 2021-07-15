@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "./AlienCore.sol";
 
 import "hardhat/console.sol";
@@ -38,45 +37,34 @@ contract AlienFactory is AlienCore{
   * @dev mix a new dna based on 2 inputed dna (mum || dad)
   */
   function _mixDna(uint256 _dna1, uint256 _dna2) internal view returns(uint256){
-    console.log("_dna1: %s, _dna2: %s", _dna1, _dna2);
+  
     uint256[6] memory _geneArray;
     uint8 _random = _getRandom();
     uint8 index = 5;
 
     // Bitshift: move to next binary bit
-    console.log("Bitshift start");
     for (uint256 i = 1; i <= 16; i = i * 2) {
-      console.log("iteration i: %s", i);
       // Then add 2 last digits from the dna to the new dna
       if (_random & i != 0) {
           _geneArray[index] = uint8(_dna1 % 100);
-          console.log("if true Bitshift geneArray: %s", _geneArray[index]);
       } else {
           _geneArray[index] = uint8(_dna2 % 100);
-          console.log("else Bitshift geneArray: %s", _geneArray[index]);
       }
       _dna1 = _dna1 / 100;
-      console.log("Bitshift _dna1: %s", _dna1);
       _dna2 = _dna2 / 100;
-      console.log("Bitshift _dna2: %s", _dna2);
       index--;
-      console.log("Bitshift index: %s", index);
     }
 
     // Add a random parameter in a random place
     uint8 _newDnaIndex = _random % 5;
-    console.log("_newDnaIndex: %s", _newDnaIndex);
     _geneArray[_newDnaIndex] = _random % 99;
-    console.log("_geneArray: %s", _geneArray[_newDnaIndex]);
 
     uint256 _newDna;
     // We reverse the DNa in the right order
     for (uint256 i = 0; i < 6; i = i + 1) {
       _newDna = _newDna + _geneArray[i];
-      console.log("_newDna: %s", _newDna);
       if (i != 5) {
         _newDna = _newDna * 100;
-        console.log("IF _newDna: %s", _newDna);
       }
     }
 
@@ -88,7 +76,7 @@ contract AlienFactory is AlienCore{
   * @param _dadId the id of the dad
   * @param _mumId the id of the mom
   */
-  function cloneAlien(uint256 _dadId, uint256 _mumId) public returns(uint256){
+  function cloneAlien(uint256 _dadId, uint256 _mumId) public whenNotPaused returns(uint256){
       require(isApprovedOwner(msg.sender, _dadId), "The user doesn't own the token _dadId");
       require(isApprovedOwner(msg.sender, _mumId), "The user doesn't own the token _mumId");
       require(_dadId != _mumId, "tokenId should be different");
@@ -104,7 +92,7 @@ contract AlienFactory is AlienCore{
   }
 
 
-  function createAlienGen0(uint256 _genes) public onlyOwner returns(uint256){
+  function createAlienGen0(uint256 _genes) public onlyOwner whenNotPaused returns(uint256){
       require(gen0Counter.current() < CREATION_LIMIT_GEN0, "Maximum amount of aliens Gen 0 reached");
       gen0Counter.increment();
       uint256 _newAlien = createAlien(_genes, 0, 0, 0, msg.sender);

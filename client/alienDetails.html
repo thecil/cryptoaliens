@@ -35,14 +35,11 @@
         <div class="particle particle-2"></div>
         <div class="particle particle-3"></div>
     </div>
-    <div class="sectionTitle">
-
-        <div class="container">
-            <div id="singleAlien">
-
-            </div>
-
-        </div>
+    <div class="sectionTitle" align="center">
+        <h1 class="m-4">Alien Details</h1>
+    </div>
+    <div class="container">
+        <div id="singleAlien"></div>
     </div>
 
     <div class="container middleBox mt-5">
@@ -64,7 +61,7 @@
 
             <div class="col-lg-2 p-1 input-group">
                 
-                <input type="number" class="form-control" id="catPrice" placeholder="Price in ether">
+                <input type="number" class="form-control" id="alienPrice" placeholder="Price in ether">
                 <div class="input-group-append">
                     <span class="input-group-text" id="basic-addon2"><b>ETH</b></span>
                 </div>
@@ -94,7 +91,7 @@
 
 
 <script>
-    // when page load fetch the cat
+    // when page load fetch the alien
     $(document).ready( function () {
         setTimeout(() => {
         alienDetails()

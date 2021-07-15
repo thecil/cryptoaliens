@@ -31,6 +31,22 @@ $('#createAlien').click(function(){
 
 })
 
+async function callApproved(){
+  var res;
+  let _isApproved = await alienFactoryInstance.methods.isApprovedForAll(user, alienMarketplace_address).call();
+  // non-approved always have zero-address
+  if(_isApproved == false){
+    console.log(`Approved[FALSE]`);
+    res = false;
+    return res;
+  }else{
+    console.log(`Approved[TRUE]`);
+    res = true;
+    return res;
+  }
+  
+}
+
 //Get aliens of a current address
 async function myAliens() {
   var arrayId = await alienFactoryInstance.methods.getAllAliens(user).call();
@@ -110,6 +126,58 @@ async function alienOwnership(id) {
   }  
   return false
 
+}
+
+//aliens for sale
+async function contractCatalog() {
+  var arrayId = await alienMarketInstance.methods.getAllTokenOnSale().call();
+  console.log(arrayId)
+  for (i = 0; i < arrayId.length; i++) {
+    if(arrayId[i] >= "0"){
+      appendAliens(arrayId[i])
+    }    
+  }
+}
+
+async function deleteOffer(id) {
+  try {
+    await alienMarketInstance.methods.removeOffer(id).send();    
+  } catch (err) {
+    console.log(err);
+  }
+
+}
+
+async function sellAlien(id) {  
+  var price = $('#alienPrice').val()
+  var amount = web3.utils.toWei(price, "ether")
+  var _isApproved = await callApproved(id);
+  if(_isApproved == false){
+    try{
+      console.log("should call approve")
+      console.log("market address:", alienMarketInstance.address);
+      await alienFactoryInstance.methods.setApprovalForAll(alienMarketplace_address, true).send();
+    }catch(err){
+      console.log(err);
+    }
+  }else{
+    try {
+      await alienMarketInstance.methods.setOffer(amount,id).send();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+
+}
+
+async function buyAlien(id, price) {
+  var amount = web3.utils.toWei(price, "ether")
+  try {
+    await alienMarketInstance.methods.buyAlien(id).send({ value: amount });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function totalAliens() {

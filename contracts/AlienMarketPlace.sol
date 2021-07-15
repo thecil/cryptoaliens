@@ -65,6 +65,25 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
       );
   }
 
+  function getAllTokenOnSale() public view override returns(uint256[] memory listOfToken){
+    
+    if (totalOffers() == 0) {
+        return new uint256[](0);
+    } else {
+  
+      uint256[] memory resultOfToken = new uint256[](totalOffers());
+
+      uint256 offerId;
+  
+      for (offerId = 0; offerId < totalOffers(); offerId++) {
+        if(offers[offerId].price != 0){
+          resultOfToken[offerId] = offers[offerId].tokenId;
+        }
+      }
+      return resultOfToken;
+    }
+  }
+
   /** @notice Creates a new offer for _tokenId for the price _price.
   * @param _price the ethereum price in wei
   * @param _tokenId the token ID to set offer for */
@@ -131,7 +150,7 @@ contract AlienMarketPlace is Ownable, IAlienMarketPlace{
     offers[_offer.index].active = false;
 
     _offer.seller.transfer(_offer.price);
-    IAlienNft.transferFrom(_offer.seller, msg.sender, _tokenId);
+    IAlienNft.transferFrom(_offer.seller, msg.sender, _offer.tokenId);
     // substract 1 to the activeOffers tracker.
     activeOffers.decrement();
 

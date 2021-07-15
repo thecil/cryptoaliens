@@ -13,6 +13,8 @@ interface IAlienMarketPlace {
     bool active
   );
 
+  function getAllTokenOnSale() external view returns(uint256[] memory listOfToken);
+
   function setOffer(uint256 _price, uint256 _tokenId) external;
 
   function removeOffer(uint256 _tokenId) external;
