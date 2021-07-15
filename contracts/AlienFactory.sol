@@ -38,34 +38,45 @@ contract AlienFactory is AlienCore{
   * @dev mix a new dna based on 2 inputed dna (mum || dad)
   */
   function _mixDna(uint256 _dna1, uint256 _dna2) internal view returns(uint256){
-    uint256[8] memory _geneArray;
+    console.log("_dna1: %s, _dna2: %s", _dna1, _dna2);
+    uint256[6] memory _geneArray;
     uint8 _random = _getRandom();
-    uint8 index = 7;
+    uint8 index = 5;
 
     // Bitshift: move to next binary bit
-    for (uint256 i = 1; i <= 128; i = i * 2) {
+    console.log("Bitshift start");
+    for (uint256 i = 1; i <= 16; i = i * 2) {
+      console.log("iteration i: %s", i);
       // Then add 2 last digits from the dna to the new dna
       if (_random & i != 0) {
           _geneArray[index] = uint8(_dna1 % 100);
+          console.log("if true Bitshift geneArray: %s", _geneArray[index]);
       } else {
           _geneArray[index] = uint8(_dna2 % 100);
+          console.log("else Bitshift geneArray: %s", _geneArray[index]);
       }
       _dna1 = _dna1 / 100;
+      console.log("Bitshift _dna1: %s", _dna1);
       _dna2 = _dna2 / 100;
-      index = index--;
+      console.log("Bitshift _dna2: %s", _dna2);
+      index--;
+      console.log("Bitshift index: %s", index);
     }
 
     // Add a random parameter in a random place
-    uint8 _newDnaIndex = _random % 7;
+    uint8 _newDnaIndex = _random % 5;
+    console.log("_newDnaIndex: %s", _newDnaIndex);
     _geneArray[_newDnaIndex] = _random % 99;
+    console.log("_geneArray: %s", _geneArray[_newDnaIndex]);
 
     uint256 _newDna;
-
-    for (uint256 i = 0; i < 8; i = i + 1) {
+    // We reverse the DNa in the right order
+    for (uint256 i = 0; i < 6; i = i + 1) {
       _newDna = _newDna + _geneArray[i];
-
-      if (i != 7) {
+      console.log("_newDna: %s", _newDna);
+      if (i != 5) {
         _newDna = _newDna * 100;
+        console.log("IF _newDna: %s", _newDna);
       }
     }
 
@@ -87,7 +98,7 @@ contract AlienFactory is AlienCore{
       
       uint256 _newGenes = _mixDna(_dad.genes, _mum.genes);
       uint256 _newGeneration = maxGeneration(_dad.generation, _mum.generation);
-
+      _newGeneration = _newGeneration + 1;
       uint256 _newAlien = createAlien(_newGenes, _mumId, _dadId, _newGeneration, msg.sender);
       return _newAlien;
   }

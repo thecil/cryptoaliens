@@ -7,16 +7,16 @@ const { expect } = require('chai');
   const price = web3.utils.toWei("0.25");
 
   const gen0Alien = {
-    genes1:'10152033',
-    genes2:'34645456',
-    genes3:'56345678',
-    genes4:'45645812',
-    genes5:'01298890',
-    genes6:'91234852',
-    genes7:'01293857',
-    genes8:'90578232',
-    genes9:'43909093',
-    genes10:'74587593'
+    genes1:'3440105589',
+    genes2:'9834573458',
+    genes3:'3456785345',
+    genes4:'4564581234',
+    genes5:'0129889012',
+    genes6:'9123485232',
+    genes7:'0129385756',
+    genes8:'9057823282',
+    genes9:'4390909383',
+    genes10:'7458759390'
   }
 
   //set contracts instances
@@ -60,8 +60,20 @@ const { expect } = require('chai');
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
       const _totalAliens = await alienCore.getAllAliens(accounts[0].address);
-      await alienCore.cloneAlien(_totalAliens[0], _totalAliens[1]);
- 
+      const _newAlien = await alienCore.cloneAlien(_totalAliens[0], _totalAliens[1]);
+      const _oldAlienId = await alienCore.getAlien(1);
+      console.log("old _genes", ethers.utils.formatUnits(_oldAlienId[0], 0));
+      console.log("old _birthTime", ethers.utils.formatUnits(_oldAlienId[1], 0));
+      console.log("old _mumId", ethers.utils.formatUnits(_oldAlienId[2], 0));
+      console.log("old _dadId", ethers.utils.formatUnits(_oldAlienId[3], 0));
+      console.log("old _generation", ethers.utils.formatUnits(_oldAlienId[4], 0));
+      const _newAlienId = await alienCore.getAlien(2);
+      
+      console.log("_genes", ethers.utils.formatUnits(_newAlienId[0], 0));
+      console.log("_birthTime", ethers.utils.formatUnits(_newAlienId[1], 0));
+      console.log("_mumId", ethers.utils.formatUnits(_newAlienId[2], 0));
+      console.log("_dadId", ethers.utils.formatUnits(_newAlienId[3], 0));
+      console.log("_generation", ethers.utils.formatUnits(_newAlienId[4], 0));
       // NFT totalSupply should be 3
       expect(await alienCore.totalSupply()).to.equal(3)
     })
