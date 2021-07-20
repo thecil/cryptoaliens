@@ -6,7 +6,7 @@ var alienMarketplace_address = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
 
 $(document).ready(function(){
   window.ethereum.enable()
-  .then(function(accounts){
+  .then(async function(accounts){
     alienFactoryInstance = new web3.eth.Contract(abiAlienFactory, alienFactory_adderss, {from: accounts[0]})
     alienMarketInstance = new web3.eth.Contract(abiAlienMarketplace, alienMarketplace_address, {from: accounts[0]})
 
@@ -14,10 +14,40 @@ $(document).ready(function(){
       contractOwner = test;
     });
     user = accounts[0];
+    /*     
+    EVENTS
+    *   Listen for the `AlienMinted` event, and update the UI
+    *   This event is generate in the alienFactory contract
+    *   when the _createAlien internal method is called
+    */
 
-  }).catch( error => console.error)
+    await alienFactoryInstance.events.AlienMinted()
+      .on('data', (event) => {
+        console.log(event);
+        let owner = event.returnValues.owner;
+        let tokenId = event.returnValues.tokenId;
+        let mumId = event.returnValues.mumId;
+        let dadId = event.returnValues.dadId;
+        let genes = event.returnValues.genes        
+        alert_msg("owner:" + owner
+          + " tokenId:" + tokenId
+          + " mumId:" + mumId
+          + " dadId:" + dadId
+          + " genes:" + genes,'success')
+      })
+      .on('error', console.error);
 
+  });
 });
+
+async function getAllEvents(){
+  await alienFactoryInstance.getPastEvents('allEvents', {
+    fromBlock: 0,
+    toBlock: 'latest'
+}, async function (error, events){
+  console.log(events);
+});
+} 
 
 $('#createAlien').click(function(){
   var _genes =  getDna()
@@ -131,11 +161,13 @@ async function alienOwnership(id) {
 //aliens for sale
 async function contractCatalog() {
   var arrayId = await alienMarketInstance.methods.getAllTokenOnSale().call();
-  console.log(arrayId)
+  // console.log(arrayId)
   for (i = 0; i < arrayId.length; i++) {
-    if(arrayId[i] >= "0"){
+    // if offer status is active, append to the market list
+    let isActive = await alienMarketInstance.methods.getOffer(arrayId[i]).call();
+    if(isActive.active == true){
       appendAliens(arrayId[i])
-    }    
+    }
   }
 }
 
