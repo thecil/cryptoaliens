@@ -13,9 +13,12 @@
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/frontend.css">
 
+    <link rel="stylesheet" href="assets/css/alien/body.css">
+    <link rel="stylesheet" href="assets/css/alien/head.css">
+    <link rel="stylesheet" href="assets/anim/animations.css">
+
     <link rel="stylesheet" href="assets/anim/orbs.css">
   </head>
-  <body>
     <body cz-shortcut-listen="true">
 
         <!-- Start menu -->
@@ -29,8 +32,9 @@
 
         <div class="frontend" align="center">
 
-            <img src="assets/images/group.png" class="catGroup">
-            <div class="container">
+            
+            <div class="container sectionTitle">
+                <div class="row d-flex justify-content-center" id="aliensBannerDiv" align="center"></div>
                 <div class="banner">
                     <h3 class="c-white m-2">Collect and clone you army of CryptoAliens!</h3>
                     <button class="btn white-btn mt-2 c-red">Get your first Alien</button>
@@ -85,11 +89,40 @@
         </footer>
         </div>
 
+    <script>
+        function createRandomDNA(){
+            var randomDNA = {
+                    "headcolor": Math.floor(Math.random() * 88) + 10 ,
+                    "eyesColor": Math.floor(Math.random() * 88) + 10 ,
+                    "armLegColors": Math.floor(Math.random() * 88) + 10 ,
+                    //attributes
+                    "eyesShape": Math.floor(Math.random() * 5) + 1 ,
+                    "animation1" :  Math.floor(Math.random() * 5) + 1,
+                    "animation2" :  Math.floor(Math.random() * 89) + 10,
+                }
+            var randomAlien = `${randomDNA.headcolor}${randomDNA.eyesColor}${randomDNA.armLegColors}${randomDNA.eyesShape}${randomDNA.animation1}${randomDNA.animation2}`;
+            randomAlien = alienDna(randomAlien)
+            return randomAlien; 
+        }
 
+        async function renderAlienBanner() {
+            for(let i = 0; i < 5; i++){
+                var alienBanner = `
+                    <div class="mr-2 ml-2">
+                        `+alienBody(i)+`
+                    </div>`      
+                $('#aliensBannerDiv').append(alienBanner);
+                renderAlien(createRandomDNA(), i);
+            }
+            
+        }
 
+        // when page load create the banner
+        $(document).ready(function () {
+           renderAlienBanner()
+        });
+    </script>
 
-
-    </body>
     <script src="assets/js/colors.js"></script>
     <script src="assets/js/components.js"></script>
     <script src="assets/js/gecko/gecko.js"></script>

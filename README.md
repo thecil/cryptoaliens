@@ -1,5 +1,10 @@
+![Aliens](.client/assets/images/banner.png)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/01e3773d-a42d-47f9-a73f-83733b1b3a75/deploy-status)]
+Website: [https://netlify.ap](https://netlify.app)
+
 # Cryptoaliens
-NFT project.
+Cryptoaliens is a ERC721 token, where you can buy, sell and breed your own kitties.
 
 ## Dependencies
 install dependencies with 

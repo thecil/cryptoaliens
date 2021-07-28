@@ -55,7 +55,7 @@ async function myAliens() {
   }
 }
 
-//Appending cats for catalog
+//Appending aliens for catalog
 async function appendAliens(id) {
   var alien = await alienFactoryInstance.methods.getAlien(id).call()
   appendAlien(alien[0], id, alien['_generation'])
