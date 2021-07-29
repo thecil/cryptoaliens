@@ -67,11 +67,12 @@ const { expect } = require('chai');
       expect(await alienCore.totalSupply()).to.equal(3)
     })
 
-    it.skip("4. ALIEN MARKETPLACE: SetOffer, getOffer", async function(){
+    it("4. ALIEN MARKETPLACE: SetOffer, getOffer", async function(){
       // create 2 gen0 aliens
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
       const _totalAliens = await alienCore.getAllAliens(accounts[0].address);
+      console.log(`_totalAliens[${_totalAliens}]`)
       // NFT totalSupply should be 2
       expect(await alienCore.totalSupply()).to.equal(2)
       // set marketplace address to approve for all
@@ -221,6 +222,5 @@ for(i in _getAllTokenOnSale){
       expect(_totalAliensOwned.length).to.be.equal(_totalSupply)
       
     });
-/*
-*/
+
   })//describe

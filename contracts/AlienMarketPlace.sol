@@ -14,7 +14,7 @@ import "hardhat/console.sol";
  * @dev It takes ownership of the alien for the duration that it is on the marketplace
  */
 contract AlienMarketPlace is Ownable, IAlienMarketPlace{
-
+  
   IAlienCore public IAlienNft;
   using Counters for Counters.Counter;
   Counters.Counter private activeOffers;
