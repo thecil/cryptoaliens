@@ -36,7 +36,6 @@ const { expect } = require('chai');
             console.log("UNIT TEST ADDRESSES")
             console.log(`AlienFactory:: ${alienCore.address}`)
             console.log(`MARKETPLACE:: ${marketplace.address}`)
-
     })
 
     it("2. ALIENCORE: create a gen 0 alien, expect revert at 10", async () => {
@@ -106,11 +105,8 @@ const { expect } = require('chai');
       await expect(marketplace.setOffer(price, _totalAliens[3]))
       .to.emit(marketplace, 'MarketTransaction')
       .withArgs("Create offer", accounts[0].address, _totalAliens[3]);
-      // check total offers
-      let _getAllTokenOnSale = await marketplace.getAllTokenOnSale();
-      console.log(`_getAllTokenOnSale[${_getAllTokenOnSale}]`);
+
       // buyAlien from account[1]
-      console.log(`buy alien from account[1], tokenId[${_totalAliens[1]}]`)
       await expect(marketplace.connect(accounts[1]).buyAlien(_totalAliens[1], {value:price}))
       .to.emit(marketplace, 'MarketTransaction')
       .withArgs("Buy Alien", accounts[1].address, _totalAliens[1]);
@@ -118,9 +114,7 @@ const { expect } = require('chai');
       let _totAliens = await alienCore.getAllAliens(accounts[1].address);
       _totalAliens = await alienCore.getAllAliens(accounts[0].address);
  
-      // there should be zero offers
-      _getAllTokenOnSale = await marketplace.getAllTokenOnSale();
-      console.log(`_getAllTokenOnSale[${_getAllTokenOnSale}]`);
+
       // each account should accounts[0] = 2, accounts[1] = 1 tokenId
       expect(_formatUnit(_totAliens.length)).to.equal("1");
       expect(_formatUnit(_totalAliens.length)).to.equal("3");
@@ -177,16 +171,32 @@ const { expect } = require('chai');
       .withArgs("Buy Alien", accounts[1].address, _totalAliens[0]);   
     })
 
-    it("8. Get all aliens by owner, totalSupply should be equal to owned aliens", async () => {
+    it("8. Should create 2 gen0 aliens, pause contract, fail to create, unpause and create a 3rd gen0 alien", async () => {
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
-      const _totalSupply = await alienCore.totalSupply()
+      let _totalSupply = await alienCore.totalSupply()
       expect(_totalSupply).to.be.equal(2)
-
-      const _totalAliensOwned = await alienCore.getAllAliens(accounts[0].address);
-      expect(_totalAliensOwned.length).to.be.equal(_totalSupply)
-      
+      // pause contract
+      await expect(alienCore.pauseContract())
+      .to.emit(alienCore, 'Paused')
+      .withArgs(accounts[0].address);
+      // createAlien will fail, CONTRACT PAUSED
+      await expect(alienCore.createAlienGen0(gen0Alien.genes3)).to.be.revertedWith(
+        "Pausable: paused"
+      );
+      // try unpause with account[1], should fail, not owner
+      await expect(alienCore.connect(accounts[1]).createAlienGen0(gen0Alien.genes4)).to.be.revertedWith(
+        "Ownable: caller is not the owner"
+      );
+      // unpause contract
+      await expect(alienCore.unpauseContract())
+      .to.emit(alienCore, 'Unpaused')
+      .withArgs(accounts[0].address);
+      // create alien after unpause
+      await alienCore.createAlienGen0(gen0Alien.genes2);
+      _totalSupply = await alienCore.totalSupply()
+      expect(_totalSupply).to.be.equal(3)
     });
 /*
 */

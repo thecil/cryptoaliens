@@ -42,6 +42,28 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
     }
 
     /**
+     * @dev Returns to normal state.
+     *
+     * Requirements:
+     *
+     * - The contract must be paused.
+     */
+    function pauseContract() public onlyOwner whenNotPaused {
+        _pause();
+    }
+
+    /**
+     * @dev Returns to normal state.
+     *
+     * Requirements:
+     *
+     * - The contract must be paused.
+     */
+    function unpauseContract() public onlyOwner whenPaused {
+        _unpause();
+    }
+    
+    /**
      * @dev Assign ownership of a specific Kitty to an address.
      * @dev This poses no restriction on msg.sender
      * @param _from The address from who to transfer from, can be 0 for creation of a kitty
