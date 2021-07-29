@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 interface IAlienMarketPlace {
 
-  function totalOffers() external view returns(uint256);
+  function totalActiveOffers() external view returns(uint256);
 
   function getOffer(uint256 _tokenId) external view returns(
     address seller,
