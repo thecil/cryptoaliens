@@ -847,9 +847,36 @@ var abiAlienMarketplace = [
     "name": "getAllTokenOnSale",
     "outputs": [
       {
-        "internalType": "uint256[]",
-        "name": "listOfToken",
-        "type": "uint256[]"
+        "components": [
+          {
+            "internalType": "address payable",
+            "name": "seller",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "index",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct AlienMarketPlace.Offer[]",
+        "name": "",
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",
@@ -943,19 +970,6 @@ var abiAlienMarketplace = [
     "name": "setOffer",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalOffers",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {

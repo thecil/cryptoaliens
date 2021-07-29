@@ -161,12 +161,12 @@ async function alienOwnership(id) {
 //aliens for sale
 async function contractCatalog() {
   var arrayId = await alienMarketInstance.methods.getAllTokenOnSale().call();
-  // console.log(arrayId)
+  // console.log(`contractCatalog: arrayId[${arrayId}]`)
   for (i = 0; i < arrayId.length; i++) {
     // if offer status is active, append to the market list
-    let isActive = await alienMarketInstance.methods.getOffer(arrayId[i]).call();
+    let isActive = await alienMarketInstance.methods.getOffer(arrayId[i].tokenId).call();
     if(isActive.active == true){
-      appendAliens(arrayId[i])
+      appendAliens(arrayId[i].tokenId)
     }
   }
 }

@@ -100,7 +100,7 @@ contract AlienMarketPlace is Ownable{
     // Remove from array: move the last token to the current token position
     uint256 lastTokenIndex = _offers.length;
     uint256 tokenIndex = _tokenIdToOffer[_tokenId].index;
-    Offer memory lastTokenId = _offers[lastTokenIndex];
+    Offer memory lastTokenId = _offers[lastTokenIndex-1];
 
     _offers[tokenIndex] = lastTokenId; // Move the last token to the slot of the to-delete token
     _tokenIdToOffer[lastTokenId.index].index = tokenIndex; // Update the moved token's index
@@ -127,16 +127,13 @@ contract AlienMarketPlace is Ownable{
   }
 
   function buyAlien(uint _tokenId) public payable{
-    console.log("buyAlien started");
+    
     Offer memory _offer = _tokenIdToOffer[_tokenId];
-    console.log("buyAlien:: _offer[%s].tokenId", _offer.tokenId);
-    console.log("buyAlien:: _offer[%s].index", _offer.index);
-    console.log("buyAlien:: _offer[%s].active", _offer.active);
+
     require(msg.value == _offer.price, "The price amount must be the same as the price");
     
     _removeOffer(_tokenId);
 
-    console.log("buyAlien:: _offer.index[%s], _offer[%s].active",_offer.index, _offers[_tokenId].active);
     _offer.seller.transfer(_offer.price);
     IAlienNft.transferFrom(_offer.seller, msg.sender, _offer.tokenId);
 
