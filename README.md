@@ -24,7 +24,6 @@ Part of Ivan on Tech [Ivan on Tech Academy](https://academy.ivanontech.com/) boo
 - [Client](#client)
   - [Instalation](#instalation-1)
     - [Local development](#local-development)
-  - [Deploy client](#deploy-client)
 - [Images](#images)
 
 ## Ethereum
@@ -39,7 +38,7 @@ Contracts are written in Solidity
 - AlienFactory forms the basic of all aliens interactions. It is split into two(2) contracts, inheriting from eachother to make life more easy.
   - **AlienFactory** is build in the following way
     - **AlienFactory**: All logic to clone aliens and make new gen0
-    - **AlienCore**: All logic to make it ERC721
+    - **AlienCore**: All logic to make it ERC721 (Openzeppelin)
   - **MarketPlace** is not inheriting from AlienFactory and is a standalone contract. It requires the interface of AlienCore to interact with.
 
 ### ERC721
@@ -100,23 +99,34 @@ NOTE: make sure to have Ether in your first account
 
 ## Client
 
-Client is made with React
+Client is made with Html, css, jquery, javascript, bootstrap, web3.
 
-- bootstrapped with
+### Instalation
 
-## Testing
-```
-npm run test
-```
+- Have [python](https://www.python.org/downloads/) installed
+- Have a way to run a blockchain locally (via hardhat node)
+- Have MetaMask installed
+
+#### Local development
+
+1. `cd client`
+2. Make sure that a local blockhain is running (via hardhat node).
+3. Start python webserver `python -m http.server`
+4. Have all node_modules installed
+5. Have local blockchain network added in MetaMask
+6. Have local blockchain accounts added in MetaMask
+7. Start local development
+
+NOTE: after deploying the contracts with `alien_deploy.js`, it will return the addresses of each contract, make sure they match with `alienFactory_adderss` and `alienMarketplace_address` in `index.js`
+
+## Images
+![Preview](./client/assets/images/myAliens.png)
+![Preview2](/client/assets/images/alienDetails.png)
+
 ## Useful Links
-[Hardhat](https://hardhat.org/getting-started/#installation)
-
-[hardhat-truffle5](https://hardhat.org/plugins/nomiclabs-hardhat-truffle5.html)
-
-[hardhat-web3](https://hardhat.org/plugins/nomiclabs-hardhat-web3.html)
-
-[hardhat-gas-reporter](https://hardhat.org/plugins/hardhat-gas-reporter.html)
-
-[Openzeppelin](https://docs.openzeppelin.com/openzeppelin)
-
-[Openzeppelin TestHelpers](https://docs.openzeppelin.com/test-helpers/0.5/)
+- [Hardhat](https://hardhat.org/getting-started/#installation)
+- [hardhat-truffle5](https://hardhat.org/plugins/nomiclabs-hardhat-truffle5.html)
+- [hardhat-web3](https://hardhat.org/plugins/nomiclabs-hardhat-web3.html)
+- [Openzeppelin](https://docs.openzeppelin.com/openzeppelin)
+- [Openzeppelin TestHelpers](https://docs.openzeppelin.com/test-helpers/0.5/)
+- [Python](https://www.python.org/downloads/)
