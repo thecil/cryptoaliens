@@ -37,6 +37,19 @@ $(document).ready(function(){
       })
       .on('error', console.error);
 
+    await alienMarketInstance.events.MarketTransaction()
+      .on('data', (event) => {
+       console.log(event);
+        let owner = event.returnValues.owner;
+        let TxType = event.returnValues.TxType;
+        let tokenId = event.returnValues.tokenId;        
+        alert_msg("owner:" + owner
+          + " TxType:" + TxType
+          + " tokenId:" + tokenId
+          ,'success')
+      })
+      .on('error', console.error);
+
   });
 });
 
