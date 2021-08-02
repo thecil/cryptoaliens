@@ -6,6 +6,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
 /**
  * @title The contract that handles ownership, 
  * Implementation of ERC721 Non-Fungible Token Standard, including
@@ -13,9 +15,12 @@ import "@openzeppelin/contracts/security/Pausable.sol";
  * @author Carlos Zambrano - thecil
  */
 contract AlienCore is ERC721Enumerable, Ownable, Pausable{
-
+    
+    // variables for alienToken, fee on each 
+    IERC20 public alienToken;
+    uint256 private _creationFee = 10; 
     using SafeMath for uint256;
-    address public contractAddress;
+    
 
     struct AlienObj {
         // Unique genes of this alien
@@ -37,8 +42,8 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
     */
     AlienObj[] internal _aliens;
 
-    constructor() ERC721("CryptoAliens", "ALIEN"){
-        contractAddress = address(this);
+    constructor(address _alienToken, string memory _name, string memory _symbol) ERC721(_name, _symbol){
+        alienToken = IERC20(_alienToken);
     }
 
     /**
@@ -194,7 +199,16 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
         return result;
     }
 
-    // public function to createAliens see: {_createAlien}
+    /**
+    * @dev public function to createAliens see: {_createAlien}
+    * @param _genes The generic code, must me computed by the caller
+    * @param _mumId The mother of the alien (0 for gen0)
+    * @param _dadId The dad of the alien (0 for gen0)
+    * @param _generation The generation number of this cat, must be computed by caller
+    * @param _owner The initial owner, must me non-zero
+    * Requirements:
+    * - msg.sender will pay the creation Fee for creation
+    */
     function createAlien(
       uint256 _genes,
       uint256 _mumId,
@@ -202,6 +216,12 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
       uint256 _generation,
       address _owner
     ) public returns(uint256){
+        require(alienToken.balanceOf(_owner) >= _creationFee, "not enough balance for creation fee");
+        uint256 _oldBalanceOf = alienToken.balanceOf(address(this));
+        // sent creation Fee to contract
+        alienToken.transferFrom(msg.sender, address(this), _creationFee);
+        // validate that contract receive the fees
+        assert(alienToken.balanceOf(address(this)) == _oldBalanceOf + _creationFee);
         uint256 _newAlien = _createAlien(_genes, _mumId, _dadId, _generation, _owner);
         return _newAlien;
     }

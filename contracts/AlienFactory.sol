@@ -19,6 +19,10 @@ contract AlienFactory is AlienCore{
   uint256 private constant CREATION_LIMIT_GEN0 = 10;
   Counters.Counter private gen0Counter;
 
+  constructor(address _alienToken) AlienCore(_alienToken, "CryptoAliens", "ALIEN") {
+ 
+  }
+
   /**
    * @dev Returns a binary between 00000000-11111111
    */

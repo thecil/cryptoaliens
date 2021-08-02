@@ -3,7 +3,7 @@ const { expect } = require('chai');
 // Main function that is executed during the test
   describe("CryptoAliens", () => {
       // Global variable declarations
-  let _contractInstance, alienCore, marketplace, accounts;
+  let _contractInstance, alienCore, marketplace, alienToken, accounts;
   const price = web3.utils.toWei("0.25");
   const _formatUnit = (_value) => {return ethers.utils.formatUnits(_value, 0) } 
   const gen0Alien = {
@@ -21,24 +21,36 @@ const { expect } = require('chai');
 
   //set contracts instances
   beforeEach(async function() {
+    // Deploy alienToken to testnet
+    _contractInstance = await ethers.getContractFactory('AlienToken')
+    alienToken = await _contractInstance.deploy();
     // Deploy AlienCore to testnet
     _contractInstance = await ethers.getContractFactory('AlienFactory')
-    alienCore = await _contractInstance.deploy(); 
+    alienCore = await _contractInstance.deploy(alienToken.address); 
     // Deploy AlienMarket to testnet
     _contractInstance = await ethers.getContractFactory('AlienMarketPlace')
     marketplace = await _contractInstance.deploy(alienCore.address); 
+
     //get all accounts from hardhat
     accounts = await ethers.getSigners();
   })
 
    
-    it("1.  show AlienCore, interface, marketplace & AlienNFT contract addresses", async () => {
+    it("1.  show AlienCore, interface, marketplace, alienCore, alienToken contract addresses", async () => {
             console.log("UNIT TEST ADDRESSES")
             console.log(`AlienFactory:: ${alienCore.address}`)
             console.log(`MARKETPLACE:: ${marketplace.address}`)
+            console.log(`ALIENTOKEN:: ${alienToken.address}`)
     })
 
     it("2. ALIENCORE: create a gen 0 alien, expect revert at 10", async () => {
+      // claim tokens from owner, emits Transfer event
+      await expect(alienToken.claimToken())
+      .to.emit(alienToken, 'Transfer')
+      .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
+      // allow contract to transfer tokens
+      await alienToken.approve(alienCore.address, 1000);
+
       for(_i in gen0Alien){
        await alienCore.createAlienGen0(gen0Alien[_i]);
       }
@@ -56,6 +68,13 @@ const { expect } = require('chai');
     })
 
     it("3. ALIENCORE: Clone Alien", async () => {
+      // claim tokens from owner, emits Transfer event
+      await expect(alienToken.claimToken())
+      .to.emit(alienToken, 'Transfer')
+      .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
+      // allow contract to transfer tokens
+      await alienToken.approve(alienCore.address, 1000);
+
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
       const _totalAliens = await alienCore.getAllAliens(accounts[0].address);
@@ -67,6 +86,13 @@ const { expect } = require('chai');
     })
 
     it("4. ALIEN MARKETPLACE: SetOffer, getOffer", async function(){
+      // claim tokens from owner, emits Transfer event
+      await expect(alienToken.claimToken())
+      .to.emit(alienToken, 'Transfer')
+      .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
+      // allow contract to transfer tokens
+      await alienToken.approve(alienCore.address, 1000);
+
       // create 2 gen0 aliens
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
@@ -88,6 +114,13 @@ const { expect } = require('chai');
     })
 
     it("5. ALIEN MARKETPLACE: totalOffers, buyAlien from account[1]", async function(){
+      // claim tokens from owner, emits Transfer event
+      await expect(alienToken.claimToken())
+      .to.emit(alienToken, 'Transfer')
+      .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
+      // allow contract to transfer tokens
+      await alienToken.approve(alienCore.address, 1000);
+
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
       await alienCore.createAlienGen0(gen0Alien.genes3);
@@ -132,6 +165,13 @@ const { expect } = require('chai');
     })
 
     it("6. ALIENCORE:REVERT: clone alien that account[0] does not own 1 of them", async () => {
+      // claim tokens from owner, emits Transfer event
+      await expect(alienToken.claimToken())
+      .to.emit(alienToken, 'Transfer')
+      .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
+      // allow contract to transfer tokens
+    await alienToken.approve(alienCore.address, 1000);
+
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
@@ -153,6 +193,13 @@ const { expect } = require('chai');
     })
    
     it("7. ALIENCORE:MARKETPLACE: account[1] buy second offer, clone 2 aliens owned", async () => {
+      // claim tokens from owner, emits Transfer event
+      await expect(alienToken.claimToken())
+      .to.emit(alienToken, 'Transfer')
+      .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
+      // allow contract to transfer tokens
+      await alienToken.approve(alienCore.address, 1000);
+
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
@@ -172,6 +219,13 @@ const { expect } = require('chai');
     })
 
     it("8. Should create 2 gen0 aliens, pause contract, fail to create, unpause and create a 3rd gen0 alien", async () => {
+      // claim tokens from owner, emits Transfer event
+      await expect(alienToken.claimToken())
+      .to.emit(alienToken, 'Transfer')
+      .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
+      // allow contract to transfer tokens
+      await alienToken.approve(alienCore.address, 1000);
+      
       // create 2 gen0
       await alienCore.createAlienGen0(gen0Alien.genes1);
       await alienCore.createAlienGen0(gen0Alien.genes2);
@@ -197,6 +251,23 @@ const { expect } = require('chai');
       await alienCore.createAlienGen0(gen0Alien.genes2);
       _totalSupply = await alienCore.totalSupply()
       expect(_totalSupply).to.be.equal(3)
+    });
+
+    it("9. ALIENTOKEN: mint token, transfer, totalsupply...", async () => {
+      // totalSupply contract should be 0 tokens at the start
+      expect(await alienToken.totalSupply()).to.be.equal(0);
+      // claim tokens from owner, emits Transfer event
+      await expect(alienToken.claimToken())
+      .to.emit(alienToken, 'Transfer')
+      .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
+      // REVERT, already claimed the tokens, cant claim twice
+      await expect(alienToken.claimToken()).to.be.revertedWith(
+        "msg.sender already claimed tokens"
+      );
+      // totalSupply contract should be 1000 tokens at the start
+      expect(await alienToken.totalSupply()).to.be.equal(1000);
+      // balanceOF contract should be 1000 tokens ()
+      expect(await alienToken.balanceOf(accounts[0].address)).to.be.equal(1000);
     });
 /*
 */
