@@ -19,17 +19,10 @@ contract AlienToken is ERC20, Ownable{
         // claim limit
         uint256 _claimAmount = 1000;
         uint256 _oldTotalSupply = totalSupply();
-
-        // console.log("claimToken: msg.sender[%s], _claimAmount[%s], _oldTotalSupply[%s]", msg.sender, _claimAmount, _oldTotalSupply);
-        
-        // mint tokens, sender, amount
-        _mint(msg.sender, _claimAmount);
         // update mapping
         hasClaimTokens[msg.sender] = true;
-
-        // console.log("claimToken: _mint[%s], hasClaimTokens[%s]", _claimAmount, hasClaimTokens[msg.sender]);
-        // console.log("claimToken: msg.sender balanceOf[%s]", balanceOf(msg.sender));
-
+        // mint tokens, sender, amount
+        _mint(msg.sender, _claimAmount);
         // to validate that totalSupply is updated properly
         assert(totalSupply() == _oldTotalSupply + _claimAmount);
     }
