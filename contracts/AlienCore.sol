@@ -38,7 +38,7 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
     }
 
     /**
-    * @dev An array containing all kitties
+    * @dev An array containing all aliens
     */
     AlienObj[] internal _aliens;
 
@@ -69,9 +69,9 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
     }
     
     /**
-     * @dev Assign ownership of a specific Kitty to an address.
+     * @dev Assign ownership of a specific alien to an address.
      * @dev This poses no restriction on msg.sender
-     * @param _from The address from who to transfer from, can be 0 for creation of a kitty
+     * @param _from The address from who to transfer from, can be 0 for creation of a alien
      * @param _to The address to who to transfer to, cannot be 0 address
      * @param _tokenId The id of the transfering alien,
      */
@@ -91,7 +91,7 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
      * @param _genes The generic code, must me computed by the caller
      * @param _mumId The mother of the alien (0 for gen0)
      * @param _dadId The dad of the alien (0 for gen0)
-     * @param _generation The generation number of this cat, must be computed by caller
+     * @param _generation The generation number of this alien, must be computed by caller
      * @param _owner The initial owner, must me non-zero
      * @return The id of the created alien
     */
@@ -204,7 +204,7 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
     * @param _genes The generic code, must me computed by the caller
     * @param _mumId The mother of the alien (0 for gen0)
     * @param _dadId The dad of the alien (0 for gen0)
-    * @param _generation The generation number of this cat, must be computed by caller
+    * @param _generation The generation number of this alien, must be computed by caller
     * @param _owner The initial owner, must me non-zero
     * Requirements:
     * - msg.sender will pay the creation Fee for creation
