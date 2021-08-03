@@ -16,10 +16,11 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  */
 contract AlienCore is ERC721Enumerable, Ownable, Pausable{
     
+    using SafeMath for uint256;
     // variables for alienToken, fee on each 
     IERC20 public alienToken;
     uint256 private _creationFee = 10; 
-    using SafeMath for uint256;
+    
     
 
     struct AlienObj {
