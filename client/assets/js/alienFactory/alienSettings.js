@@ -20,12 +20,6 @@ $( document ).ready(async function() {
   $('#dnadanimation1').html(defaultDNA.animation1)
   $('#dnadanimation2').html(defaultDNA.animation2)
 
-//$('#dnadecoration').html(defaultDNA.decorationPattern)
-//$('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
-//$('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
-
-//$('#dnaspecial').html(defaultDNA.lastNum)
-
   await renderAlien(defaultDNA)
 });
 

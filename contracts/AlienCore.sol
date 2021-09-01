@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 /**
  * @title The contract that handles ownership, 
@@ -11,10 +14,14 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
  * the Metadata , Enumerable extensions (and ERC165) compliant, 
  * @author Carlos Zambrano - thecil
  */
-contract AlienCore is Ownable, ERC721{
-
+contract AlienCore is ERC721Enumerable, Ownable, Pausable{
+    
     using SafeMath for uint256;
-    address public contractAddress;
+    // variables for alienToken, fee on each 
+    IERC20 public alienToken;
+    uint256 private _creationFee = 10; 
+    
+    
 
     struct AlienObj {
         // Unique genes of this alien
@@ -32,25 +39,40 @@ contract AlienCore is Ownable, ERC721{
     }
 
     /**
-    * @dev An array containing all kitties
+    * @dev An array containing all aliens
     */
     AlienObj[] internal _aliens;
 
-    /// @dev Mapping from address to number of owned aliens
-    mapping(address => uint256) internal _aliensOwnedCount;
-    /// @dev Mapping from alien id to owner address, must be a valid non-0 address
-    mapping(uint256 => address) internal _alienIdToOwner;
-    /// @dev Mapping from alien id to number of children
-    mapping(uint256 => uint256[]) internal _alienToChildren;
-
-    constructor() ERC721("CryptoAliens", "ALIEN"){
-        contractAddress = address(this);
+    constructor(address _alienToken, string memory _name, string memory _symbol) ERC721(_name, _symbol){
+        alienToken = IERC20(_alienToken);
     }
 
     /**
-     * @dev Assign ownership of a specific Kitty to an address.
+     * @dev Returns to normal state.
+     *
+     * Requirements:
+     *
+     * - The contract must be paused.
+     */
+    function pauseContract() public onlyOwner whenNotPaused {
+        _pause();
+    }
+
+    /**
+     * @dev Returns to normal state.
+     *
+     * Requirements:
+     *
+     * - The contract must be paused.
+     */
+    function unpauseContract() public onlyOwner whenPaused {
+        _unpause();
+    }
+    
+    /**
+     * @dev Assign ownership of a specific alien to an address.
      * @dev This poses no restriction on msg.sender
-     * @param _from The address from who to transfer from, can be 0 for creation of a kitty
+     * @param _from The address from who to transfer from, can be 0 for creation of a alien
      * @param _to The address to who to transfer to, cannot be 0 address
      * @param _tokenId The id of the transfering alien,
      */
@@ -58,16 +80,11 @@ contract AlienCore is Ownable, ERC721{
         address _from,
         address _to,
         uint256 _tokenId
-    ) public {
+    ) public whenNotPaused{
         require(_to != address(0), "transfer to the zero address");
         require(_to != address(this), "Can't transfer to");
-        _aliensOwnedCount[_to] = _aliensOwnedCount[_to]++;
-        _alienIdToOwner[_tokenId] = _to;
 
-        if(_from != address(0)){
-            _aliensOwnedCount[_from] = _aliensOwnedCount[_from]--;
-        }
-        safeTransferFrom(_from, _to, _tokenId);
+        safeTransferFrom(_from, _to, _tokenId);       
     }
 
     /**
@@ -75,7 +92,7 @@ contract AlienCore is Ownable, ERC721{
      * @param _genes The generic code, must me computed by the caller
      * @param _mumId The mother of the alien (0 for gen0)
      * @param _dadId The dad of the alien (0 for gen0)
-     * @param _generation The generation number of this cat, must be computed by caller
+     * @param _generation The generation number of this alien, must be computed by caller
      * @param _owner The initial owner, must me non-zero
      * @return The id of the created alien
     */
@@ -85,7 +102,7 @@ contract AlienCore is Ownable, ERC721{
       uint256 _dadId,
       uint256 _generation,
       address _owner
-    ) internal returns (uint256) {
+    ) internal whenNotPaused returns (uint256) {
 
         AlienObj memory _alien = AlienObj({
             genes: _genes,
@@ -100,19 +117,9 @@ contract AlienCore is Ownable, ERC721{
         uint256 _newAlienId = _aliens.length.sub(1);
 
         _safeMint(_owner, _newAlienId);
-        _alienIdToOwner[_newAlienId] = msg.sender;
-        _aliensOwnedCount[msg.sender] = _aliensOwnedCount[msg.sender].add(1);
 
         emit AlienMinted(_owner, _newAlienId, _mumId, _dadId, _genes);
         return _newAlienId;
-    }
-
-    /**
-     * @notice Count aliens tracked by this contract
-     * @return A count of valid aliens tracked by this contract with Counters
-     */
-    function totalSupply() public view returns(uint256){
-        return _aliens.length;
     }
 
     /**
@@ -134,7 +141,7 @@ contract AlienCore is Ownable, ERC721{
     * - The caller must own `tokenId` or be an approved operator.
     * emits Event {AlienDestroyed}
     */
-    function burn(uint256 tokenId) public virtual {
+    function burn(uint256 tokenId) public virtual whenNotPaused{
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721Burnable: caller is not owner nor approved");
         _burn(tokenId);
         delete _aliens[tokenId];
@@ -155,7 +162,7 @@ contract AlienCore is Ownable, ERC721{
         uint32 _dadId,
         uint16 _generation
         ){
-        require(tokenId <= _aliens.length, "Id outside of totalSupply");
+        require(tokenId <= totalSupply(), "Id outside of totalSupply");
         AlienObj memory alien = _aliens[tokenId];
 
         _genes = uint256(alien.genes);
@@ -184,22 +191,25 @@ contract AlienCore is Ownable, ERC721{
         }
 
         uint256[] memory result = new uint256[](tokenCount);
-        uint256 totalAliens = _aliens.length;
-        uint256 resultIndex = 0;
 
         uint256 alienId;
-
-        for (alienId = 0; alienId <= totalAliens; alienId++) {
-            if (_alienIdToOwner[alienId] == _owner) {
-                result[resultIndex] = alienId;
-                resultIndex++;
-            }
+        for (alienId = 0; alienId < tokenCount; alienId++) {
+                result[alienId] = tokenOfOwnerByIndex(_owner, alienId);
         }
 
         return result;
     }
 
-    // public function to createAliens see: {_createAlien}
+    /**
+    * @dev public function to createAliens see: {_createAlien}
+    * @param _genes The generic code, must me computed by the caller
+    * @param _mumId The mother of the alien (0 for gen0)
+    * @param _dadId The dad of the alien (0 for gen0)
+    * @param _generation The generation number of this alien, must be computed by caller
+    * @param _owner The initial owner, must me non-zero
+    * Requirements:
+    * - msg.sender will pay the creation Fee for creation
+    */
     function createAlien(
       uint256 _genes,
       uint256 _mumId,
@@ -207,6 +217,12 @@ contract AlienCore is Ownable, ERC721{
       uint256 _generation,
       address _owner
     ) public returns(uint256){
+        require(alienToken.balanceOf(_owner) >= _creationFee, "not enough balance for creation fee");
+        uint256 _oldBalanceOf = alienToken.balanceOf(address(this));
+        // sent creation Fee to contract
+        alienToken.transferFrom(msg.sender, address(this), _creationFee);
+        // validate that contract receive the fees
+        assert(alienToken.balanceOf(address(this)) == _oldBalanceOf + _creationFee);
         uint256 _newAlien = _createAlien(_genes, _mumId, _dadId, _generation, _owner);
         return _newAlien;
     }

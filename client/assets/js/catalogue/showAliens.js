@@ -40,11 +40,11 @@ function selectClone(dna, id, gen, gender) {
     var AlienAttributes = alienAtributes(gender)
     $('#alienAtributes' + gender).html(AlienAttributes)
     $('#' + gender).html(body)
-    //3 Render the cats CSS style depending on DNA string
+    //3 Render the aliens CSS style depending on DNA string
     renderAlien(AlienDna, gender)
     $('#' + gender).addClass('cloneSelect')
-    $('#' + gender).attr('data-alienid', id)
-    $('#' + gender).attr('onclick', 'cloneAlien("' + gender + '")')
+    $('#' + gender).attr('data-catid', id)
+    $('#' + gender).attr('onclick', 'cloneAliens("' + gender + '")')
     $('#alienDNA' + gender).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4><input class="hidden" id="` + gender + `Id" type="number" value=` + id + `></span>
     <br>
@@ -56,7 +56,7 @@ function selectClone(dna, id, gen, gender) {
 
 function readyToClone() {
 
-    var mumId = $('#MumId').val()
+    var mumId = $('#MomId').val()
     var dadId = $('#DadId').val()
 
     if (!empty(mumId) && !empty(dadId)) {
@@ -81,19 +81,19 @@ function removeSelection(id, gender) {
                         </div>`
 
     if (gender == 'Mom') {
-        var alienData = $('#Dad').attr('data-alienid')
+        var alienData = $('#Dad').attr('data-catid')
         if (alienData == id) {
-            $('#Dad').attr('data-alienid', 0)
-            $('#Dad').attr('onclick', 'breedKitties(this.id)')
+            $('#Dad').attr('data-catid', 0)
+            $('#Dad').attr('onclick', 'cloneAliens(this.id)')
             $('#Dad').html(selectionDiv)
-            $('#Dad').removeClass('breedSelect')
+            $('#Dad').removeClass('cloneSelect')
             $('#alienDNADad').html('')
         }
     }
     if (gender == 'Dad') {
-        var alienData = $('#Mom').attr('data-alienid')
+        var alienData = $('#Mom').attr('data-catid')
         if (alienData == id) {
-            $('#Mom').attr('data-alienid', 0)
+            $('#Mom').attr('data-catid', 0)
             $('#Mom').attr('onclick', 'cloneAliens(this.id)')
             $('#Mom').html(selectionDiv)
             $('#Mom').removeClass('cloneSelect')
@@ -145,14 +145,14 @@ async function alienOffer(id) {
             $('#cancelBtn').attr('onclick', 'deleteOffer(' + id + ')')
             $('#sellBtn').addClass('btn-success')
             $('#sellBtn').html('<b>For sale at:</b>')
-            $('#catPrice').val(offer.price)
-            $('#catPrice').prop('readonly', true)
+            $('#alienPrice').val(offer.price)
+            $('#alienPrice').prop('readonly', true)
         }
     }
 }
 
 
-//Apply cat CSS Styles from buidAlien.js
+//Apply alien CSS Styles from buidAlien.js
 
 async function renderAlien(dna, id) {
     headColor(dna.headcolor, id)
@@ -163,7 +163,7 @@ async function renderAlien(dna, id) {
     await logoCrypto(dna.animation2, id)
 }
 
-//Splitting the cat DNA to use it in render
+//Splitting the alien DNA to use it in render
 
 function alienDna(dnaStr) {
 

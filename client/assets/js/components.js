@@ -38,7 +38,7 @@ function menu(){
                       </li>
 
                       <li class="nav-item">
-                          <button class="btn red-btn ml-4">Start</button>
+                          <button id="btcWeb3connect" onclick="callApproved()" class="btn red-btn ml-4">Start</button>
                       </li>
 
                   </ul>
