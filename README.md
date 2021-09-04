@@ -8,6 +8,10 @@ Website: [https://netlify.app](https://netlify.app)
 Cryptoaliens is a ERC721 token, where you can buy, sell and clone your own aliens.
 
 Part of Ivan on Tech [Ivan on Tech Academy](https://academy.ivanontech.com/) bootcamp.
+## Contracts Addresses
+- AlienToken (CAT): 0x7DE6d04EaEEF8989171d3686573938B47D0B1c84
+- AlienFactory (NFT): 0xAF3677129Dceb13DB5Cb6115C9fD69beEfF4cA48
+- AlienMarketPlace: 0xC7Bdf1b7dcb806b9aFD5b83C8BC2b0c4aDf2BcB7
 
 ## Table of Contents
 
