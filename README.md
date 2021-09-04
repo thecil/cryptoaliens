@@ -9,13 +9,14 @@ Cryptoaliens is a ERC721 token, where you can buy, sell and clone your own alien
 
 Part of Ivan on Tech [Ivan on Tech Academy](https://academy.ivanontech.com/) bootcamp.
 ## Contracts Addresses
+### Mumbai Network (Polygon)
 - AlienToken (CAT): 0x7DE6d04EaEEF8989171d3686573938B47D0B1c84
 - AlienFactory (NFT): 0xAF3677129Dceb13DB5Cb6115C9fD69beEfF4cA48
 - AlienMarketPlace: 0xC7Bdf1b7dcb806b9aFD5b83C8BC2b0c4aDf2BcB7
 
 ## Table of Contents
 
-- [Ethereum](#ethereum)
+- [Solidity](#solidity)
   - [Smart contract structure](#smart-contract-structure)
   - [ERC721](#erc721)
   - [ERC 165](#erc-165)
@@ -23,14 +24,15 @@ Part of Ivan on Tech [Ivan on Tech Academy](https://academy.ivanontech.com/) boo
   - [DNA](#dna)
   - [Randomness](#randomness)
   - [Instalation](#instalation)
+  - [Requirements](#requirements)
   - [Deploy locally](#deploy-locally)
-  - [Deploy to test network](#deploy-to-test-network)
+  - [Deploying on Mumbai](#deploying-on-mumbai)
 - [Client](#client)
   - [Instalation](#instalation-1)
     - [Local development](#local-development)
 - [Images](#images)
 
-## Ethereum
+## Solidity
 
 Contracts are written in Solidity
 
@@ -73,7 +75,10 @@ Every alien has unique DNA, comprised of a 10 digits. When cloning 2 aliens, the
 
 Randomness is simulated through using the timestamp of the mined block.
 
-### Instalation
+## Instalation
+
+### Requirements
+Must fill a `.env` file with proper Key data, check `.evn.example`
 
 - Have node installed (v10 or later)
 - Have yarn installed `npm install -g yarn` (or npm)
@@ -90,16 +95,25 @@ Randomness is simulated through using the timestamp of the mined block.
 - Start up local blockchain (hardhat node)
 - Deploy the contracts on your locak blockchain 
     ```bash
-    npx hardhat run scripts/alien_deploy.js --network localhost
+    npm run deploy
     ```
 
-### Deploy to test network
+### Testing
 
-- Make a file to store the mnemonic secret in `touch .secret` and add your secret.
-- Update the `INFURA_PUBLIC_KEY` in hardhat.config
-- Run `npx hardhat run scripts/alien_deploy.js --network ropsten`
+```
+npm run test
+yarn test
+```
+NOTE: unit test is mean for local blockchain, not testnet nor mainnet. (it will deploy a new contract)
 
-NOTE: make sure to have Ether in your first account
+### Deploying on Mumbai
+
+```
+npm run deploy-testnet
+yarn deploy-testnet
+```
+
+NOTE: make sure to have Matic in your first account
 
 ## Client
 
