@@ -2,7 +2,7 @@
 // when page load
 $( document ).ready(function() {
     menu()
-     });
+});
 
 
 function menu(){
@@ -38,7 +38,7 @@ function menu(){
                       </li>
 
                       <li class="nav-item">
-                          <button id="btcWeb3connect" onclick="callApproved()" class="btn red-btn ml-4">Start</button>
+                          <button id="btcWeb3connect" onclick="claimToken()" class="btn red-btn m-4">Claim Token</button>
                       </li>
 
                   </ul>

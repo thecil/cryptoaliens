@@ -1,18 +1,21 @@
 
 var web3 = new Web3(Web3.givenProvider)
-var alienFactoryInstance, alienMarketInstance, user, contractOwner
-var alienFactory_adderss = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
-var alienMarketplace_address = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
+var alienFactoryInstance, alienMarketInstance, alienTokenInstance, user, contractOwner
+var alienFactory_adderss = '0xAF3677129Dceb13DB5Cb6115C9fD69beEfF4cA48';
+var alienMarketplace_address = '0xC7Bdf1b7dcb806b9aFD5b83C8BC2b0c4aDf2BcB7';
+var alienToken_address = '0x7DE6d04EaEEF8989171d3686573938B47D0B1c84';
 
-$(document).ready(function(){
+$(document).ready(async function(){
   window.ethereum.enable()
   .then(async function(accounts){
     alienFactoryInstance = new web3.eth.Contract(abiAlienFactory, alienFactory_adderss, {from: accounts[0]})
     alienMarketInstance = new web3.eth.Contract(abiAlienMarketplace, alienMarketplace_address, {from: accounts[0]})
+    alienTokenInstance = new web3.eth.Contract(abiAlienToken, alienToken_address, {from: accounts[0]})
 
     alienFactoryInstance.methods.owner().call().then(test => {
       contractOwner = test;
     });
+
     user = accounts[0];
     /*     
     EVENTS
@@ -51,6 +54,7 @@ $(document).ready(function(){
       .on('error', console.error);
 
   });
+
 });
 
 async function getAllEvents(){
@@ -73,6 +77,53 @@ $('#createAlien').click(function(){
   })
 
 })
+
+$('#btnAllowance').click(async () => {
+  let allowance = await alienTokenInstance.methods.allowance(user, alienFactory_adderss).call();
+  console.log('allowance', allowance);
+  if(allowance > 0){
+    const button = document.getElementById("btnAllowance");
+    $('#btnAllowance').prop('disabled', true);
+  }else{
+    $('#btnAllowance').html('Approve');
+    await alienTokenInstance.methods.approve(alienFactory_adderss, 20)
+    .send({}, (error, txHash)=>{
+      if(error){
+        console.log(error)
+      }
+      else{console.log(txHash)}
+    })
+    
+  }
+})
+
+
+async function claimToken(){
+  let balanceOf = await alienTokenInstance.methods.balanceOf(user).call();
+  if(balanceOf > 10){
+    console.log('AlienToken Balance', balanceOf);
+    $('#btcWeb3connect').html(`CAT: ${balanceOf}`);
+  }else{
+    await alienTokenInstance.methods.claimToken()
+    .send({}, (error, txHash)=>{
+      if(error){
+        console.log(error)
+      }
+      else{console.log(txHash)}
+    })
+  }
+  $('#btcWeb3connect').html(`CAT: ${balanceOf}`);
+}
+
+async function mintTokens(){
+  await alienTokenInstance.methods.mint(1000)
+  .send({}, (error, txHash)=>{
+    if(error){
+      console.log(error)
+    }
+    else{console.log(txHash)}
+  })
+}
 
 async function callApproved(){
   var res;

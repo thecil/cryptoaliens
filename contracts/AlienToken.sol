@@ -13,17 +13,23 @@ contract AlienToken is ERC20, Ownable{
 
     }
 
+    function mint(uint256 amount) public onlyOwner {
+        uint256 _oldTotalSupply = totalSupply();
+        _mint(address(this), amount);
+        // to validate that totalSupply is updated properly
+        assert(totalSupply() == _oldTotalSupply + amount);
+    }
+    
     // claim tokens by minting to msg.sender, limited to 1000 tokens, one time use
     function claimToken() public{
-        require(hasClaimTokens[msg.sender] == false, "msg.sender already claimed tokens");
+        require(hasClaimTokens[msg.sender] == false, "address already claimed tokens");
         // claim limit
-        uint256 _claimAmount = 1000;
-        uint256 _oldTotalSupply = totalSupply();
+        uint256 _claimAmount = 20;
         // update mapping
         hasClaimTokens[msg.sender] = true;
-        // mint tokens, sender, amount
-        _mint(msg.sender, _claimAmount);
-        // to validate that totalSupply is updated properly
-        assert(totalSupply() == _oldTotalSupply + _claimAmount);
+        // transfer tokens, sender, amount
+        _transfer(address(this), msg.sender, _claimAmount);
+        // validate that msg.sender receive their tokens
+        assert(balanceOf(msg.sender) == _claimAmount || balanceOf(msg.sender) > _claimAmount);
     }
 }

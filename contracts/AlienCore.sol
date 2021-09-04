@@ -19,7 +19,7 @@ contract AlienCore is ERC721Enumerable, Ownable, Pausable{
     using SafeMath for uint256;
     // variables for alienToken, fee on each 
     IERC20 public alienToken;
-    uint256 private _creationFee = 10; 
+    uint256 private _creationFee = 2; 
     
     
 

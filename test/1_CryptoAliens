@@ -262,13 +262,14 @@ const { expect } = require('chai');
       .withArgs('0x0000000000000000000000000000000000000000', accounts[0].address, 1000);
       // REVERT, already claimed the tokens, cant claim twice
       await expect(alienToken.claimToken()).to.be.revertedWith(
-        "msg.sender already claimed tokens"
+        "address already claimed tokens"
       );
       // totalSupply contract should be 1000 tokens at the start
       expect(await alienToken.totalSupply()).to.be.equal(1000);
       // balanceOF contract should be 1000 tokens ()
       expect(await alienToken.balanceOf(accounts[0].address)).to.be.equal(1000);
     });
+
 /*
 */
   })//describe

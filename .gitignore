@@ -1,12 +1,21 @@
-# hardhat
-artifacts
-cache
-test
+cache/
+artifacts/
 
-# folders
-node_modules
+coverage*
+typechain/
 
-#files
-.secret
+.vscode/*
+!.vscode/settings.json.default
+!.vscode/launch.json.default
+!.vscode/extensions.json.default
 
+node_modules/
+.env
+
+.yalc
+yalc.lock
+
+contractsInfo.json
+deployments/hardhat
+deployments/localhost
 package-lock.json
